@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../data/repositories/hive_learning_item_repository.dart';
+import '../../../learn/presentation/bloc/learn_bloc.dart';
+import '../../../learn/presentation/pages/learn_page.dart';
 import '../bloc/library_bloc.dart';
 import '../bloc/library_event.dart';
 import '../bloc/library_state.dart';
@@ -44,7 +47,15 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Library')),
+      appBar: AppBar(
+        title: const Text('Library'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => _openLearnPage(context),
+            child: const Text('Learn'),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -97,7 +108,10 @@ class _LibraryPageState extends State<LibraryPage> {
                                     (BuildContext context, int index) =>
                                         const SizedBox(height: 10),
                                 itemBuilder: (BuildContext context, int index) {
-                                  return LibraryItemTile(item: items[index]);
+                                  return LibraryItemTile(
+                                    item: items[index],
+                                    onTap: () => _openLearnPage(context),
+                                  );
                                 },
                               ),
                             ),
@@ -113,6 +127,27 @@ class _LibraryPageState extends State<LibraryPage> {
         ),
       ),
     );
+  }
+
+  void _openLearnPage(BuildContext context) {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext routeContext) {
+              return BlocProvider<LearnBloc>(
+                create: (_) => LearnBloc(
+                  repository: context.read<HiveLearningItemRepository>(),
+                ),
+                child: const LearnPage(),
+              );
+            },
+          ),
+        )
+        .then((_) {
+          if (context.mounted) {
+            context.read<LibraryBloc>().add(const LoadLibrary());
+          }
+        });
   }
 }
 

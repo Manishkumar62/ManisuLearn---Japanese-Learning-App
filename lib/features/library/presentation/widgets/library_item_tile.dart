@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../data/models/learning_item.dart';
 
 class LibraryItemTile extends StatelessWidget {
-  const LibraryItemTile({super.key, required this.item});
+  const LibraryItemTile({super.key, required this.item, this.onTap});
 
   final LearningItem item;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LibraryItemTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
-        onTap: () {},
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(
