@@ -116,23 +116,49 @@ class _RevisionFlashcard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          FilledButton(
-            onPressed: () {
-              context.read<RevisionBloc>().add(
-                state.isAnswerVisible
-                    ? const ReviseItem()
-                    : const RevealRevisionAnswer(),
-              );
-            },
-            child: Text(state.isAnswerVisible ? 'Reviewed' : 'Reveal answer'),
-          ),
-          const SizedBox(height: 8),
-          OutlinedButton(
-            onPressed: () {
-              context.read<RevisionBloc>().add(const SkipRevisionItem());
-            },
-            child: const Text('Skip'),
-          ),
+          if (state.isAnswerVisible)
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () {
+                      context.read<RevisionBloc>().add(
+                        const ReviewItem(isCorrect: false),
+                      );
+                    },
+                    child: const Text('Incorrect'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: FilledButton(
+                    onPressed: () {
+                      context.read<RevisionBloc>().add(
+                        const ReviewItem(isCorrect: true),
+                      );
+                    },
+                    child: const Text('Correct'),
+                  ),
+                ),
+              ],
+            )
+          else ...<Widget>[
+            FilledButton(
+              onPressed: () {
+                context.read<RevisionBloc>().add(
+                  const RevealRevisionAnswer(),
+                );
+              },
+              child: const Text('Reveal answer'),
+            ),
+            const SizedBox(height: 8),
+            OutlinedButton(
+              onPressed: () {
+                context.read<RevisionBloc>().add(const SkipRevisionItem());
+              },
+              child: const Text('Skip'),
+            ),
+          ],
         ],
       ),
     );

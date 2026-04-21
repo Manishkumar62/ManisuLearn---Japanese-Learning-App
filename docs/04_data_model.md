@@ -24,4 +24,10 @@ class LearningItem {
   double difficulty;
 
   List<String> tags;
+
+  double easeFactor; // default: 2.5
+  int interval; // in days
+  int repetitions;
+  DateTime nextReview;
 }
+```

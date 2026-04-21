@@ -19,6 +19,11 @@ class SkipRevisionItem extends RevisionEvent {
   const SkipRevisionItem();
 }
 
-class ReviseItem extends RevisionEvent {
-  const ReviseItem();
+class ReviewItem extends RevisionEvent {
+  const ReviewItem({required this.isCorrect});
+
+  final bool isCorrect;
+
+  @override
+  List<Object?> get props => <Object?>[isCorrect];
 }

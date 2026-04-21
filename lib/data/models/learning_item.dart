@@ -17,9 +17,14 @@ class LearningItem extends HiveObject {
     DateTime? createdAt,
     this.difficulty = 0,
     List<String>? tags,
+    this.easeFactor = 2.5,
+    this.interval = 0,
+    this.repetitions = 0,
+    DateTime? nextReview,
   }) : lastReviewed = lastReviewed ?? DateTime.now(),
        createdAt = createdAt ?? DateTime.now(),
-       tags = tags ?? <String>[];
+       tags = tags ?? <String>[],
+       nextReview = nextReview ?? DateTime.now();
 
   @HiveField(0)
   String id;
@@ -56,4 +61,16 @@ class LearningItem extends HiveObject {
 
   @HiveField(11)
   List<String> tags;
+
+  @HiveField(12)
+  double easeFactor;
+
+  @HiveField(13)
+  int interval;
+
+  @HiveField(14)
+  int repetitions;
+
+  @HiveField(15)
+  DateTime nextReview;
 }

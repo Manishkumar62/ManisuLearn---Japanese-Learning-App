@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Manisu Learn',
+          debugShowCheckedModeBanner : false,
           theme: AppTheme.dark,
           darkTheme: AppTheme.dark,
           themeMode: ThemeMode.dark,

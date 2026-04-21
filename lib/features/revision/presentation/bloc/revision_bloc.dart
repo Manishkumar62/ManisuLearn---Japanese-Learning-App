@@ -1,21 +1,28 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/services/spaced_repetition_service.dart';
 import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'revision_event.dart';
 import 'revision_state.dart';
 
 class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
-  RevisionBloc({required LearningItemRepository repository})
+  RevisionBloc({
+    required LearningItemRepository repository,
+    SpacedRepetitionService? spacedRepetitionService,
+  })
     : _repository = repository,
+      _spacedRepetitionService =
+          spacedRepetitionService ?? SpacedRepetitionService(),
       super(const RevisionInitial()) {
     on<LoadRevisionItems>(_onLoadRevisionItems);
     on<RevealRevisionAnswer>(_onRevealRevisionAnswer);
     on<SkipRevisionItem>(_onSkipRevisionItem);
-    on<ReviseItem>(_onReviseItem);
+    on<ReviewItem>(_onReviewItem);
   }
 
   final LearningItemRepository _repository;
+  final SpacedRepetitionService _spacedRepetitionService;
 
   Future<void> _onLoadRevisionItems(
     LoadRevisionItems event,
@@ -29,7 +36,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
       );
 
       final sortedItems = items.toList(growable: false)
-        ..sort(_compareRevisionPriority);
+        ..sort(_spacedRepetitionService.compareReviewPriority);
 
       if (sortedItems.isEmpty) {
         emit(const RevisionCompleted());
@@ -72,8 +79,8 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
     _moveToNextItem(state, emit);
   }
 
-  Future<void> _onReviseItem(
-    ReviseItem event,
+  Future<void> _onReviewItem(
+    ReviewItem event,
     Emitter<RevisionState> emit,
   ) async {
     final state = this.state;
@@ -82,9 +89,12 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
     }
 
     try {
-      final item = state.currentItem
-        ..revisionCount += 1
-        ..lastReviewed = DateTime.now();
+      final item = _spacedRepetitionService.review(
+        state.currentItem,
+        quality: event.isCorrect
+            ? SpacedRepetitionService.defaultPassingQuality
+            : 2,
+      );
 
       await _repository.updateItem(item);
       _moveToNextItem(state, emit);
@@ -102,14 +112,5 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
     }
 
     emit(RevisionLoaded(items: state.items, currentIndex: nextIndex));
-  }
-
-  int _compareRevisionPriority(LearningItem a, LearningItem b) {
-    final revisionCountCompare = a.revisionCount.compareTo(b.revisionCount);
-    if (revisionCountCompare != 0) {
-      return revisionCountCompare;
-    }
-
-    return a.lastReviewed.compareTo(b.lastReviewed);
   }
 }

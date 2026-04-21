@@ -26,13 +26,17 @@ class LearningItemAdapter extends TypeAdapter<LearningItem> {
       createdAt: fields[9] as DateTime?,
       difficulty: (fields[10] as num?)?.toDouble() ?? 0,
       tags: (fields[11] as List?)?.cast<String>() ?? <String>[],
+      easeFactor: (fields[12] as num?)?.toDouble() ?? 2.5,
+      interval: fields[13] as int? ?? 0,
+      repetitions: fields[14] as int? ?? 0,
+      nextReview: fields[15] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, LearningItem obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,6 +60,14 @@ class LearningItemAdapter extends TypeAdapter<LearningItem> {
       ..writeByte(10)
       ..write(obj.difficulty)
       ..writeByte(11)
-      ..write(obj.tags);
+      ..write(obj.tags)
+      ..writeByte(12)
+      ..write(obj.easeFactor)
+      ..writeByte(13)
+      ..write(obj.interval)
+      ..writeByte(14)
+      ..write(obj.repetitions)
+      ..writeByte(15)
+      ..write(obj.nextReview);
   }
 }
