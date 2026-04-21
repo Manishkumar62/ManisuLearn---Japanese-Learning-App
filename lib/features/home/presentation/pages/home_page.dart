@@ -53,9 +53,7 @@ class _HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).colorScheme.surfaceContainerHighest,
-      borderRadius: BorderRadius.circular(8),
+    return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(

@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 
 import 'core/navigation/app_shell.dart';
 import 'core/services/json_loader.dart';
+import 'core/theme/app_theme.dart';
 import 'data/local/hive_boxes.dart';
 import 'data/local/hive_setup.dart';
 import 'data/models/learning_item.dart';
@@ -60,10 +61,9 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Manisu Learn',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-            useMaterial3: true,
-          ),
+          theme: AppTheme.dark,
+          darkTheme: AppTheme.dark,
+          themeMode: ThemeMode.dark,
           home: const AppShell(),
         ),
       ),

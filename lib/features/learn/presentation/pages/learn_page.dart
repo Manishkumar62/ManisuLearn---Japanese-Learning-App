@@ -62,48 +62,60 @@ class _FlashcardView extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 8),
+          TweenAnimationBuilder<double>(
+            tween: Tween<double>(begin: 0, end: progress / state.totalCount),
+            duration: const Duration(milliseconds: 260),
+            builder: (BuildContext context, double value, Widget? child) {
+              return LinearProgressIndicator(value: value);
+            },
+          ),
           const SizedBox(height: 16),
           Expanded(
-            child: Material(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(8),
+            child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _TypeBadge(type: item.type),
-                      const SizedBox(height: 24),
-                      Text(
-                        item.japanese,
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        item.romaji,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                      if (state.isAnswerVisible) ...<Widget>[
-                        const Divider(height: 40),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 220),
+                  child: SingleChildScrollView(
+                    key: ValueKey<String>(
+                      '${item.id}-${state.isAnswerVisible}',
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _TypeBadge(type: item.type),
+                        const SizedBox(height: 24),
                         Text(
-                          item.english,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          item.japanese,
+                          style: Theme.of(context).textTheme.headlineLarge,
                           textAlign: TextAlign.center,
                         ),
-                        if (item.hindi.isNotEmpty) ...<Widget>[
-                          const SizedBox(height: 12),
+                        const SizedBox(height: 12),
+                        Text(
+                          item.romaji,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        if (state.isAnswerVisible) ...<Widget>[
+                          const Divider(height: 40),
                           Text(
-                            item.hindi,
-                            style: Theme.of(context).textTheme.titleMedium,
+                            item.english,
+                            style: Theme.of(context).textTheme.titleLarge,
                             textAlign: TextAlign.center,
                           ),
+                          if (item.hindi.isNotEmpty) ...<Widget>[
+                            const SizedBox(height: 12),
+                            Text(
+                              item.hindi,
+                              style: Theme.of(context).textTheme.titleMedium,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -149,7 +161,7 @@ class _TypeBadge extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).colorScheme.outline),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
