@@ -11,6 +11,7 @@ import 'data/models/learning_item.dart';
 import 'data/repositories/hive_learning_item_repository.dart';
 import 'features/learn/presentation/bloc/learn_bloc.dart';
 import 'features/library/presentation/bloc/library_bloc.dart';
+import 'features/revision/presentation/bloc/review_queue_bloc.dart';
 import 'features/revision/presentation/bloc/revision_bloc.dart';
 import 'features/search/presentation/bloc/search_bloc.dart';
 
@@ -50,6 +51,11 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<RevisionBloc>(
             create: (BuildContext context) => RevisionBloc(
+              repository: context.read<HiveLearningItemRepository>(),
+            ),
+          ),
+          BlocProvider<ReviewQueueBloc>(
+            create: (BuildContext context) => ReviewQueueBloc(
               repository: context.read<HiveLearningItemRepository>(),
             ),
           ),

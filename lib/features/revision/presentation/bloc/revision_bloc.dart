@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/spaced_repetition_service.dart';
-import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'revision_event.dart';
 import 'revision_state.dart';
@@ -31,19 +30,16 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
     emit(const RevisionLoading());
 
     try {
-      final items = await _repository.filterItems(
-        (LearningItem item) => item.isLearned,
-      );
-
-      final sortedItems = items.toList(growable: false)
+      final dueItems = await _repository.getDueItems();
+      final sortedDueItems = dueItems.toList(growable: false)
         ..sort(_spacedRepetitionService.compareReviewPriority);
 
-      if (sortedItems.isEmpty) {
+      if (sortedDueItems.isEmpty) {
         emit(const RevisionCompleted());
         return;
       }
 
-      emit(RevisionLoaded(items: sortedItems, currentIndex: 0));
+      emit(RevisionLoaded(items: sortedDueItems, currentIndex: 0));
     } catch (error) {
       emit(RevisionError(error.toString()));
     }

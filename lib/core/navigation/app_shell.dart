@@ -11,6 +11,7 @@ import '../../features/learn/presentation/pages/learn_page.dart';
 import '../../features/library/presentation/bloc/library_bloc.dart';
 import '../../features/library/presentation/bloc/library_event.dart';
 import '../../features/library/presentation/pages/library_page.dart';
+import '../../features/revision/presentation/bloc/review_queue_bloc.dart';
 import '../../features/revision/presentation/bloc/revision_bloc.dart';
 import '../../features/revision/presentation/bloc/revision_event.dart';
 import '../../features/revision/presentation/pages/revision_page.dart';
@@ -80,6 +81,7 @@ class _AppShellState extends State<AppShell> {
     context.read<LibraryBloc>().add(const LoadLibrary());
     context.read<LearnBloc>().add(const LoadLearningItems());
     context.read<RevisionBloc>().add(const LoadRevisionItems());
+    context.read<ReviewQueueBloc>().add(const LoadDueItems());
   }
 
   @override
@@ -138,6 +140,9 @@ class _AppShellState extends State<AppShell> {
             }
 
             setState(() => _selectedIndex = index);
+            if (index == _homeIndex) {
+              context.read<ReviewQueueBloc>().add(const LoadDueItems());
+            }
           },
           destinations: const <NavigationDestination>[
             NavigationDestination(

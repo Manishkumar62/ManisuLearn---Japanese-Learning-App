@@ -1,12 +1,18 @@
+import '../../core/services/spaced_repetition_service.dart';
 import '../../domain/repositories/learning_item_repository.dart';
 import '../local/learning_item_local_data_source.dart';
 import '../models/learning_item.dart';
 
 class HiveLearningItemRepository implements LearningItemRepository {
-  HiveLearningItemRepository({LearningItemLocalDataSource? localDataSource})
-    : _localDataSource = localDataSource ?? LearningItemLocalDataSource();
+  HiveLearningItemRepository({
+    LearningItemLocalDataSource? localDataSource,
+    SpacedRepetitionService? spacedRepetitionService,
+  }) : _localDataSource = localDataSource ?? LearningItemLocalDataSource(),
+       _spacedRepetitionService =
+           spacedRepetitionService ?? SpacedRepetitionService();
 
   final LearningItemLocalDataSource _localDataSource;
+  final SpacedRepetitionService _spacedRepetitionService;
 
   @override
   Future<void> addItem(LearningItem item) {
@@ -31,6 +37,14 @@ class HiveLearningItemRepository implements LearningItemRepository {
   @override
   Future<List<LearningItem>> getAllItems() async {
     return _localDataSource.getAllItems();
+  }
+
+  @override
+  Future<List<LearningItem>> getDueItems({DateTime? now}) async {
+    return _spacedRepetitionService.dueItems(
+      _localDataSource.getAllItems(),
+      now: now,
+    );
   }
 
   @override

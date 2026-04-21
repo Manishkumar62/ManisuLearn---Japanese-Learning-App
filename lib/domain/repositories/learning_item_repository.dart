@@ -11,5 +11,7 @@ abstract class LearningItemRepository {
 
   Future<List<LearningItem>> getAllItems();
 
+  Future<List<LearningItem>> getDueItems({DateTime? now});
+
   Future<List<LearningItem>> filterItems(bool Function(LearningItem item) test);
 }

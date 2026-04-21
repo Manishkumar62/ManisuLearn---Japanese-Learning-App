@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatelessWidget {
+import '../../../revision/presentation/bloc/review_queue_bloc.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ReviewQueueBloc>().add(const LoadDueItems());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +43,29 @@ class HomePage extends StatelessWidget {
             body: 'Practice new items that are not learned yet.',
           ),
           const SizedBox(height: 12),
-          const _HomeCard(
-            icon: Icons.refresh_outlined,
-            title: 'Revision',
-            body: 'Review learned items by priority.',
+          BlocBuilder<ReviewQueueBloc, ReviewQueueState>(
+            builder: (BuildContext context, ReviewQueueState state) {
+              return _HomeCard(
+                icon: Icons.refresh_outlined,
+                title: 'Revision',
+                body: _reviewQueueMessage(state),
+              );
+            },
           ),
         ],
       ),
     );
+  }
+
+  String _reviewQueueMessage(ReviewQueueState state) {
+    return switch (state) {
+      ReviewQueueLoading() => 'Checking today\'s review queue.',
+      DueItemsLoaded(:final dueCount) => dueCount == 1
+          ? 'You have 1 item to review today.'
+          : 'You have $dueCount items to review today.',
+      ReviewQueueError() => 'Could not load today\'s review count.',
+      ReviewQueueState() => 'Review learned items by priority.',
+    };
   }
 }
 
