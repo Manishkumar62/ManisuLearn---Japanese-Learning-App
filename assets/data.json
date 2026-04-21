@@ -1,0 +1,23 @@
+[
+  {
+    "type": "word",
+    "japanese": "こんにちは",
+    "romaji": "konnichiwa",
+    "hindi": "नमस्ते",
+    "english": "Hello"
+  },
+  {
+    "type": "word",
+    "japanese": "ありがとう",
+    "romaji": "arigatou",
+    "hindi": "धन्यवाद",
+    "english": "Thank you"
+  },
+  {
+    "type": "sentence",
+    "japanese": "私は学生です",
+    "romaji": "watashi wa gakusei desu",
+    "hindi": "मैं छात्र हूँ",
+    "english": "I am a student"
+  }
+]

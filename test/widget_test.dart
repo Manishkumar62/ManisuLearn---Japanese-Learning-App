@@ -1,30 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive/hive.dart';
 
+import 'package:manisulearn/data/local/hive_boxes.dart';
+import 'package:manisulearn/data/models/learning_item.dart';
+import 'package:manisulearn/data/models/learning_item_adapter.dart';
 import 'package:manisulearn/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  late Directory hiveDirectory;
+
+  setUp(() async {
+    hiveDirectory = await Directory.systemTemp.createTemp('manisulearn_test_');
+    Hive.init(hiveDirectory.path);
+
+    if (!Hive.isAdapterRegistered(LearningItem.typeId)) {
+      Hive.registerAdapter(LearningItemAdapter());
+    }
+
+    await Hive.openBox<LearningItem>(HiveBoxes.learningItems);
+  });
+
+  tearDown(() async {
+    await Hive.close();
+    await hiveDirectory.delete(recursive: true);
+  });
+
+  testWidgets('Library page smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Library'), findsOneWidget);
+    expect(
+      find.text('Search Japanese, romaji, Hindi, or English'),
+      findsOneWidget,
+    );
+    expect(find.text('Words'), findsOneWidget);
+    expect(find.text('Sentences'), findsOneWidget);
+    expect(find.text('Stories'), findsOneWidget);
+    expect(find.text('No learning items found.'), findsOneWidget);
   });
 }
