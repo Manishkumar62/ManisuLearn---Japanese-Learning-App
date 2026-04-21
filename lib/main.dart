@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 
+import 'core/navigation/app_shell.dart';
 import 'core/services/json_loader.dart';
 import 'data/local/hive_boxes.dart';
 import 'data/local/hive_setup.dart';
 import 'data/models/learning_item.dart';
 import 'data/repositories/hive_learning_item_repository.dart';
+import 'features/learn/presentation/bloc/learn_bloc.dart';
 import 'features/library/presentation/bloc/library_bloc.dart';
-import 'features/library/presentation/pages/library_page.dart';
+import 'features/revision/presentation/bloc/revision_bloc.dart';
+import 'features/search/presentation/bloc/search_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,16 +35,36 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider<HiveLearningItemRepository>(
       create: (BuildContext context) => HiveLearningItemRepository(),
-      child: BlocProvider<LibraryBloc>(
-        create: (BuildContext context) =>
-            LibraryBloc(repository: context.read<HiveLearningItemRepository>()),
+      child: MultiBlocProvider(
+        providers: <BlocProvider<dynamic>>[
+          BlocProvider<LibraryBloc>(
+            create: (BuildContext context) => LibraryBloc(
+              repository: context.read<HiveLearningItemRepository>(),
+            ),
+          ),
+          BlocProvider<LearnBloc>(
+            create: (BuildContext context) => LearnBloc(
+              repository: context.read<HiveLearningItemRepository>(),
+            ),
+          ),
+          BlocProvider<RevisionBloc>(
+            create: (BuildContext context) => RevisionBloc(
+              repository: context.read<HiveLearningItemRepository>(),
+            ),
+          ),
+          BlocProvider<SearchBloc>(
+            create: (BuildContext context) => SearchBloc(
+              repository: context.read<HiveLearningItemRepository>(),
+            ),
+          ),
+        ],
         child: MaterialApp(
           title: 'Manisu Learn',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
             useMaterial3: true,
           ),
-          home: const LibraryPage(),
+          home: const AppShell(),
         ),
       ),
     );

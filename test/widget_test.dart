@@ -27,18 +27,16 @@ void main() {
     await hiveDirectory.delete(recursive: true);
   });
 
-  testWidgets('Library page smoke test', (WidgetTester tester) async {
+  testWidgets('Navigation shell smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 
-    expect(find.text('Library'), findsOneWidget);
-    expect(
-      find.text('Search Japanese, romaji, Hindi, or English'),
-      findsOneWidget,
-    );
-    expect(find.text('Words'), findsOneWidget);
-    expect(find.text('Sentences'), findsOneWidget);
-    expect(find.text('Stories'), findsOneWidget);
-    expect(find.text('No learning items found.'), findsOneWidget);
+    expect(find.text('Home'), findsWidgets);
+    expect(find.text('Manisu Learn'), findsOneWidget);
+    expect(find.text('Library'), findsWidgets);
+    expect(find.text('Learn'), findsWidgets);
+    expect(find.text('Revision'), findsWidgets);
+    expect(find.text('Search'), findsOneWidget);
+    expect(find.byTooltip('Add data'), findsOneWidget);
   });
 }
