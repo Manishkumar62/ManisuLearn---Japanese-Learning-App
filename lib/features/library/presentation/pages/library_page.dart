@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/repositories/hive_learning_item_repository.dart';
+import '../../../add_data/presentation/bloc/add_data_bloc.dart';
+import '../../../add_data/presentation/pages/add_data_page.dart';
 import '../../../learn/presentation/bloc/learn_bloc.dart';
 import '../../../learn/presentation/pages/learn_page.dart';
 import '../bloc/library_bloc.dart';
@@ -50,6 +52,11 @@ class _LibraryPageState extends State<LibraryPage> {
       appBar: AppBar(
         title: const Text('Library'),
         actions: <Widget>[
+          IconButton(
+            tooltip: 'Add data',
+            onPressed: () => _openAddDataPage(context),
+            icon: const Icon(Icons.add),
+          ),
           TextButton(
             onPressed: () => _openLearnPage(context),
             child: const Text('Learn'),
@@ -127,6 +134,27 @@ class _LibraryPageState extends State<LibraryPage> {
         ),
       ),
     );
+  }
+
+  void _openAddDataPage(BuildContext context) {
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext routeContext) {
+              return BlocProvider<AddDataBloc>(
+                create: (_) => AddDataBloc(
+                  repository: context.read<HiveLearningItemRepository>(),
+                ),
+                child: const AddDataPage(),
+              );
+            },
+          ),
+        )
+        .then((_) {
+          if (context.mounted) {
+            context.read<LibraryBloc>().add(const LoadLibrary());
+          }
+        });
   }
 
   void _openLearnPage(BuildContext context) {
