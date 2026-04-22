@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:manisulearn/core/services/app_meta_service.dart';
+import 'package:manisulearn/data/models/learning_item_adapter.dart';
 
 import 'core/navigation/app_shell.dart';
 import 'core/services/json_loader.dart';
 import 'core/theme/app_theme.dart';
-import 'data/local/hive_boxes.dart';
-import 'data/local/hive_setup.dart';
+// import 'data/local/hive_boxes.dart';
+// import 'data/local/hive_setup.dart';
 import 'data/models/learning_item.dart';
 import 'data/repositories/hive_learning_item_repository.dart';
 import 'features/learn/presentation/bloc/learn_bloc.dart';
@@ -15,18 +18,30 @@ import 'features/revision/presentation/bloc/review_queue_bloc.dart';
 import 'features/revision/presentation/bloc/revision_bloc.dart';
 import 'features/search/presentation/bloc/search_bloc.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveSetup.initialize();
-  final box = Hive.box<LearningItem>(HiveBoxes.learningItems);
+  await Hive.initFlutter();
 
-  if (box.isEmpty) {
+  // register adapter
+  Hive.registerAdapter(LearningItemAdapter());
+  // open boxes
+  await Hive.openBox<LearningItem>('learning_items');
+  final learningBox = Hive.box<LearningItem>('learning_items');
+  // 🔥 VERSION CONTROL
+  const int currentDataVersion = 1;
+  final storedVersion = await AppMetaService.getDataVersion();
+  if (storedVersion == null || storedVersion < currentDataVersion) {
+    // clear old data
+    await learningBox.clear();
+    // load new JSON
     final items = await JsonLoader.loadItems();
-
     for (var item in items) {
-      box.put(item.id, item);
+      await learningBox.put(item.id, item);
     }
+    // save version
+    await AppMetaService.setDataVersion(currentDataVersion);
   }
+
   runApp(const MyApp());
 }
 
@@ -67,7 +82,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Manisu Learn',
-          debugShowCheckedModeBanner : false,
+          debugShowCheckedModeBanner: false,
           theme: AppTheme.dark,
           darkTheme: AppTheme.dark,
           themeMode: ThemeMode.dark,

@@ -20,7 +20,7 @@ class JsonLoader {
         lastReviewed: DateTime.now(),
         createdAt: DateTime.now(),
         difficulty: 0,
-        tags: [],
+        tags: (item["tags"] as List?)?.cast<String>() ?? [],
       );
     }).toList();
   }

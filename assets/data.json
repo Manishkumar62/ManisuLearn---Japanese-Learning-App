@@ -1,23 +1,181 @@
 [
   {
     "type": "word",
-    "japanese": "こんにちは",
-    "romaji": "konnichiwa",
-    "hindi": "नमस्ते",
-    "english": "Hello"
+    "japanese": "みなさん",
+    "romaji": "minasan",
+    "hindi": "सब लोग",
+    "english": "everyone",
+    "tags": ["greeting", "basic"]
   },
   {
     "type": "word",
-    "japanese": "ありがとう",
-    "romaji": "arigatou",
-    "hindi": "धन्यवाद",
-    "english": "Thank you"
+    "japanese": "こんにちは",
+    "romaji": "konnichiwa",
+    "hindi": "नमस्ते",
+    "english": "hello",
+    "tags": ["greeting"]
+  },
+  {
+    "type": "word",
+    "japanese": "ようこそ",
+    "romaji": "yokoso",
+    "hindi": "स्वागत है",
+    "english": "welcome",
+    "tags": ["greeting"]
+  },
+  {
+    "type": "word",
+    "japanese": "友達",
+    "romaji": "tomodachi",
+    "hindi": "दोस्त",
+    "english": "friend",
+    "tags": ["people"]
+  },
+  {
+    "type": "word",
+    "japanese": "約束",
+    "romaji": "yakusoku",
+    "hindi": "मुलाकात / वादा",
+    "english": "appointment",
+    "tags": ["planning"]
+  },
+  {
+    "type": "word",
+    "japanese": "予定",
+    "romaji": "yotei",
+    "hindi": "योजना",
+    "english": "plan",
+    "tags": ["planning"]
+  },
+  {
+    "type": "word",
+    "japanese": "時間",
+    "romaji": "jikan",
+    "hindi": "समय",
+    "english": "time",
+    "tags": ["time"]
+  },
+  {
+    "type": "word",
+    "japanese": "カフェ",
+    "romaji": "kafe",
+    "hindi": "कैफे",
+    "english": "cafe",
+    "tags": ["place"]
+  },
+  {
+    "type": "word",
+    "japanese": "仕事",
+    "romaji": "shigoto",
+    "hindi": "काम",
+    "english": "work",
+    "tags": ["life"]
+  },
+  {
+    "type": "word",
+    "japanese": "病気",
+    "romaji": "byoki",
+    "hindi": "बीमारी",
+    "english": "illness",
+    "tags": ["health"]
+  },
+
+  {
+    "type": "sentence",
+    "japanese": "お元気ですか？",
+    "romaji": "ogenki desu ka",
+    "hindi": "आप कैसे हैं?",
+    "english": "how are you?",
+    "tags": ["greeting"]
   },
   {
     "type": "sentence",
-    "japanese": "私は学生です",
-    "romaji": "watashi wa gakusei desu",
-    "hindi": "मैं छात्र हूँ",
-    "english": "I am a student"
+    "japanese": "空いていますか？",
+    "romaji": "aite imasu ka",
+    "hindi": "क्या आप फ्री हैं?",
+    "english": "are you free?",
+    "tags": ["planning"]
+  },
+  {
+    "type": "sentence",
+    "japanese": "一緒に行きませんか？",
+    "romaji": "issho ni ikimasen ka",
+    "hindi": "क्या साथ चलेंगे?",
+    "english": "shall we go together?",
+    "tags": ["invitation"]
+  },
+  {
+    "type": "sentence",
+    "japanese": "楽しみにしています",
+    "romaji": "tanoshimi ni shite imasu",
+    "hindi": "इंतजार कर रहा हूँ",
+    "english": "looking forward to it",
+    "tags": ["emotion"]
+  },
+  {
+    "type": "sentence",
+    "japanese": "本当に申し訳ないんですが",
+    "romaji": "hontoni moshiwake nai n desu ga",
+    "hindi": "मुझे बहुत खेद है",
+    "english": "I am truly sorry",
+    "tags": ["cancellation"]
+  },
+  {
+    "type": "sentence",
+    "japanese": "本当に残念です",
+    "romaji": "hontoni zannen desu",
+    "hindi": "बहुत अफसोस है",
+    "english": "it is unfortunate",
+    "tags": ["emotion"]
+  },
+
+  {
+    "type": "dialogue",
+    "japanese": "今度の日曜日、空いていますか？",
+    "romaji": "kondo no nichiyobi, aite imasu ka",
+    "hindi": "क्या तुम इस रविवार फ्री हो?",
+    "english": "are you free this sunday?",
+    "tags": ["conversation", "planning"]
+  },
+  {
+    "type": "dialogue",
+    "japanese": "もしよかったら、一緒に行きませんか？",
+    "romaji": "moshi yokattara issho ni ikimasen ka",
+    "hindi": "अगर ठीक लगे तो साथ चलें?",
+    "english": "shall we go together if you like?",
+    "tags": ["conversation", "invitation"]
+  },
+  {
+    "type": "dialogue",
+    "japanese": "日曜日の約束、キャンセルさせてもらえませんか？",
+    "romaji": "nichiyobi no yakusoku, kyanseru sasete moraemasen ka",
+    "hindi": "क्या मैं रविवार की योजना रद्द कर सकता हूँ?",
+    "english": "could I cancel our sunday plan?",
+    "tags": ["cancellation"]
+  },
+  {
+    "type": "dialogue",
+    "japanese": "来週の週末は空いていますか？",
+    "romaji": "raishu no shumatsu wa aite imasu ka",
+    "hindi": "क्या आप अगले वीकेंड फ्री हैं?",
+    "english": "are you free next weekend?",
+    "tags": ["reschedule"]
+  },
+
+  {
+    "type": "grammar",
+    "japanese": "〜ませんか？",
+    "romaji": "~masen ka",
+    "hindi": "क्या आप करेंगे?",
+    "english": "would you like to?",
+    "tags": ["grammar"]
+  },
+  {
+    "type": "grammar",
+    "japanese": "〜てしまって",
+    "romaji": "~te shimatte",
+    "hindi": "अफसोस के साथ हुआ",
+    "english": "happened unfortunately",
+    "tags": ["grammar"]
   }
 ]
