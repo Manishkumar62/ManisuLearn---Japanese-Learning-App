@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manisulearn/features/home/presentation/bloc/analytics_bloc.dart';
-import 'package:manisulearn/features/home/presentation/bloc/analytics_state.dart';
 
+import '../bloc/analytics_bloc.dart';
+import '../bloc/analytics_state.dart';
 import '../../../revision/presentation/bloc/review_queue_bloc.dart';
+
+import '../widgets/home_header.dart';
+import '../widgets/primary_card.dart';
+import '../widgets/modern_card.dart';
+import '../widgets/analytics_card.dart';
+import '../widgets/streak_card.dart';
+import '../widgets/progress_bar_card.dart';
+import '../widgets/animated_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,121 +30,158 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: <Widget>[
-          Text(
-            'Manisu Learn',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          const SizedBox(height: 8),
-          const Text('Build your Japanese memory one card at a time.'),
-          const SizedBox(height: 20),
-          const _HomeCard(
-            icon: Icons.library_books_outlined,
-            title: 'Library',
-            body: 'Browse every word, sentence, and story.',
-          ),
-          const SizedBox(height: 12),
-          const _HomeCard(
-            icon: Icons.school_outlined,
-            title: 'Learn',
-            body: 'Practice new items that are not learned yet.',
-          ),
-          const SizedBox(height: 12),
-          BlocBuilder<ReviewQueueBloc, ReviewQueueState>(
-            builder: (BuildContext context, ReviewQueueState state) {
-              return _HomeCard(
-                icon: Icons.refresh_outlined,
-                title: 'Revision',
-                body: _reviewQueueMessage(state),
-              );
-            },
-          ),
-          const SizedBox(height: 12),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            /// 🔹 HEADER
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: HomeHeader(),
+              ),
+            ),
 
-          BlocBuilder<AnalyticsBloc, AnalyticsState>(
-            builder: (context, state) {
-              if (state is AnalyticsLoaded) {
-                final data = state.data;
+            /// 🔥 PRIMARY CTA
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: BlocBuilder<ReviewQueueBloc, ReviewQueueState>(
+                  builder: (context, state) {
+                    final dueText = _reviewQueueMessage(state);
 
-                return _HomeCard(
-                  icon: Icons.insights_outlined,
-                  title: 'Progress',
-                  body:
-                      'Learned: ${data.learnedItems}/${data.totalItems} • '
-                      'Due: ${data.dueToday} • '
-                      'Retention: ${data.retentionRate.toStringAsFixed(1)}%',
-                );
-              }
+                    return AnimatedCardWrapper(
+                      onTap: () {
+                        // TODO: Navigate to review screen
+                      },
+                      child: PrimaryCard(
+                        title: "Continue Learning",
+                        subtitle: dueText,
+                        icon: Icons.play_arrow,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
 
-              if (state is AnalyticsError) {
-                return const _HomeCard(
-                  icon: Icons.error_outline,
-                  title: 'Progress',
-                  body: 'Could not load progress data.',
-                );
-              }
+            /// 🔹 MAIN CONTENT
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    /// 🔥 STREAK
+                    const AnimatedCardWrapper(
+                      child: StreakCard(
+                        streakDays: 7, // TODO: connect real data
+                      ),
+                    ),
 
-              return const _HomeCard(
-                icon: Icons.insights_outlined,
-                title: 'Progress',
-                body: 'Calculating your learning progress...',
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
+                    const SizedBox(height: 16),
 
-  String _reviewQueueMessage(ReviewQueueState state) {
-    return switch (state) {
-      ReviewQueueLoading() => 'Checking today\'s review queue.',
-      DueItemsLoaded(:final dueCount) =>
-        dueCount == 1
-            ? 'You have 1 item to review today.'
-            : 'You have $dueCount items to review today.',
-      ReviewQueueError() => 'Could not load today\'s review count.',
-      ReviewQueueState() => 'Review learned items by priority.',
-    };
-  }
-}
+                    /// 📊 PROGRESS BAR
+                    BlocBuilder<AnalyticsBloc, AnalyticsState>(
+                      builder: (context, state) {
+                        if (state is AnalyticsLoaded) {
+                          return AnimatedCardWrapper(
+                            child: ProgressBarCard(
+                              learned: state.data.learnedItems,
+                              total: state.data.totalItems,
+                            ),
+                          );
+                        }
 
-class _HomeCard extends StatelessWidget {
-  const _HomeCard({
-    required this.icon,
-    required this.title,
-    required this.body,
-  });
+                        return const SizedBox();
+                      },
+                    ),
 
-  final IconData icon;
-  final String title;
-  final String body;
+                    const SizedBox(height: 16),
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: <Widget>[
-            Icon(icon),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(title, style: Theme.of(context).textTheme.titleMedium),
-                  const SizedBox(height: 4),
-                  Text(body),
-                ],
+                    /// 📚 LIBRARY + LEARN
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AnimatedCardWrapper(
+                            child: ModernCard(
+                              icon: Icons.library_books_outlined,
+                              title: "Library",
+                              body: "Browse all content",
+                              onTap: () {
+                                // TODO: Navigate
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: AnimatedCardWrapper(
+                            child: ModernCard(
+                              icon: Icons.school_outlined,
+                              title: "Learn",
+                              body: "Practice new items",
+                              onTap: () {
+                                // TODO: Navigate
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    /// 📊 ANALYTICS
+                    BlocBuilder<AnalyticsBloc, AnalyticsState>(
+                      builder: (context, state) {
+                        if (state is AnalyticsLoaded) {
+                          final data = state.data;
+
+                          return AnimatedCardWrapper(
+                            child: AnalyticsCard(
+                              learned: data.learnedItems,
+                              total: data.totalItems,
+                              due: data.dueToday,
+                              retention: data.retentionRate,
+                            ),
+                          );
+                        }
+
+                        if (state is AnalyticsError) {
+                          return const ModernCard(
+                            icon: Icons.error_outline,
+                            title: "Progress",
+                            body: "Failed to load analytics",
+                          );
+                        }
+
+                        return const ModernCard(
+                          icon: Icons.insights_outlined,
+                          title: "Progress",
+                          body: "Loading analytics...",
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  String _reviewQueueMessage(ReviewQueueState state) {
+    return switch (state) {
+      ReviewQueueLoading() => 'Checking today\'s review queue...',
+      DueItemsLoaded(:final dueCount) =>
+        dueCount == 0
+            ? 'You are all caught up 🎉'
+            : dueCount == 1
+                ? 'You have 1 item to review'
+                : 'You have $dueCount items to review',
+      ReviewQueueError() => 'Could not load review data',
+      _ => 'Review your learned items',
+    };
   }
 }

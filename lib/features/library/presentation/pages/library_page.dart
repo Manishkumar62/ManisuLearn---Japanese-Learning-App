@@ -44,7 +44,7 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Library')),
+      appBar: AppBar(title: const Text('Library'), automaticallyImplyLeading: false),
       body: SafeArea(
         child: Column(
           children: <Widget>[

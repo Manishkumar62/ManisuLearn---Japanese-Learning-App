@@ -22,7 +22,7 @@ class _LearnPageState extends State<LearnPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Learn')),
+      appBar: AppBar(title: const Text('Learn'), automaticallyImplyLeading: false),
       body: SafeArea(
         child: BlocBuilder<LearnBloc, LearnState>(
           builder: (BuildContext context, LearnState state) {

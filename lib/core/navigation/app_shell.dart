@@ -56,7 +56,7 @@ class _AppShellState extends State<AppShell> {
       return false;
     }
 
-    return false;
+    return true;
   }
 
   Future<void> _openAddDataPage() async {

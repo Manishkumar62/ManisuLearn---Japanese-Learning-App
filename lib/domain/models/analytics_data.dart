@@ -5,6 +5,7 @@ class AnalyticsData {
   final int totalReviews;
   final int correctReviews;
   final double retentionRate;
+  final List<String> insights;
 
   AnalyticsData({
     required this.totalItems,
@@ -13,5 +14,6 @@ class AnalyticsData {
     required this.totalReviews,
     required this.correctReviews,
     required this.retentionRate,
+    required this.insights,
   });
 }

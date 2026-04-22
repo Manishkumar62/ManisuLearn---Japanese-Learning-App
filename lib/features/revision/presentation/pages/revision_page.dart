@@ -24,6 +24,7 @@ class _RevisionPageState extends State<RevisionPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Revision'),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.auto_awesome),
