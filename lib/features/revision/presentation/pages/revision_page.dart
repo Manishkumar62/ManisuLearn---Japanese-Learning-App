@@ -22,7 +22,25 @@ class _RevisionPageState extends State<RevisionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Revision')),
+      appBar: AppBar(
+        title: const Text('Revision'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.auto_awesome),
+            tooltip: 'Due Items',
+            onPressed: () {
+              context.read<RevisionBloc>().add(const LoadRevisionItems());
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.explore),
+            tooltip: 'Explore',
+            onPressed: () {
+              context.read<RevisionBloc>().add(const LoadAllLearnedItems());
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
         child: BlocBuilder<RevisionBloc, RevisionState>(
           builder: (BuildContext context, RevisionState state) {
@@ -30,7 +48,12 @@ class _RevisionPageState extends State<RevisionPage> {
               RevisionInitial() || RevisionLoading() => const Center(
                 child: CircularProgressIndicator(),
               ),
-              RevisionLoaded() => _RevisionFlashcard(state: state),
+              RevisionLoaded() => Column(
+                children: [
+                  if (state.isExploreMode) _ExploreFilters(),
+                  Expanded(child: _RevisionFlashcard(state: state)),
+                ],
+              ),
               RevisionCompleted() => const _RevisionCompleteMessage(),
               RevisionError(:final message) => _RevisionErrorMessage(
                 message: message,
@@ -52,6 +75,13 @@ class _RevisionFlashcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = state.currentItem;
+
+    if (item == null) {
+      return const Center(child: Text('No items'));
+    }
+    final daysAgo = item.firstLearnedAt == null
+        ? 0
+        : DateTime.now().difference(item.firstLearnedAt!).inDays;
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -96,6 +126,13 @@ class _RevisionFlashcard extends StatelessWidget {
                         Text(
                           item.romaji,
                           style: Theme.of(context).textTheme.titleMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 8),
+
+                        Text(
+                          'Revised: ${item.repetitions} • Learned: $daysAgo days ago',
+                          style: Theme.of(context).textTheme.bodySmall,
                           textAlign: TextAlign.center,
                         ),
                         if (state.isAnswerVisible) ...<Widget>[
@@ -145,9 +182,7 @@ class _RevisionFlashcard extends StatelessWidget {
           else ...<Widget>[
             FilledButton(
               onPressed: () {
-                context.read<RevisionBloc>().add(
-                  const RevealRevisionAnswer(),
-                );
+                context.read<RevisionBloc>().add(const RevealRevisionAnswer());
               },
               child: const Text('Reveal answer'),
             ),
@@ -205,6 +240,63 @@ class _RevisionErrorMessage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ExploreFilters extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      child: Wrap(
+        spacing: 8,
+        children: [
+          ChoiceChip(
+            label: const Text('Weak'),
+            selected: false,
+            onSelected: (_) {
+              context.read<RevisionBloc>().add(
+                const ApplyRevisionFilter(maxRepetitions: 2),
+              );
+            },
+          ),
+          ChoiceChip(
+            label: const Text('1–3 days'),
+            selected: false,
+            onSelected: (_) {
+              context.read<RevisionBloc>().add(
+                const ApplyRevisionFilter(minDaysAgo: 1, maxDaysAgo: 3),
+              );
+            },
+          ),
+          ChoiceChip(
+            label: const Text('4–7 days'),
+            selected: false,
+            onSelected: (_) {
+              context.read<RevisionBloc>().add(
+                const ApplyRevisionFilter(minDaysAgo: 4, maxDaysAgo: 7),
+              );
+            },
+          ),
+          ChoiceChip(
+            label: const Text('7+ days'),
+            selected: false,
+            onSelected: (_) {
+              context.read<RevisionBloc>().add(
+                const ApplyRevisionFilter(minDaysAgo: 7),
+              );
+            },
+          ),
+          ChoiceChip(
+            label: const Text('Reset'),
+            selected: false,
+            onSelected: (_) {
+              context.read<RevisionBloc>().add(const LoadAllLearnedItems());
+            },
+          ),
+        ],
       ),
     );
   }

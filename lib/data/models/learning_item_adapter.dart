@@ -30,13 +30,14 @@ class LearningItemAdapter extends TypeAdapter<LearningItem> {
       interval: fields[13] as int? ?? 0,
       repetitions: fields[14] as int? ?? 0,
       nextReview: fields[15] as DateTime?,
+      firstLearnedAt: fields[16] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, LearningItem obj) {
     writer
-      ..writeByte(16)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -68,6 +69,8 @@ class LearningItemAdapter extends TypeAdapter<LearningItem> {
       ..writeByte(14)
       ..write(obj.repetitions)
       ..writeByte(15)
-      ..write(obj.nextReview);
+      ..write(obj.nextReview)
+      ..writeByte(16)
+      ..write(obj.firstLearnedAt);
   }
 }

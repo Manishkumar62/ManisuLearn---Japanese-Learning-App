@@ -74,7 +74,9 @@ class ReviewQueueBloc extends Bloc<ReviewQueueEvent, ReviewQueueState> {
 
     try {
       final dueItems = await _repository.getDueItems(now: event.now);
-      emit(DueItemsLoaded(dueItems: dueItems));
+      final sorted = dueItems.toList()
+        ..sort((a, b) => a.nextReview.compareTo(b.nextReview));
+      emit(DueItemsLoaded(dueItems: sorted));
     } catch (error) {
       emit(ReviewQueueError(error.toString()));
     }

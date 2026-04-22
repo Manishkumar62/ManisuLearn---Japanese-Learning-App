@@ -27,3 +27,22 @@ class ReviewItem extends RevisionEvent {
   @override
   List<Object?> get props => <Object?>[isCorrect];
 }
+
+class LoadAllLearnedItems extends RevisionEvent {
+  const LoadAllLearnedItems();
+}
+
+class ApplyRevisionFilter extends RevisionEvent {
+  const ApplyRevisionFilter({
+    this.minDaysAgo,
+    this.maxDaysAgo,
+    this.maxRepetitions,
+  });
+
+  final int? minDaysAgo;
+  final int? maxDaysAgo;
+  final int? maxRepetitions;
+
+  @override
+  List<Object?> get props => [minDaysAgo, maxDaysAgo, maxRepetitions];
+}

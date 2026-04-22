@@ -28,7 +28,10 @@ class LearnLoaded extends LearnState {
   final int currentIndex;
   final bool isAnswerVisible;
 
-  LearningItem get currentItem => items[currentIndex];
+  LearningItem? get currentItem =>
+      (items.isEmpty || currentIndex >= items.length)
+      ? null
+      : items[currentIndex];
 
   int get completedCount => currentIndex;
 

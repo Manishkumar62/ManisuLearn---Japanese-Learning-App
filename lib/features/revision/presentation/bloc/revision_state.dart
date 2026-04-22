@@ -22,20 +22,25 @@ class RevisionLoaded extends RevisionState {
     required this.items,
     required this.currentIndex,
     this.isAnswerVisible = false,
+    this.isExploreMode = false,
   });
 
   final List<LearningItem> items;
   final int currentIndex;
   final bool isAnswerVisible;
+  final bool isExploreMode;
 
-  LearningItem get currentItem => items[currentIndex];
+  LearningItem? get currentItem =>
+    (items.isEmpty || currentIndex >= items.length)
+        ? null
+        : items[currentIndex];
 
   int get completedCount => currentIndex;
 
   int get totalCount => items.length;
 
   @override
-  List<Object?> get props => <Object?>[items, currentIndex, isAnswerVisible];
+  List<Object?> get props => <Object?>[items, currentIndex, isAnswerVisible, isExploreMode];
 }
 
 class RevisionCompleted extends RevisionState {

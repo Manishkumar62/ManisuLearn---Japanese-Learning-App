@@ -50,6 +50,9 @@ class _FlashcardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = state.currentItem;
+    if (item == null) {
+      return const Center(child: Text('No items'));
+    }
     final progress = state.completedCount + 1;
 
     return Padding(

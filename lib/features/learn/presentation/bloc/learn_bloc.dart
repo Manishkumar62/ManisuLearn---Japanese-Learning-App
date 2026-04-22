@@ -76,9 +76,15 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
     }
 
     try {
-      final item = state.currentItem
-        ..isLearned = true
-        ..lastReviewed = DateTime.now();
+      final currentItem = state.currentItem;
+
+      if (currentItem == null) return;
+
+      final item = currentItem.copyWith(
+        isLearned: true,
+        lastReviewed: DateTime.now(),
+        firstLearnedAt: currentItem.firstLearnedAt ?? DateTime.now(),
+      );
 
       await _repository.updateItem(item);
       _moveToNextItem(state, emit);

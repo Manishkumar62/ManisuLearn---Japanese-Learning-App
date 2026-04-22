@@ -9,15 +9,16 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
   RevisionBloc({
     required LearningItemRepository repository,
     SpacedRepetitionService? spacedRepetitionService,
-  })
-    : _repository = repository,
-      _spacedRepetitionService =
-          spacedRepetitionService ?? SpacedRepetitionService(),
-      super(const RevisionInitial()) {
+  }) : _repository = repository,
+       _spacedRepetitionService =
+           spacedRepetitionService ?? SpacedRepetitionService(),
+       super(const RevisionInitial()) {
     on<LoadRevisionItems>(_onLoadRevisionItems);
     on<RevealRevisionAnswer>(_onRevealRevisionAnswer);
     on<SkipRevisionItem>(_onSkipRevisionItem);
     on<ReviewItem>(_onReviewItem);
+    on<LoadAllLearnedItems>(_onLoadAllLearnedItems);
+    on<ApplyRevisionFilter>(_onApplyRevisionFilter);
   }
 
   final LearningItemRepository _repository;
@@ -39,7 +40,13 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
         return;
       }
 
-      emit(RevisionLoaded(items: sortedDueItems, currentIndex: 0));
+      emit(
+        RevisionLoaded(
+          items: sortedDueItems,
+          currentIndex: 0,
+          isExploreMode: false,
+        ),
+      );
     } catch (error) {
       emit(RevisionError(error.toString()));
     }
@@ -59,6 +66,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
         items: state.items,
         currentIndex: state.currentIndex,
         isAnswerVisible: true,
+        isExploreMode: state.isExploreMode,
       ),
     );
   }
@@ -85,11 +93,20 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
     }
 
     try {
-      final item = _spacedRepetitionService.review(
-        state.currentItem,
+      final currentItem = state.currentItem;
+
+      if (currentItem == null) return;
+
+      final reviewedItem = _spacedRepetitionService.review(
+        currentItem,
         quality: event.isCorrect
             ? SpacedRepetitionService.defaultPassingQuality
             : 2,
+      );
+
+      final item = reviewedItem.copyWith(
+        isLearned: true,
+        firstLearnedAt: reviewedItem.firstLearnedAt ?? DateTime.now(),
       );
 
       await _repository.updateItem(item);
@@ -107,6 +124,88 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
       return;
     }
 
-    emit(RevisionLoaded(items: state.items, currentIndex: nextIndex));
+    emit(
+      RevisionLoaded(
+        items: state.items,
+        currentIndex: nextIndex,
+        isExploreMode: state.isExploreMode,
+      ),
+    );
+  }
+
+  Future<void> _onLoadAllLearnedItems(
+    LoadAllLearnedItems event,
+    Emitter<RevisionState> emit,
+  ) async {
+    emit(const RevisionLoading());
+
+    try {
+      final allItems = await _repository.getAllItems();
+
+      final learnedItems = allItems.where((e) => e.isLearned).toList();
+
+      if (learnedItems.isEmpty) {
+        emit(const RevisionCompleted());
+        return;
+      }
+
+      emit(
+        RevisionLoaded(
+          items: learnedItems,
+          currentIndex: 0,
+          isExploreMode: true,
+        ),
+      );
+    } catch (error) {
+      emit(RevisionError(error.toString()));
+    }
+  }
+
+  Future<void> _onApplyRevisionFilter(
+    ApplyRevisionFilter event,
+    Emitter<RevisionState> emit,
+  ) async {
+    final currentState = state;
+
+    if (currentState is! RevisionLoaded || !currentState.isExploreMode) {
+      return;
+    }
+
+    try {
+      final allItems = await _repository.getAllItems();
+
+      final now = DateTime.now();
+
+      final filtered = allItems.where((item) {
+        if (!item.isLearned) return false;
+
+        final daysAgo = item.firstLearnedAt == null
+            ? 0
+            : now.difference(item.firstLearnedAt!).inDays;
+
+        // time filter
+        if (event.minDaysAgo != null && daysAgo < event.minDaysAgo!) {
+          return false;
+        }
+
+        if (event.maxDaysAgo != null && daysAgo > event.maxDaysAgo!) {
+          return false;
+        }
+
+        // repetition filter
+        if (event.maxRepetitions != null &&
+            item.repetitions > event.maxRepetitions!) {
+          return false;
+        }
+
+        return true;
+      }).toList();
+
+      emit(
+        RevisionLoaded(items: filtered, currentIndex: 0, isExploreMode: true),
+      );
+    } catch (error) {
+      emit(RevisionError(error.toString()));
+    }
   }
 }

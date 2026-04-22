@@ -21,10 +21,44 @@ class LearningItem extends HiveObject {
     this.interval = 0,
     this.repetitions = 0,
     DateTime? nextReview,
+    this.firstLearnedAt,
   }) : lastReviewed = lastReviewed ?? DateTime.now(),
        createdAt = createdAt ?? DateTime.now(),
        tags = tags ?? <String>[],
        nextReview = nextReview ?? DateTime.now();
+
+  LearningItem copyWith({
+    bool? isLearned,
+    int? revisionCount,
+    DateTime? lastReviewed,
+    double? difficulty,
+    List<String>? tags,
+    double? easeFactor,
+    int? interval,
+    int? repetitions,
+    DateTime? nextReview,
+    DateTime? firstLearnedAt,
+  }) {
+    return LearningItem(
+      id: id,
+      type: type,
+      japanese: japanese,
+      romaji: romaji,
+      hindi: hindi,
+      english: english,
+      isLearned: isLearned ?? this.isLearned,
+      revisionCount: revisionCount ?? this.revisionCount,
+      lastReviewed: lastReviewed ?? this.lastReviewed,
+      createdAt: createdAt,
+      difficulty: difficulty ?? this.difficulty,
+      tags: tags ?? this.tags,
+      easeFactor: easeFactor ?? this.easeFactor,
+      interval: interval ?? this.interval,
+      repetitions: repetitions ?? this.repetitions,
+      nextReview: nextReview ?? this.nextReview,
+      firstLearnedAt: firstLearnedAt ?? this.firstLearnedAt,
+    );
+  }
 
   @HiveField(0)
   String id;
@@ -73,4 +107,7 @@ class LearningItem extends HiveObject {
 
   @HiveField(15)
   DateTime nextReview;
+
+  @HiveField(16)
+  DateTime? firstLearnedAt;
 }
