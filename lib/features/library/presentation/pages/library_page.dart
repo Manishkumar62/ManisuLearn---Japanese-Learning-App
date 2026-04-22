@@ -48,19 +48,6 @@ class _LibraryPageState extends State<LibraryPage> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-              child: TextField(
-                controller: _searchController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Search Japanese, romaji, Hindi, or English',
-                  prefixIcon: Icon(Icons.search),
-                ),
-                textInputAction: TextInputAction.search,
-                onChanged: (_) => _applyFilters(),
-              ),
-            ),
             _FilterSection(
               typeFilter: _typeFilter,
               progressFilter: _progressFilter,

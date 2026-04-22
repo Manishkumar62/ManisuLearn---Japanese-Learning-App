@@ -5,6 +5,13 @@ import '../../../../domain/repositories/learning_item_repository.dart';
 import 'search_event.dart';
 import 'search_state.dart';
 
+class _ScoredItem {
+  final LearningItem item;
+  final int score;
+
+  _ScoredItem(this.item, this.score);
+}
+
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchBloc({required LearningItemRepository repository})
     : _repository = repository,
@@ -25,12 +32,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       return;
     }
 
-    emit(const SearchLoading());
-
     try {
-      final items = await _repository.filterItems(
-        (LearningItem item) => _matchesItem(item, normalizedQuery),
-      );
+      final allItems = await _repository.getAllItems();
+
+      final items = _rankedSearch(allItems, normalizedQuery);
 
       emit(SearchResults(query: event.query, items: items));
     } catch (error) {
@@ -38,28 +43,37 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  bool _matchesItem(LearningItem item, String normalizedQuery) {
-    return _searchableValues(
-      item,
-    ).any((String value) => _normalize(value).contains(normalizedQuery));
-  }
+  List<LearningItem> _rankedSearch(List<LearningItem> items, String query) {
+    final List<_ScoredItem> scored = [];
 
-  Iterable<String> _searchableValues(LearningItem item) sync* {
-    yield item.id;
-    yield item.type;
-    yield item.japanese;
-    yield item.romaji;
-    yield item.hindi;
-    yield item.english;
-    yield item.isLearned ? 'learned' : 'not learned';
-    yield item.revisionCount.toString();
-    yield item.lastReviewed.toIso8601String();
-    yield item.createdAt.toIso8601String();
-    yield item.difficulty.toString();
-    yield* item.tags;
+    for (final item in items) {
+      int score = 0;
+
+      final fields = [item.japanese, item.romaji, item.english, item.hindi];
+
+      for (final field in fields) {
+        final value = _normalize(field);
+
+        if (value == query) {
+          score += 100;
+        } else if (value.startsWith(query)) {
+          score += 50;
+        } else if (value.contains(query)) {
+          score += 10;
+        }
+      }
+
+      if (score > 0) {
+        scored.add(_ScoredItem(item, score));
+      }
+    }
+
+    scored.sort((a, b) => b.score.compareTo(a.score));
+
+    return scored.map((e) => e.item).toList();
   }
 
   String _normalize(String value) {
-    return value.trim().toLowerCase();
+    return value.toLowerCase().trim().replaceAll(' ', '');
   }
 }

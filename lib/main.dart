@@ -4,6 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:manisulearn/core/services/app_meta_service.dart';
 import 'package:manisulearn/data/models/learning_item_adapter.dart';
+import 'package:manisulearn/features/home/presentation/bloc/analytics_bloc.dart';
+import 'package:manisulearn/features/home/presentation/bloc/analytics_event.dart';
 
 import 'core/navigation/app_shell.dart';
 import 'core/services/json_loader.dart';
@@ -54,6 +56,11 @@ class MyApp extends StatelessWidget {
       create: (BuildContext context) => HiveLearningItemRepository(),
       child: MultiBlocProvider(
         providers: <BlocProvider<dynamic>>[
+          BlocProvider<AnalyticsBloc>(
+            create: (BuildContext context) => AnalyticsBloc(
+              repository: context.read<HiveLearningItemRepository>(),
+            )..add(LoadAnalytics()),
+          ),
           BlocProvider<LibraryBloc>(
             create: (BuildContext context) => LibraryBloc(
               repository: context.read<HiveLearningItemRepository>(),

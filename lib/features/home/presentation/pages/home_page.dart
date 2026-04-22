@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manisulearn/features/home/presentation/bloc/analytics_bloc.dart';
+import 'package:manisulearn/features/home/presentation/bloc/analytics_state.dart';
 
 import '../../../revision/presentation/bloc/review_queue_bloc.dart';
 
@@ -52,6 +54,38 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
+          const SizedBox(height: 12),
+
+          BlocBuilder<AnalyticsBloc, AnalyticsState>(
+            builder: (context, state) {
+              if (state is AnalyticsLoaded) {
+                final data = state.data;
+
+                return _HomeCard(
+                  icon: Icons.insights_outlined,
+                  title: 'Progress',
+                  body:
+                      'Learned: ${data.learnedItems}/${data.totalItems} • '
+                      'Due: ${data.dueToday} • '
+                      'Retention: ${data.retentionRate.toStringAsFixed(1)}%',
+                );
+              }
+
+              if (state is AnalyticsError) {
+                return const _HomeCard(
+                  icon: Icons.error_outline,
+                  title: 'Progress',
+                  body: 'Could not load progress data.',
+                );
+              }
+
+              return const _HomeCard(
+                icon: Icons.insights_outlined,
+                title: 'Progress',
+                body: 'Calculating your learning progress...',
+              );
+            },
+          ),
         ],
       ),
     );
@@ -60,9 +94,10 @@ class _HomePageState extends State<HomePage> {
   String _reviewQueueMessage(ReviewQueueState state) {
     return switch (state) {
       ReviewQueueLoading() => 'Checking today\'s review queue.',
-      DueItemsLoaded(:final dueCount) => dueCount == 1
-          ? 'You have 1 item to review today.'
-          : 'You have $dueCount items to review today.',
+      DueItemsLoaded(:final dueCount) =>
+        dueCount == 1
+            ? 'You have 1 item to review today.'
+            : 'You have $dueCount items to review today.',
       ReviewQueueError() => 'Could not load today\'s review count.',
       ReviewQueueState() => 'Review learned items by priority.',
     };

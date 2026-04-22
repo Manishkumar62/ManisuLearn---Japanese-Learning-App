@@ -1,7 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../library/presentation/widgets/library_item_tile.dart';
+import '../widgets/search_result_tile.dart';
 import '../bloc/search_bloc.dart';
 import '../bloc/search_event.dart';
 import '../bloc/search_state.dart';
@@ -15,6 +16,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _controller = TextEditingController();
+  Timer? _debounce;
 
   @override
   void dispose() {
@@ -39,7 +41,11 @@ class _SearchPageState extends State<SearchPage> {
                   prefixIcon: Icon(Icons.search),
                 ),
                 onChanged: (String value) {
-                  context.read<SearchBloc>().add(QueryChanged(value));
+                  if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+                  _debounce = Timer(const Duration(milliseconds: 300), () {
+                    context.read<SearchBloc>().add(QueryChanged(value));
+                  });
                 },
               ),
             ),
@@ -48,13 +54,10 @@ class _SearchPageState extends State<SearchPage> {
                 builder: (BuildContext context, SearchState state) {
                   return switch (state) {
                     SearchInitial() => const _SearchHint(),
-                    SearchLoading() => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    SearchResults(:final query, :final items) =>
+                    SearchResults(:final query, :final items, :final isEmpty) =>
                       query.trim().isEmpty
                           ? const _SearchHint()
-                          : items.isEmpty
+                          : isEmpty
                           ? const _NoSearchResults()
                           : ListView.separated(
                               padding: const EdgeInsets.all(16),
@@ -63,7 +66,10 @@ class _SearchPageState extends State<SearchPage> {
                                   (BuildContext context, int index) =>
                                       const SizedBox(height: 10),
                               itemBuilder: (BuildContext context, int index) {
-                                return LibraryItemTile(item: items[index]);
+                                return SearchResultTile(
+                                  item: items[index],
+                                  query: query,
+                                );
                               },
                             ),
                     SearchError(:final message) => Center(

@@ -18,13 +18,15 @@ class SearchLoading extends SearchState {
 }
 
 class SearchResults extends SearchState {
-  const SearchResults({required this.query, required this.items});
+  SearchResults({required this.query, required this.items})
+    : isEmpty = items.isEmpty;
 
   final String query;
   final List<LearningItem> items;
+  final bool isEmpty;
 
   @override
-  List<Object?> get props => <Object?>[query, items];
+  List<Object?> get props => <Object?>[query, items, isEmpty];
 }
 
 class SearchError extends SearchState {
