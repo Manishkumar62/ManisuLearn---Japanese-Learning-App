@@ -7,6 +7,8 @@ class AnalyticsData {
   final double retentionRate;
   final List<String> insights;
 
+  final int streakDays; // ✅ NEW
+
   AnalyticsData({
     required this.totalItems,
     required this.learnedItems,
@@ -15,5 +17,6 @@ class AnalyticsData {
     required this.correctReviews,
     required this.retentionRate,
     required this.insights,
+    required this.streakDays, // ✅ NEW
   });
 }

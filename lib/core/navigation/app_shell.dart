@@ -100,7 +100,19 @@ class _AppShellState extends State<AppShell> {
             _TabNavigator(
               navigatorKey: _navigatorKeys[_homeIndex],
               routeName: AppRoutes.home,
-              child: const HomePage(),
+              child: HomePage(
+                onGoToRevision: () {
+                  setState(() => _selectedIndex = _revisionIndex);
+
+                  context.read<RevisionBloc>().add(const LoadRevisionItems());
+                  context.read<ReviewQueueBloc>().add(const LoadDueItems());
+                },
+                onGoToLearn: () {
+                  setState(() => _selectedIndex = _learnIndex);
+
+                  context.read<LearnBloc>().add(const LoadLearningItems());
+                },
+              ),
             ),
             _TabNavigator(
               navigatorKey: _navigatorKeys[_libraryIndex],
@@ -124,11 +136,14 @@ class _AppShellState extends State<AppShell> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _openAddDataPage,
-          tooltip: 'Add data',
-          child: const Icon(Icons.add),
-        ),
+        floatingActionButton:
+            (_selectedIndex == _libraryIndex || _selectedIndex == _searchIndex)
+            ? FloatingActionButton(
+                onPressed: _openAddDataPage,
+                tooltip: 'Add data',
+                child: const Icon(Icons.add),
+              )
+            : null,
         bottomNavigationBar: NavigationBar(
           selectedIndex: _selectedIndex,
           onDestinationSelected: (int index) {

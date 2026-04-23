@@ -9,13 +9,14 @@ import '../widgets/home_header.dart';
 import '../widgets/primary_card.dart';
 import '../widgets/modern_card.dart';
 import '../widgets/analytics_card.dart';
-import '../widgets/streak_card.dart';
 import '../widgets/progress_bar_card.dart';
 import '../widgets/animated_card.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final VoidCallback? onGoToRevision; // ✅ NEW
+  final VoidCallback? onGoToLearn; // ✅ NEW
 
+  const HomePage({super.key, this.onGoToRevision, this.onGoToLearn});
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -34,10 +35,21 @@ class _HomePageState extends State<HomePage> {
         child: CustomScrollView(
           slivers: [
             /// 🔹 HEADER
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.all(16),
-                child: HomeHeader(),
+            SliverToBoxAdapter(
+              child: BlocBuilder<AnalyticsBloc, AnalyticsState>(
+                builder: (context, state) {
+                  if (state is AnalyticsLoaded) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: HomeHeader(streakDays: state.data.streakDays),
+                    );
+                  }
+
+                  return const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: HomeHeader(streakDays: 0),
+                  );
+                },
               ),
             ),
 
@@ -47,16 +59,37 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: BlocBuilder<ReviewQueueBloc, ReviewQueueState>(
                   builder: (context, state) {
-                    final dueText = _reviewQueueMessage(state);
+                    int due = 0;
+
+                    if (state is DueItemsLoaded) {
+                      due = state.dueCount;
+                    }
+
+                    final isReview = due > 0;
 
                     return AnimatedCardWrapper(
-                      onTap: () {
-                        // TODO: Navigate to review screen
-                      },
-                      child: PrimaryCard(
-                        title: "Continue Learning",
-                        subtitle: dueText,
-                        icon: Icons.play_arrow,
+                      child: Material(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(20),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(20),
+                          splashColor: Colors.white.withValues(alpha: 0.2),
+                          highlightColor: Colors.white.withValues(alpha: 0.1),
+                          onTap: () {
+                            if (isReview) {
+                              widget.onGoToRevision?.call();
+                            } else {
+                              widget.onGoToLearn?.call();
+                            }
+                          },
+                          child: PrimaryCard(
+                            title: isReview ? "Review Now" : "Start Learning",
+                            subtitle: isReview
+                                ? "$due items waiting"
+                                : "No pending reviews",
+                            icon: isReview ? Icons.refresh : Icons.play_arrow,
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -70,15 +103,6 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    /// 🔥 STREAK
-                    const AnimatedCardWrapper(
-                      child: StreakCard(
-                        streakDays: 7, // TODO: connect real data
-                      ),
-                    ),
-
-                    const SizedBox(height: 16),
-
                     /// 📊 PROGRESS BAR
                     BlocBuilder<AnalyticsBloc, AnalyticsState>(
                       builder: (context, state) {
@@ -97,38 +121,38 @@ class _HomePageState extends State<HomePage> {
 
                     const SizedBox(height: 16),
 
-                    /// 📚 LIBRARY + LEARN
-                    Row(
-                      children: [
-                        Expanded(
-                          child: AnimatedCardWrapper(
-                            child: ModernCard(
-                              icon: Icons.library_books_outlined,
-                              title: "Library",
-                              body: "Browse all content",
-                              onTap: () {
-                                // TODO: Navigate
-                              },
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: AnimatedCardWrapper(
-                            child: ModernCard(
-                              icon: Icons.school_outlined,
-                              title: "Learn",
-                              body: "Practice new items",
-                              onTap: () {
-                                // TODO: Navigate
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // /// 📚 LIBRARY + LEARN
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: AnimatedCardWrapper(
+                    //         child: ModernCard(
+                    //           icon: Icons.library_books_outlined,
+                    //           title: "Library",
+                    //           body: "Browse all content",
+                    //           onTap: () {
+                    //             // TODO: Navigate
+                    //           },
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     const SizedBox(width: 12),
+                    //     Expanded(
+                    //       child: AnimatedCardWrapper(
+                    //         child: ModernCard(
+                    //           icon: Icons.school_outlined,
+                    //           title: "Learn",
+                    //           body: "Practice new items",
+                    //           onTap: () {
+                    //             // TODO: Navigate
+                    //           },
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
 
-                    const SizedBox(height: 16),
+                    // const SizedBox(height: 16),
 
                     /// 📊 ANALYTICS
                     BlocBuilder<AnalyticsBloc, AnalyticsState>(
@@ -142,6 +166,8 @@ class _HomePageState extends State<HomePage> {
                               total: data.totalItems,
                               due: data.dueToday,
                               retention: data.retentionRate,
+                              insights: state.insights,
+                              weeklyProgress: state.weeklyProgress,
                             ),
                           );
                         }
@@ -169,19 +195,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  String _reviewQueueMessage(ReviewQueueState state) {
-    return switch (state) {
-      ReviewQueueLoading() => 'Checking today\'s review queue...',
-      DueItemsLoaded(:final dueCount) =>
-        dueCount == 0
-            ? 'You are all caught up 🎉'
-            : dueCount == 1
-                ? 'You have 1 item to review'
-                : 'You have $dueCount items to review',
-      ReviewQueueError() => 'Could not load review data',
-      _ => 'Review your learned items',
-    };
   }
 }

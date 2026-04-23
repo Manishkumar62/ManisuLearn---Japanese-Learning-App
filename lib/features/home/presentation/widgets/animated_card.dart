@@ -31,6 +31,7 @@ class _AnimatedCardWrapperState extends State<AnimatedCardWrapper> {
       child: AnimatedScale(
         scale: scale,
         duration: const Duration(milliseconds: 120),
+        curve: Curves.easeOutCubic,
         child: widget.child,
       ),
     );

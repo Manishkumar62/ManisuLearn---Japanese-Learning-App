@@ -96,8 +96,20 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
   }
 
   bool _needsRevision(LearningItem item) {
+    if (item.lastReviewed == null) {
+      return item.isLearned; // treat as needs revision
+    }
+
     final now = DateTime.now();
-    final daysSinceLastReview = now.difference(item.lastReviewed).inDays;
+
+    final today = DateTime(now.year, now.month, now.day);
+    final last = DateTime(
+      item.lastReviewed!.year,
+      item.lastReviewed!.month,
+      item.lastReviewed!.day,
+    );
+
+    final daysSinceLastReview = today.difference(last).inDays;
 
     return item.isLearned && daysSinceLastReview >= 1;
   }

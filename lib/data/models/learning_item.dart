@@ -22,7 +22,7 @@ class LearningItem extends HiveObject {
     this.repetitions = 0,
     DateTime? nextReview,
     this.firstLearnedAt,
-  }) : lastReviewed = lastReviewed ?? DateTime.now(),
+  }) : lastReviewed = lastReviewed,
        createdAt = createdAt ?? DateTime.now(),
        tags = tags ?? <String>[],
        nextReview = nextReview ?? DateTime.now();
@@ -31,6 +31,7 @@ class LearningItem extends HiveObject {
     bool? isLearned,
     int? revisionCount,
     DateTime? lastReviewed,
+    DateTime? createdAt,
     double? difficulty,
     List<String>? tags,
     double? easeFactor,
@@ -49,7 +50,7 @@ class LearningItem extends HiveObject {
       isLearned: isLearned ?? this.isLearned,
       revisionCount: revisionCount ?? this.revisionCount,
       lastReviewed: lastReviewed ?? this.lastReviewed,
-      createdAt: createdAt,
+      createdAt: createdAt ?? this.createdAt,
       difficulty: difficulty ?? this.difficulty,
       tags: tags ?? this.tags,
       easeFactor: easeFactor ?? this.easeFactor,
@@ -85,7 +86,7 @@ class LearningItem extends HiveObject {
   int revisionCount;
 
   @HiveField(8)
-  DateTime lastReviewed;
+  DateTime? lastReviewed;
 
   @HiveField(9)
   DateTime createdAt;
