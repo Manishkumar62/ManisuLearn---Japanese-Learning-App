@@ -81,6 +81,8 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
             LibraryTypeFilter.all => true,
             LibraryTypeFilter.words => item.type == 'word',
             LibraryTypeFilter.sentences => item.type == 'sentence',
+            LibraryTypeFilter.dialogue => item.type == 'dialogue',
+            LibraryTypeFilter.grammar => item.type == 'grammar',
             LibraryTypeFilter.stories => item.type == 'story',
           };
 

@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../../../../data/models/learning_item.dart';
 
-class LibraryItemTile extends StatelessWidget {
+class LibraryItemTile extends StatefulWidget {
   const LibraryItemTile({super.key, required this.item, this.onTap});
 
   final LearningItem item;
   final VoidCallback? onTap;
 
   @override
+  State<LibraryItemTile> createState() => _LibraryItemTileState();
+}
+
+class _LibraryItemTileState extends State<LibraryItemTile> {
+  double scale = 1.0;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final item = widget.item;
 
     final isLearned = item.isLearned;
     final isRevised = item.revisionCount > 0;
@@ -29,12 +37,19 @@ class LibraryItemTile extends StatelessWidget {
       status = "Learned";
     }
 
-    return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(20),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: onTap,
+    /// 🧠 DAYS AGO
+    final daysAgo = item.lastReviewed == null
+        ? null
+        : DateTime.now().difference(item.lastReviewed!).inDays;
+
+    return GestureDetector(
+      onTap: widget.onTap,
+      onTapDown: (_) => setState(() => scale = 0.97),
+      onTapUp: (_) => setState(() => scale = 1.0),
+      onTapCancel: () => setState(() => scale = 1.0),
+      child: AnimatedScale(
+        scale: scale,
+        duration: const Duration(milliseconds: 120),
         child: Container(
           decoration: BoxDecoration(
             color: theme.cardTheme.color,
@@ -61,26 +76,26 @@ class LibraryItemTile extends StatelessWidget {
                 ),
               ),
 
-              /// CONTENT
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(14),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      /// TOP ROW
+                      /// 🔝 TOP ROW
                       Row(
                         children: [
                           Expanded(
                             child: Text(
                               item.japanese,
                               style: theme.textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 22,
                               ),
                             ),
                           ),
 
-                          /// STATUS BADGE
+                          /// STATUS
                           Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 10,
@@ -94,55 +109,67 @@ class LibraryItemTile extends StatelessWidget {
                               status,
                               style: TextStyle(
                                 color: accentColor,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
                         ],
                       ),
 
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 4),
 
-                      /// ROMAJI
+                      /// 🧾 ROMAJI
                       Text(
                         item.romaji,
-                        style: const TextStyle(color: Colors.white70),
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 18,
+                        ),
                       ),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 6),
 
-                      /// ENGLISH
-                      Text(item.english, style: const TextStyle(fontSize: 13)),
+                      /// 🌍 MEANING
+                      Text(item.english, style: const TextStyle(fontSize: 12)),
 
                       if (item.hindi.isNotEmpty) ...[
                         const SizedBox(height: 4),
                         Text(
                           item.hindi,
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 20,
                             color: Colors.white60,
                           ),
                         ),
                       ],
+                      const SizedBox(height: 8),
 
-                      const SizedBox(height: 10),
-
-                      /// META + ACTION
+                      /// 🔻 META ROW (compact + powerful)
                       Row(
                         children: [
-                          _metaChip(context, item.type),
-                          const SizedBox(width: 8),
-                          _metaChip(context, "Rev ${item.revisionCount}"),
+                          _chip(context, item.type),
+
+                          const SizedBox(width: 6),
+
+                          _chip(context, "Rev ${item.revisionCount}"),
+
+                          const SizedBox(width: 6),
+
+                          _chip(
+                            context,
+                            daysAgo == null ? "New" : "$daysAgo d ago",
+                          ),
 
                           const Spacer(),
 
+                          /// CTA
                           Text(
-                            isLearned ? "Revise ↻" : "Learn →",
+                            isLearned ? "↻ Revise" : "→ Learn",
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontSize: 12,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ],
@@ -158,70 +185,17 @@ class LibraryItemTile extends StatelessWidget {
     );
   }
 
-  Widget _metaChip(BuildContext context, String label) {
+  Widget _chip(BuildContext context, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: Colors.white10,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
         label,
-        style: const TextStyle(fontSize: 11, color: Colors.white70),
+        style: const TextStyle(fontSize: 10, color: Colors.white70),
       ),
     );
   }
 }
-
-// class _StatusBadge extends StatelessWidget {
-//   const _StatusBadge({required this.isLearned, required this.isRevised});
-
-//   final bool isLearned;
-//   final bool isRevised;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     Color color;
-//     String text;
-
-//     if (!isLearned) {
-//       color = Colors.orange;
-//       text = "New";
-//     } else if (isRevised) {
-//       color = Colors.blue;
-//       text = "Revised";
-//     } else {
-//       color = Colors.green;
-//       text = "Learned";
-//     }
-
-//     return Container(
-//       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-//       decoration: BoxDecoration(
-//         color: color.withValues(alpha: 0.2),
-//         borderRadius: BorderRadius.circular(12),
-//       ),
-//       child: Text(text, style: TextStyle(color: color, fontSize: 12)),
-//     );
-//   }
-// }
-
-// class _MetaChip extends StatelessWidget {
-//   const _MetaChip({required this.label});
-
-//   final String label;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return DecoratedBox(
-//       decoration: BoxDecoration(
-//         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-//         borderRadius: BorderRadius.circular(16),
-//       ),
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-//         child: Text(label),
-//       ),
-//     );
-//   }
-// }

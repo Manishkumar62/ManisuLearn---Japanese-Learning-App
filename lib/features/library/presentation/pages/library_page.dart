@@ -349,6 +349,20 @@ class _FilterSection extends StatelessWidget {
 
                 _chip(
                   context,
+                  "Dialogues",
+                  typeFilter == LibraryTypeFilter.dialogue,
+                  () => onTypeChanged(LibraryTypeFilter.dialogue),
+                ),
+
+                _chip(
+                  context,
+                  "Grammar",
+                  typeFilter == LibraryTypeFilter.grammar,
+                  () => onTypeChanged(LibraryTypeFilter.grammar),
+                ),
+
+                _chip(
+                  context,
                   "Stories",
                   typeFilter == LibraryTypeFilter.stories,
                   () => onTypeChanged(LibraryTypeFilter.stories),
