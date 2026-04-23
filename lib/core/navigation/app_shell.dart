@@ -122,7 +122,14 @@ class _AppShellState extends State<AppShell> {
             _TabNavigator(
               navigatorKey: _navigatorKeys[_learnIndex],
               routeName: AppRoutes.learn,
-              child: const LearnPage(),
+              child: LearnPage(
+                onGoToLibrary: () {
+                  setState(() => _selectedIndex = _libraryIndex);
+                  context.read<LibraryBloc>().add(
+                    const LoadLibrary(),
+                  );
+                },
+              ),
             ),
             _TabNavigator(
               navigatorKey: _navigatorKeys[_revisionIndex],

@@ -6,7 +6,9 @@ import '../bloc/learn_event.dart';
 import '../bloc/learn_state.dart';
 
 class LearnPage extends StatefulWidget {
-  const LearnPage({super.key});
+  const LearnPage({super.key, this.onGoToLibrary});
+
+  final VoidCallback? onGoToLibrary;
 
   @override
   State<LearnPage> createState() => _LearnPageState();
@@ -22,7 +24,10 @@ class _LearnPageState extends State<LearnPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Learn'), automaticallyImplyLeading: false),
+      appBar: AppBar(
+        title: const Text('Learn'),
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: BlocBuilder<LearnBloc, LearnState>(
           builder: (BuildContext context, LearnState state) {
@@ -31,7 +36,9 @@ class _LearnPageState extends State<LearnPage> {
                 child: CircularProgressIndicator(),
               ),
               LearnLoaded() => _FlashcardView(state: state),
-              LearnCompleted() => const _LearnCompletedView(),
+              LearnCompleted() => _LearnCompletedView(
+                onGoToLibrary: widget.onGoToLibrary,
+              ),
               LearnError(:final message) => _LearnErrorView(message: message),
               LearnState() => const _LearnCompletedView(),
             };
@@ -176,7 +183,9 @@ class _TypeBadge extends StatelessWidget {
 }
 
 class _LearnCompletedView extends StatelessWidget {
-  const _LearnCompletedView();
+  const _LearnCompletedView({this.onGoToLibrary});
+
+  final VoidCallback? onGoToLibrary;
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +209,9 @@ class _LearnCompletedView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             FilledButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                onGoToLibrary?.call();
+              },
               child: const Text('Back to library'),
             ),
           ],

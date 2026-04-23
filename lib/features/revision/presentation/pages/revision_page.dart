@@ -25,14 +25,18 @@ class _RevisionPageState extends State<RevisionPage> {
       appBar: AppBar(
         title: const Text('Revision'),
         automaticallyImplyLeading: false,
+
+        /// ⭐ LEFT → Due
+        leading: IconButton(
+          icon: const Icon(Icons.auto_awesome),
+          tooltip: 'Due Items',
+          onPressed: () {
+            context.read<RevisionBloc>().add(const LoadRevisionItems());
+          },
+        ),
+
+        /// 🌍 RIGHT → Explore
         actions: [
-          IconButton(
-            icon: const Icon(Icons.auto_awesome),
-            tooltip: 'Due Items',
-            onPressed: () {
-              context.read<RevisionBloc>().add(const LoadRevisionItems());
-            },
-          ),
           IconButton(
             icon: const Icon(Icons.explore),
             tooltip: 'Explore',
@@ -44,22 +48,26 @@ class _RevisionPageState extends State<RevisionPage> {
       ),
       body: SafeArea(
         child: BlocBuilder<RevisionBloc, RevisionState>(
-          builder: (BuildContext context, RevisionState state) {
+          builder: (context, state) {
             return switch (state) {
               RevisionInitial() || RevisionLoading() => const Center(
                 child: CircularProgressIndicator(),
               ),
+
               RevisionLoaded() => Column(
                 children: [
                   if (state.isExploreMode) _ExploreFilters(),
                   Expanded(child: _RevisionFlashcard(state: state)),
                 ],
               ),
+
               RevisionCompleted() => const _RevisionCompleteMessage(),
+
               RevisionError(:final message) => _RevisionErrorMessage(
                 message: message,
               ),
-              RevisionState() => const _RevisionCompleteMessage(),
+
+              _ => const SizedBox(),
             };
           },
         ),
@@ -68,133 +76,313 @@ class _RevisionPageState extends State<RevisionPage> {
   }
 }
 
-class _RevisionFlashcard extends StatelessWidget {
+class _RevisionFlashcard extends StatefulWidget {
   const _RevisionFlashcard({required this.state});
 
   final RevisionLoaded state;
 
   @override
-  Widget build(BuildContext context) {
-    final item = state.currentItem;
+  State<_RevisionFlashcard> createState() => _RevisionFlashcardState();
+}
 
-    if (item == null) {
-      return const Center(child: Text('No items'));
-    }
+class _RevisionFlashcardState extends State<_RevisionFlashcard> {
+  double drag = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final item = widget.state.currentItem;
+    if (item == null) return const Center(child: Text('No items'));
+
+    final isRevealed = widget.state.isAnswerVisible;
+
     final daysAgo = item.firstLearnedAt == null
         ? 0
         : DateTime.now().difference(item.firstLearnedAt!).inDays;
 
+    Color overlayColor = Colors.transparent;
+
+    if (drag > 40) {
+      overlayColor = Colors.green.withValues(alpha: 0.15);
+    } else if (drag < -40) {
+      overlayColor = Colors.red.withValues(alpha: 0.15);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
+        children: [
+          /// PROGRESS
           Text(
-            '${state.completedCount + 1} of ${state.totalCount}',
-            textAlign: TextAlign.center,
+            '${widget.state.completedCount + 1} of ${widget.state.totalCount}',
           ),
           const SizedBox(height: 8),
-          TweenAnimationBuilder<double>(
-            tween: Tween<double>(
-              begin: 0,
-              end: (state.completedCount + 1) / state.totalCount,
-            ),
-            duration: const Duration(milliseconds: 260),
-            builder: (BuildContext context, double value, Widget? child) {
-              return LinearProgressIndicator(value: value);
-            },
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 220),
-                  child: SingleChildScrollView(
-                    key: ValueKey<String>(
-                      '${item.id}-${state.isAnswerVisible}',
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Text(
-                          item.japanese,
-                          style: Theme.of(context).textTheme.headlineLarge,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          item.romaji,
-                          style: Theme.of(context).textTheme.titleMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 8),
 
-                        Text(
-                          'Revised: ${item.repetitions} • Learned: $daysAgo days ago',
-                          style: Theme.of(context).textTheme.bodySmall,
-                          textAlign: TextAlign.center,
-                        ),
-                        if (state.isAnswerVisible) ...<Widget>[
-                          const Divider(height: 40),
-                          Text(
-                            item.english,
-                            style: Theme.of(context).textTheme.titleLarge,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(item.hindi, textAlign: TextAlign.center),
-                        ],
-                      ],
+          LinearProgressIndicator(
+            value: (widget.state.completedCount + 1) / widget.state.totalCount,
+          ),
+
+          const SizedBox(height: 16),
+
+          /// 🔥 CARD
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                if (!isRevealed) {
+                  context.read<RevisionBloc>().add(
+                    const RevealRevisionAnswer(),
+                  );
+                }
+              },
+
+              onHorizontalDragUpdate: (details) {
+                if (!isRevealed) return; // 🚫 block swipe
+                setState(() => drag += details.delta.dx);
+              },
+
+              onHorizontalDragEnd: (_) {
+                if (!isRevealed) return; // 🚫 block swipe
+
+                if (drag > 120) {
+                  context.read<RevisionBloc>().add(
+                    const ReviewItem(isCorrect: true),
+                  );
+                } else if (drag < -120) {
+                  context.read<RevisionBloc>().add(
+                    const ReviewItem(isCorrect: false),
+                  );
+                }
+
+                setState(() => drag = 0);
+              },
+
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                transform: Matrix4.identity()
+                  ..translate(drag)
+                  ..rotateZ(drag * 0.0008),
+
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardTheme.color,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.3),
+                      blurRadius: 16,
+                      offset: const Offset(0, 10),
                     ),
-                  ),
+                  ],
+                ),
+
+                child: Stack(
+                  children: [
+                    /// swipe color
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: overlayColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+
+                    /// skip icon
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: GestureDetector(
+                        onTap: () {
+                          context.read<RevisionBloc>().add(
+                            const SkipRevisionItem(),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.white10,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(Icons.close, size: 18),
+                        ),
+                      ),
+                    ),
+
+                    /// drag hint
+                    if (drag > 40)
+                      const Positioned(
+                        left: 20,
+                        top: 20,
+                        child: Text(
+                          "✔ Correct",
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+
+                    if (drag < -40)
+                      const Positioned(
+                        right: 20,
+                        top: 20,
+                        child: Text(
+                          "✖ Wrong",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        child: Column(
+                          key: ValueKey(isRevealed),
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const Spacer(),
+
+                            Text(
+                              item.japanese,
+                              style: Theme.of(context).textTheme.headlineLarge
+                                  ?.copyWith(fontWeight: FontWeight.w700),
+                              textAlign: TextAlign.center,
+                            ),
+
+                            const SizedBox(height: 12),
+
+                            Text(
+                              item.romaji,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(color: Colors.white70),
+                            ),
+
+                            const SizedBox(height: 10),
+
+                            Text(
+                              '${item.repetitions} reviews • $daysAgo days ago',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white60,
+                              ),
+                            ),
+
+                            const Spacer(),
+
+                            if (isRevealed) ...[
+                              const Divider(height: 30),
+                              Text(item.english, textAlign: TextAlign.center),
+                              const SizedBox(height: 6),
+                              Text(item.hindi, textAlign: TextAlign.center),
+                            ] else ...[
+                              const Text(
+                                'Tap to reveal',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white54),
+                              ),
+                            ],
+
+                            if (isRevealed) ...[
+                              const SizedBox(height: 12),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Text(
+                                    "← Wrong",
+                                    style: TextStyle(
+                                      color: Colors.redAccent,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Correct →",
+                                    style: TextStyle(
+                                      color: Colors.greenAccent,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          if (state.isAnswerVisible)
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {
-                      context.read<RevisionBloc>().add(
-                        const ReviewItem(isCorrect: false),
-                      );
-                    },
-                    child: const Text('Incorrect'),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: FilledButton(
-                    onPressed: () {
-                      context.read<RevisionBloc>().add(
-                        const ReviewItem(isCorrect: true),
-                      );
-                    },
-                    child: const Text('Correct'),
-                  ),
-                ),
-              ],
-            )
-          else ...<Widget>[
-            FilledButton(
-              onPressed: () {
-                context.read<RevisionBloc>().add(const RevealRevisionAnswer());
-              },
-              child: const Text('Reveal answer'),
+        ],
+      ),
+    );
+  }
+}
+
+class _ExploreFilters extends StatefulWidget {
+  @override
+  State<_ExploreFilters> createState() => _ExploreFiltersState();
+}
+
+class _ExploreFiltersState extends State<_ExploreFilters> {
+  double days = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Row(
+        children: [
+          const Text("Days", style: TextStyle(fontSize: 12)),
+
+          const SizedBox(width: 8),
+
+          /// SLIDER
+          Expanded(
+            child: SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                trackHeight: 2,
+                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+              ),
+              child: Slider(
+                value: days,
+                min: 0,
+                max: 30,
+                divisions: 6,
+                onChanged: (value) {
+                  setState(() => days = value);
+
+                  context.read<RevisionBloc>().add(
+                    ApplyRevisionFilter(minDaysAgo: value.toInt()),
+                  );
+                },
+              ),
             ),
-            const SizedBox(height: 8),
-            OutlinedButton(
-              onPressed: () {
-                context.read<RevisionBloc>().add(const SkipRevisionItem());
-              },
-              child: const Text('Skip'),
+          ),
+
+          /// VALUE
+          Text("${days.toInt()}+", style: const TextStyle(fontSize: 12)),
+
+          const SizedBox(width: 6),
+
+          /// RESET
+          TextButton(
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-          ],
+            onPressed: () {
+              setState(() => days = 0);
+              context.read<RevisionBloc>().add(const LoadAllLearnedItems());
+            },
+            child: const Text("Reset", style: TextStyle(fontSize: 12)),
+          ),
         ],
       ),
     );
@@ -209,10 +397,7 @@ class _RevisionCompleteMessage extends StatelessWidget {
     return const Center(
       child: Padding(
         padding: EdgeInsets.all(24),
-        child: Text(
-          'No revision items right now.',
-          textAlign: TextAlign.center,
-        ),
+        child: Text('No revision items right now.'),
       ),
     );
   }
@@ -230,7 +415,7 @@ class _RevisionErrorMessage extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
+          children: [
             Text(message, textAlign: TextAlign.center),
             const SizedBox(height: 16),
             FilledButton(
@@ -241,63 +426,6 @@ class _RevisionErrorMessage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _ExploreFilters extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      child: Wrap(
-        spacing: 8,
-        children: [
-          ChoiceChip(
-            label: const Text('Weak'),
-            selected: false,
-            onSelected: (_) {
-              context.read<RevisionBloc>().add(
-                const ApplyRevisionFilter(maxRepetitions: 2),
-              );
-            },
-          ),
-          ChoiceChip(
-            label: const Text('1–3 days'),
-            selected: false,
-            onSelected: (_) {
-              context.read<RevisionBloc>().add(
-                const ApplyRevisionFilter(minDaysAgo: 1, maxDaysAgo: 3),
-              );
-            },
-          ),
-          ChoiceChip(
-            label: const Text('4–7 days'),
-            selected: false,
-            onSelected: (_) {
-              context.read<RevisionBloc>().add(
-                const ApplyRevisionFilter(minDaysAgo: 4, maxDaysAgo: 7),
-              );
-            },
-          ),
-          ChoiceChip(
-            label: const Text('7+ days'),
-            selected: false,
-            onSelected: (_) {
-              context.read<RevisionBloc>().add(
-                const ApplyRevisionFilter(minDaysAgo: 7),
-              );
-            },
-          ),
-          ChoiceChip(
-            label: const Text('Reset'),
-            selected: false,
-            onSelected: (_) {
-              context.read<RevisionBloc>().add(const LoadAllLearnedItems());
-            },
-          ),
-        ],
       ),
     );
   }
