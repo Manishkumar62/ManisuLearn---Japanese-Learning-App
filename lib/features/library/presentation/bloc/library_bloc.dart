@@ -15,8 +15,6 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
 
   final LearningItemRepository _repository;
 
-  List<LearningItem> _allItems = <LearningItem>[];
-
   Future<void> _onLoadLibrary(
     LoadLibrary event,
     Emitter<LibraryState> emit,
@@ -24,8 +22,9 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     emit(const LibraryLoading());
 
     try {
-      _allItems = await _repository.getAllItems();
-      emit(LibraryLoaded(items: _allItems));
+      final items = await _repository.getAllItems(); // ✅ no cache
+
+      emit(LibraryLoaded(items: items));
     } catch (error) {
       emit(LibraryError(error.toString()));
     }
@@ -36,15 +35,15 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     Emitter<LibraryState> emit,
   ) async {
     try {
-      if (_allItems.isEmpty) {
-        _allItems = await _repository.getAllItems();
-      }
+      final items = await _repository.getAllItems(); // ✅ always fresh
 
       final filteredItems = _applyFilters(
-        items: _allItems,
+        items: items,
         searchQuery: event.searchQuery,
         typeFilter: event.typeFilter,
         progressFilter: event.progressFilter,
+        minDaysAgo: event.minDaysAgo,
+        maxRevisions: event.maxRevisions,
       );
 
       emit(
@@ -65,6 +64,8 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     required String searchQuery,
     required LibraryTypeFilter typeFilter,
     required LibraryProgressFilter progressFilter,
+    int? minDaysAgo,
+    int? maxRevisions,
   }) {
     return items
         .where((LearningItem item) {
@@ -90,7 +91,23 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
             LibraryProgressFilter.needsRevision => _needsRevision(item),
           };
 
-          return matchesQuery && matchesType && matchesProgress;
+          final now = DateTime.now();
+
+          final daysSinceLearned = item.firstLearnedAt == null
+              ? 0
+              : now.difference(item.firstLearnedAt!).inDays;
+
+          final matchesDays =
+              minDaysAgo == null || daysSinceLearned >= minDaysAgo;
+
+          final matchesRevisions =
+              maxRevisions == null || item.revisionCount <= maxRevisions;
+
+          return matchesQuery &&
+              matchesType &&
+              matchesProgress &&
+              matchesDays &&
+              matchesRevisions;
         })
         .toList(growable: false);
   }

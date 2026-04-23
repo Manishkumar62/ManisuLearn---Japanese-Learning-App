@@ -19,6 +19,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
     on<ReviewItem>(_onReviewItem);
     on<LoadAllLearnedItems>(_onLoadAllLearnedItems);
     on<ApplyRevisionFilter>(_onApplyRevisionFilter);
+    on<MarkItemReviewed>(_onMarkItemReviewed);
   }
 
   final LearningItemRepository _repository;
@@ -206,6 +207,30 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
       );
     } catch (error) {
       emit(RevisionError(error.toString()));
+    }
+  }
+
+  Future<void> _onMarkItemReviewed(
+    MarkItemReviewed event,
+    Emitter<RevisionState> emit,
+  ) async {
+    try {
+      final item = await _repository.getItem(event.id);
+      if (item == null) return;
+
+      final reviewedItem = _spacedRepetitionService.review(
+        item,
+        quality: SpacedRepetitionService.defaultPassingQuality,
+      );
+
+      final updated = reviewedItem.copyWith(
+        isLearned: true,
+        firstLearnedAt: reviewedItem.firstLearnedAt ?? DateTime.now(),
+      );
+
+      await _repository.updateItem(updated);
+    } catch (_) {
+      // silent fail
     }
   }
 }

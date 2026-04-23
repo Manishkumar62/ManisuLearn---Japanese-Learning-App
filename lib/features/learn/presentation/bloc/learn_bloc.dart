@@ -13,6 +13,7 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
     on<RevealLearningAnswer>(_onRevealLearningAnswer);
     on<SkipLearningItem>(_onSkipLearningItem);
     on<MarkLearned>(_onMarkLearned);
+    on<MarkLearnedFromLibrary>(_onMarkLearnedFromLibrary);
   }
 
   final LearningItemRepository _repository;
@@ -102,5 +103,25 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
     }
 
     emit(LearnLoaded(items: state.items, currentIndex: nextIndex));
+  }
+
+  Future<void> _onMarkLearnedFromLibrary(
+    MarkLearnedFromLibrary event,
+    Emitter<LearnState> emit,
+  ) async {
+    try {
+      final item = await _repository.getItem(event.id);
+      if (item == null) return;
+
+      final updated = item.copyWith(
+        isLearned: true,
+        lastReviewed: DateTime.now(),
+        firstLearnedAt: item.firstLearnedAt ?? DateTime.now(),
+      );
+
+      await _repository.updateItem(updated);
+    } catch (_) {
+      // silent fail (library should not break UX)
+    }
   }
 }

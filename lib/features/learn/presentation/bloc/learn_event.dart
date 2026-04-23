@@ -22,3 +22,8 @@ class SkipLearningItem extends LearnEvent {
 class MarkLearned extends LearnEvent {
   const MarkLearned();
 }
+
+class MarkLearnedFromLibrary extends LearnEvent {
+  final String id;
+  const MarkLearnedFromLibrary(this.id);
+}

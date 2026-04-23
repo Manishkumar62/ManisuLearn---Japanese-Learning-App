@@ -46,3 +46,8 @@ class ApplyRevisionFilter extends RevisionEvent {
   @override
   List<Object?> get props => [minDaysAgo, maxDaysAgo, maxRepetitions];
 }
+
+class MarkItemReviewed extends RevisionEvent {
+  final String id;
+  const MarkItemReviewed(this.id);
+}

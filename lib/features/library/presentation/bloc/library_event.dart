@@ -20,12 +20,24 @@ class FilterLibrary extends LibraryEvent {
     this.searchQuery = '',
     this.typeFilter = LibraryTypeFilter.all,
     this.progressFilter = LibraryProgressFilter.all,
+    this.minDaysAgo,
+    this.maxRevisions,
   });
 
   final String searchQuery;
   final LibraryTypeFilter typeFilter;
   final LibraryProgressFilter progressFilter;
 
+  /// 🆕 NEW FILTERS
+  final int? minDaysAgo;
+  final int? maxRevisions;
+
   @override
-  List<Object?> get props => <Object?>[searchQuery, typeFilter, progressFilter];
+  List<Object?> get props => <Object?>[
+    searchQuery,
+    typeFilter,
+    progressFilter,
+    minDaysAgo,
+    maxRevisions,
+  ];
 }
