@@ -136,7 +136,7 @@ class _RevisionFlashcardState extends State<_RevisionFlashcard> {
 
               onHorizontalDragUpdate: (details) {
                 if (!isRevealed) return; // 🚫 block swipe
-                setState(() => drag += details.delta.dx);
+                setState(() => drag += details.delta.dx * 0.9);
               },
 
               onHorizontalDragEnd: (_) {
@@ -164,6 +164,14 @@ class _RevisionFlashcardState extends State<_RevisionFlashcard> {
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardTheme.color,
                   borderRadius: BorderRadius.circular(20),
+                  border: isRevealed
+                      ? Border.all(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.4),
+                          width: 1.2,
+                        )
+                      : null,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.3),
@@ -255,7 +263,10 @@ class _RevisionFlashcardState extends State<_RevisionFlashcard> {
                             Text(
                               item.romaji,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(color: Colors.white70),
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 25,
+                              ),
                             ),
 
                             const SizedBox(height: 10),
@@ -275,7 +286,11 @@ class _RevisionFlashcardState extends State<_RevisionFlashcard> {
                               const Divider(height: 30),
                               Text(item.english, textAlign: TextAlign.center),
                               const SizedBox(height: 6),
-                              Text(item.hindi, textAlign: TextAlign.center),
+                              Text(
+                                item.hindi,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(fontSize: 35),
+                              ),
                             ] else ...[
                               const Text(
                                 'Tap to reveal',
@@ -286,25 +301,47 @@ class _RevisionFlashcardState extends State<_RevisionFlashcard> {
 
                             if (isRevealed) ...[
                               const SizedBox(height: 12),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const [
-                                  Text(
-                                    "← Wrong",
-                                    style: TextStyle(
-                                      color: Colors.redAccent,
-                                      fontSize: 12,
+                              AnimatedOpacity(
+                                opacity: 1,
+                                duration: const Duration(milliseconds: 250),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.arrow_left,
+                                          color: Colors.redAccent,
+                                          size: 16,
+                                        ),
+                                        Text(
+                                          "Wrong",
+                                          style: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  Text(
-                                    "Correct →",
-                                    style: TextStyle(
-                                      color: Colors.greenAccent,
-                                      fontSize: 12,
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Correct",
+                                          style: TextStyle(
+                                            color: Colors.greenAccent,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_right,
+                                          color: Colors.greenAccent,
+                                          size: 16,
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
 
@@ -331,6 +368,16 @@ class _ExploreFilters extends StatefulWidget {
 
 class _ExploreFiltersState extends State<_ExploreFilters> {
   double days = 0;
+  double revisions = 0;
+
+  void _apply() {
+    context.read<RevisionBloc>().add(
+      ApplyRevisionFilter(
+        minDaysAgo: days.toInt(),
+        maxRepetitions: revisions.toInt(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -338,50 +385,71 @@ class _ExploreFiltersState extends State<_ExploreFilters> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Row(
         children: [
-          const Text("Days", style: TextStyle(fontSize: 12)),
+          const Text("D", style: TextStyle(fontSize: 12)),
 
-          const SizedBox(width: 8),
-
-          /// SLIDER
           Expanded(
             child: SliderTheme(
               data: SliderTheme.of(context).copyWith(
                 trackHeight: 2,
-                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 5),
               ),
               child: Slider(
                 value: days,
                 min: 0,
                 max: 30,
                 divisions: 6,
-                onChanged: (value) {
-                  setState(() => days = value);
-
-                  context.read<RevisionBloc>().add(
-                    ApplyRevisionFilter(minDaysAgo: value.toInt()),
-                  );
+                onChanged: (v) {
+                  setState(() => days = v);
+                  _apply();
                 },
               ),
             ),
           ),
 
-          /// VALUE
-          Text("${days.toInt()}+", style: const TextStyle(fontSize: 12)),
+          Text("${days.toInt()}+", style: const TextStyle(fontSize: 11)),
 
           const SizedBox(width: 6),
 
-          /// RESET
+          const Text("R", style: TextStyle(fontSize: 12)),
+
+          Expanded(
+            child: SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                trackHeight: 2,
+                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 5),
+              ),
+              child: Slider(
+                value: revisions,
+                min: 0,
+                max: 10,
+                divisions: 5,
+                onChanged: (v) {
+                  setState(() => revisions = v);
+                  _apply();
+                },
+              ),
+            ),
+          ),
+
+          Text("≤${revisions.toInt()}", style: const TextStyle(fontSize: 11)),
+
+          const SizedBox(width: 4),
+
           TextButton(
             style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               minimumSize: Size.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
             onPressed: () {
-              setState(() => days = 0);
+              setState(() {
+                days = 0;
+                revisions = 0;
+              });
+
               context.read<RevisionBloc>().add(const LoadAllLearnedItems());
             },
-            child: const Text("Reset", style: TextStyle(fontSize: 12)),
+            child: const Text("Reset", style: TextStyle(fontSize: 11)),
           ),
         ],
       ),
