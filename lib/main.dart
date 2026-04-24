@@ -26,21 +26,17 @@ void main() async {
 
   // register adapter
   Hive.registerAdapter(LearningItemAdapter());
-  // open boxes
   await Hive.openBox<LearningItem>('learning_items');
   final learningBox = Hive.box<LearningItem>('learning_items');
   // 🔥 VERSION CONTROL
-  const int currentDataVersion = 1;
+  const int currentDataVersion = 2;
   final storedVersion = await AppMetaService.getDataVersion();
   if (storedVersion == null || storedVersion < currentDataVersion) {
-    // clear old data
     await learningBox.clear();
-    // load new JSON
     final items = await JsonLoader.loadItems();
     for (var item in items) {
       await learningBox.put(item.id, item);
     }
-    // save version
     await AppMetaService.setDataVersion(currentDataVersion);
   }
 

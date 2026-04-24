@@ -1,0 +1,1346 @@
+[
+    {
+    "type": "sentence",
+    "japanese": "お元気ですか？",
+    "romaji": "ogenki desu ka",
+    "hindi": "आप कैसे हैं?",
+    "english": "how are you?",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "空いていますか？",
+    "romaji": "aite imasu ka",
+    "hindi": "क्या आप फ्री हैं?",
+    "english": "are you free?",
+    "tags": [
+      "planning"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "一緒に行きませんか？",
+    "romaji": "issho ni ikimasen ka",
+    "hindi": "क्या साथ चलेंगे?",
+    "english": "shall we go together?",
+    "tags": [
+      "invitation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "楽しみにしています",
+    "romaji": "tanoshimi ni shite imasu",
+    "hindi": "इंतजार कर रहा हूँ",
+    "english": "looking forward to it",
+    "tags": [
+      "emotion"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "本当に申し訳ないんですが",
+    "romaji": "hontoni moshiwake nai n desu ga",
+    "hindi": "मुझे बहुत खेद है",
+    "english": "I am truly sorry",
+    "tags": [
+      "cancellation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "本当に残念です",
+    "romaji": "hontoni zannen desu",
+    "hindi": "बहुत अफसोस है",
+    "english": "it is unfortunate",
+    "tags": [
+      "emotion"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "おはようございます",
+    "romaji": "Ohayou Gozaimasu",
+    "hindi": "सुप्रभात",
+    "english": "Good Morning!",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "みずをのみます",
+    "romaji": "Mizu o nomimasu",
+    "hindi": "पानी पीता हूँ",
+    "english": "I drink water",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "おちゃをのみます",
+    "romaji": "Ocha o nomimasu",
+    "hindi": "चाय पीता हूँ",
+    "english": "I drink green tea",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ごはんをたべます",
+    "romaji": "Gohan o tabemasu",
+    "hindi": "चावल खाता हूँ",
+    "english": "I eat rice",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "がっこうにいきます",
+    "romaji": "Gakko ni ikimasu",
+    "hindi": "स्कूल जाता हूँ",
+    "english": "I go to school",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いってきます",
+    "romaji": "Ittekimasu",
+    "hindi": "मैं जा रहा हूँ",
+    "english": "I'm going (and will be back)",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "にほんごをべんきょうします",
+    "romaji": "Nihongo o benkyoushimasu",
+    "hindi": "जापानी पढ़ता हूँ",
+    "english": "I study Japanese",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ほんをよみます",
+    "romaji": "Hon o yomimasu",
+    "hindi": "किताब पढ़ता हूँ",
+    "english": "I read a book",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "おんがくをききます",
+    "romaji": "Ongaku o kikimasu",
+    "hindi": "संगीत सुनता हूँ",
+    "english": "I listen to music",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すみません",
+    "romaji": "Suminasen",
+    "hindi": "माफ़ कीजिए",
+    "english": "Excuse me",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わかりました",
+    "romaji": "Wakarimashita",
+    "hindi": "समझ गया",
+    "english": "I understood",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わかりません",
+    "romaji": "Wakarimasen",
+    "hindi": "समझ नहीं आया",
+    "english": "I don't understand",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "えいがをみます",
+    "romaji": "Eiga o mimasu",
+    "hindi": "फिल्म देखता हूँ",
+    "english": "I watch a movie",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ただいま",
+    "romaji": "Tadaima",
+    "hindi": "मैं घर आ गया",
+    "english": "I'm home!",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ごはんをたべました",
+    "romaji": "Gohan o tabemashita",
+    "hindi": "खाना खाया",
+    "english": "I ate food",
+    "tags": [
+      "routine",
+      "past"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ごちそうさまでした",
+    "romaji": "Gochisousama deshita",
+    "hindi": "बहुत स्वादिष्ट था",
+    "english": "Thank you for the meal",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "テニスをします",
+    "romaji": "Tenisu o shimasu",
+    "hindi": "टेनिस खेलता हूँ",
+    "english": "I play tennis",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "じゅうじにねます",
+    "romaji": "Juu ji ni nemasu",
+    "hindi": "दस बजे सोता हूँ",
+    "english": "I sleep at 10 o'clock",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "おやすみなさい",
+    "romaji": "Oyasuminasai",
+    "hindi": "शुभ रात्रि",
+    "english": "Good Night",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "これはなんですか？",
+    "romaji": "Kore wa nan desu ka?",
+    "hindi": "यह क्या है?",
+    "english": "What is this?",
+    "tags": [
+      "question"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "それはほんです",
+    "romaji": "Sore wa hon desu",
+    "hindi": "वह किताब है",
+    "english": "That is a book",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ここにねこがいます",
+    "romaji": "Koko ni neko ga imasu",
+    "hindi": "यहाँ बिल्ली है",
+    "english": "There is a cat here",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "へやにつくえがあります",
+    "romaji": "Heya ni tsukue ga arimasu",
+    "hindi": "कमरे में मेज़ है",
+    "english": "There is a desk in the room",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "つくえのうえにあります",
+    "romaji": "Tsukue no ue ni arimasu",
+    "hindi": "मेज़ के ऊपर है",
+    "english": "It is on the desk",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "かばんのなかにあります",
+    "romaji": "Kaban no naka ni arimasu",
+    "hindi": "बैग के अंदर है",
+    "english": "It is inside the bag",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "たべました",
+    "romaji": "Tabemashita",
+    "hindi": "खाया",
+    "english": "Ate (past)",
+    "tags": [
+      "verb",
+      "past"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いきました",
+    "romaji": "Ikimashita",
+    "hindi": "गया",
+    "english": "Went (past)",
+    "tags": [
+      "verb",
+      "past"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "たべませんでした",
+    "romaji": "Tabemasen deshita",
+    "hindi": "नहीं खाया",
+    "english": "Did not eat (past)",
+    "tags": [
+      "verb",
+      "past",
+      "negative"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "このひとはやさしいです",
+    "romaji": "Kono hito wa yasashii desu",
+    "hindi": "यह व्यक्ति दयालु है",
+    "english": "This person is kind",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "そのひとはかしこいです",
+    "romaji": "Sono hito wa kashikoi desu",
+    "hindi": "वह व्यक्ति बुद्धिमान है",
+    "english": "That person is intelligent",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "〜さんはかっこいいです",
+    "romaji": "~ san wa kakkoi desu",
+    "hindi": "कूल है",
+    "english": "is cool",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "〜さんはおしゃれです",
+    "romaji": "~ san wa oshare desu",
+    "hindi": "फैशनेबल है",
+    "english": "is fashionable",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "〜さんはたのしいひとです",
+    "romaji": "~ san wa tanoshii hito desu",
+    "hindi": "मज़ेदार इंसान है",
+    "english": "is a fun person",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "〜さんはむずかしいひとです",
+    "romaji": "~ san wa muzukashii hito desu",
+    "hindi": "मुश्किल इंसान है",
+    "english": "is a difficult person",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "そのひとはやさしくないです",
+    "romaji": "Sono hito wa yasashiku nai desu",
+    "hindi": "वह व्यक्ति दयालु नहीं है",
+    "english": "That person is not kind",
+    "tags": [
+      "description",
+      "negative"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "〜さんはしずかなひとです",
+    "romaji": "~ san wa shizuka na hito desu",
+    "hindi": "शांत इंसान है",
+    "english": "is a quiet person",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "インドじんはかっこいいです",
+    "romaji": "Indojin wa kakkoi desu",
+    "hindi": "भारतीय लोग कूल हैं",
+    "english": "Indian people are cool",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わたしはインドじんです",
+    "romaji": "Watashi wa Indojin desu",
+    "hindi": "मैं भारतीय हूँ",
+    "english": "I am Indian",
+    "tags": [
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "かっこいいですね",
+    "romaji": "Kakkoi desu ne",
+    "hindi": "कूल है ना?",
+    "english": "Cool, isn't it?",
+    "tags": [
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "おいしいですね",
+    "romaji": "Oishii desu ne",
+    "hindi": "स्वादिष्ट है ना?",
+    "english": "Tasty, isn't it?",
+    "tags": [
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "たかいですね",
+    "romaji": "Takai desu ne",
+    "hindi": "महंगा है ना?",
+    "english": "Expensive, isn't it?",
+    "tags": [
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "やさしいですね",
+    "romaji": "Yasashii desu ne",
+    "hindi": "दयालु है ना?",
+    "english": "Kind, isn't it?",
+    "tags": [
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すごいですね",
+    "romaji": "Sugoi desu ne",
+    "hindi": "अद्भुत है ना?",
+    "english": "Amazing, isn't it?",
+    "tags": [
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "むずかしいですね",
+    "romaji": "Muzukashii desu ne",
+    "hindi": "मुश्किल है ना?",
+    "english": "Difficult, isn't it?",
+    "tags": [
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "まって！",
+    "romaji": "Matte!",
+    "hindi": "रुको!",
+    "english": "Wait!",
+    "tags": [
+      "anime"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ありがとう",
+    "romaji": "Arigatou",
+    "hindi": "धन्यवाद",
+    "english": "Thank you",
+    "tags": [
+      "anime"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ごめん",
+    "romaji": "Gomen",
+    "hindi": "माफ़ करो",
+    "english": "Sorry (casual)",
+    "tags": [
+      "anime"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "こんばんは",
+    "romaji": "Konbanwa",
+    "hindi": "शुभ संध्या",
+    "english": "Good Evening",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "さようなら",
+    "romaji": "Sayounara",
+    "hindi": "अलविदा (औपचारिक)",
+    "english": "Goodbye (Formal)",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "じゃあね",
+    "romaji": "Jaane",
+    "hindi": "बाय (अनौपचारिक)",
+    "english": "Bye (Informal)",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ごめんなさい",
+    "romaji": "Gomen nasai",
+    "hindi": "मुझे माफ करो",
+    "english": "I am Sorry",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "どうぞ",
+    "romaji": "Douzo",
+    "hindi": "लीजिए / कृपया",
+    "english": "Please / Here you are",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "どうぞよろしく",
+    "romaji": "Douzo Yoroshiku",
+    "hindi": "मिलकर खुशी हुई",
+    "english": "Nice to Meet You",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "はじめまして",
+    "romaji": "Hajimemashite",
+    "hindi": "पहली बार मिल रहे हैं",
+    "english": "Nice to Meet You (First time)",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "またあした",
+    "romaji": "Mata ashita",
+    "hindi": "कल मिलते हैं",
+    "english": "See You Tomorrow",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "げんきです",
+    "romaji": "Genki desu",
+    "hindi": "मैं ठीक हूँ",
+    "english": "I Am Good",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "げんきではありません",
+    "romaji": "Genki dewa arimasen",
+    "hindi": "मैं ठीक नहीं हूँ",
+    "english": "I Am Not Well",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "みなさんこんにちは",
+    "romaji": "Minasan, Konnichiwa",
+    "hindi": "सबको नमस्ते",
+    "english": "Hello Everyone",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "もういちどおねがいします",
+    "romaji": "Mou ichido onegaishimasu",
+    "hindi": "एक बार फिर कृपया",
+    "english": "One more time please",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "にほんごわかりますか？",
+    "romaji": "Nihongo wakarimasen ka?",
+    "hindi": "क्या जापानी समझते हैं?",
+    "english": "Do you understand Japanese?",
+    "tags": [
+      "question"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すこしわかります",
+    "romaji": "Sukoshi wakarimasu",
+    "hindi": "थोड़ा समझता हूँ",
+    "english": "I understand a little",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ちょっとまってください",
+    "romaji": "Chotto matte kudasai",
+    "hindi": "थोड़ा रुकिए",
+    "english": "Wait a moment please",
+    "tags": [
+      "conversation"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "どういういみですか？",
+    "romaji": "Dou iu imi desu ka?",
+    "hindi": "इसका क्या मतलब है?",
+    "english": "What does this mean?",
+    "tags": [
+      "question"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ありがとうございます",
+    "romaji": "Arigatou Gozaimasu",
+    "hindi": "बहुत धन्यवाद",
+    "english": "Thank you very much",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いただきます",
+    "romaji": "Itadakimasu",
+    "hindi": "खाना शुरू करते हैं",
+    "english": "Let's eat (before meal)",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "じゃないです",
+    "romaji": "Janai desu / Dewa arimasen",
+    "hindi": "नहीं है",
+    "english": "It is not",
+    "tags": [
+      "grammar",
+      "negative"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いくらですか？",
+    "romaji": "Ikura desu ka?",
+    "hindi": "यह कितने का है?",
+    "english": "How much is this?",
+    "tags": [
+      "question",
+      "shopping"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "みずをください",
+    "romaji": "Mizu o kudasai",
+    "hindi": "पानी दीजिए",
+    "english": "Water, please",
+    "tags": [
+      "ordering",
+      "food"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "おちゃをください",
+    "romaji": "Ocha o kudasai",
+    "hindi": "चाय दीजिए",
+    "english": "Green tea, please",
+    "tags": [
+      "ordering",
+      "food"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ラーメンをひとつください",
+    "romaji": "Raamen o hitotsu kudasai",
+    "hindi": "एक रामेन दीजिए",
+    "english": "One ramen, please",
+    "tags": [
+      "ordering",
+      "food"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すこしたかいですね",
+    "romaji": "Sukoshi takai desu ne",
+    "hindi": "थोड़ा महंगा है ना?",
+    "english": "It's a bit expensive, isn't it?",
+    "tags": [
+      "shopping",
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "これはいくらですか？",
+    "romaji": "Kore wa ikura desu ka?",
+    "hindi": "यह कितने का है?",
+    "english": "How much is this?",
+    "tags": [
+      "question",
+      "shopping"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "やすいですか？",
+    "romaji": "Yasui desu ka?",
+    "hindi": "क्या यह सस्ता है?",
+    "english": "Is it cheap?",
+    "tags": [
+      "question",
+      "shopping"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "もっとやすくなりますか？",
+    "romaji": "Motto yasuku narimasu ka?",
+    "hindi": "और सस्ता होगा?",
+    "english": "Can it be cheaper?",
+    "tags": [
+      "shopping",
+      "bargaining"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "これをください",
+    "romaji": "Kore o kudasai",
+    "hindi": "यह दीजिए",
+    "english": "Give me this, please",
+    "tags": [
+      "shopping"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "けっこうです",
+    "romaji": "Kekkou desu",
+    "hindi": "नहीं चाहिए, धन्यवाद",
+    "english": "No thank you / I'm fine",
+    "tags": [
+      "conversation",
+      "polite"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "〜はどこですか？",
+    "romaji": "〜 wa doko desu ka?",
+    "hindi": "कहाँ है?",
+    "english": "Where is...?",
+    "tags": [
+      "question",
+      "travel"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ホテルはここです",
+    "romaji": "Hoteru wa koko desu",
+    "hindi": "होटल यहाँ है",
+    "english": "The hotel is here",
+    "tags": [
+      "travel"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "えきはそこです",
+    "romaji": "Eki wa soko desu",
+    "hindi": "रेलवे स्टेशन वहाँ है",
+    "english": "The station is there",
+    "tags": [
+      "travel"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すみません、〜はどこですか？",
+    "romaji": "Sumimasen, 〜 wa doko desu ka?",
+    "hindi": "माफ़ करें, कहाँ है?",
+    "english": "Excuse me, where is...?",
+    "tags": [
+      "question",
+      "travel"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いってらっしゃい",
+    "romaji": "Itterasshai",
+    "hindi": "जाइए / जल्दी आइए",
+    "english": "Go and come back safely",
+    "tags": [
+      "greeting"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いまなんじですか？",
+    "romaji": "Ima nanji desu ka?",
+    "hindi": "अभी कितने बजे हैं?",
+    "english": "What time is it now?",
+    "tags": [
+      "question",
+      "time"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いまごぜんはちじです",
+    "romaji": "Ima gozen hachi ji desu",
+    "hindi": "अभी सुबह आठ बजे हैं",
+    "english": "It is 8 AM now",
+    "tags": [
+      "conversation",
+      "time"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "きょうはなにをしますか？",
+    "romaji": "Kyou wa nani o shimasu ka?",
+    "hindi": "आज क्या करोगे?",
+    "english": "What will you do today?",
+    "tags": [
+      "question",
+      "planning"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "きのうなにをたべましたか？",
+    "romaji": "Kinoo nani o tabemashita ka?",
+    "hindi": "कल क्या खाया?",
+    "english": "What did you eat yesterday?",
+    "tags": [
+      "question",
+      "past"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "そうですか！",
+    "romaji": "Sou desu ka!",
+    "hindi": "ओह, ऐसा है!",
+    "english": "Oh, is that so!",
+    "tags": [
+      "reaction"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "いいですね！",
+    "romaji": "Ii desu ne!",
+    "hindi": "अच्छा है ना!",
+    "english": "That's nice!",
+    "tags": [
+      "reaction",
+      "seeking-agreement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "たのしそう！",
+    "romaji": "Tanoshi sou!",
+    "hindi": "मज़ेदार लगता है!",
+    "english": "Sounds fun!",
+    "tags": [
+      "reaction",
+      "emotion"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ほんとうですか？",
+    "romaji": "Hontou desu ka?",
+    "hindi": "सच में?",
+    "english": "Really?",
+    "tags": [
+      "reaction",
+      "question"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "がんばってください",
+    "romaji": "Ganbatte kudasai",
+    "hindi": "कोशिश करते रहो!",
+    "english": "Do your best!",
+    "tags": [
+      "reaction",
+      "encouragement"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "なにをたべますか？",
+    "romaji": "Nani o tabemasu ka?",
+    "hindi": "क्या खाते हो?",
+    "english": "What do you eat?",
+    "tags": [
+      "question"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すしをたべます",
+    "romaji": "Sushi o tabemasu",
+    "hindi": "सुशी खाता हूँ",
+    "english": "I eat sushi",
+    "tags": [
+      "routine",
+      "food"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "どこにいきましたか？",
+    "romaji": "Doko ni ikimashita ka?",
+    "hindi": "कहाँ गए थे?",
+    "english": "Where did you go?",
+    "tags": [
+      "question",
+      "past"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "なんじにおきますか？",
+    "romaji": "Nanji ni okimasu ka?",
+    "hindi": "कितने बजे उठते हो?",
+    "english": "What time do you wake up?",
+    "tags": [
+      "question",
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ろくじにおきます",
+    "romaji": "Roku ji ni okimasu",
+    "hindi": "छह बजे उठता हूँ",
+    "english": "I wake up at 6 o'clock",
+    "tags": [
+      "routine",
+      "time"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わたしはすしをたべます",
+    "romaji": "Watashi wa sushi o tabemasu",
+    "hindi": "मैं सुशी खाता हूँ",
+    "english": "I eat sushi",
+    "tags": [
+      "example",
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "このひとはかしこいです",
+    "romaji": "Kono hito wa kashikoi desu",
+    "hindi": "यह व्यक्ति बुद्धिमान है",
+    "english": "This person is intelligent",
+    "tags": [
+      "example",
+      "description"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ときはまくらぎ",
+    "romaji": "Toki wa makuragi",
+    "hindi": "समय है तकिए का कोना",
+    "english": "Time is the edge of a pillow",
+    "tags": [
+      "lyrics",
+      "poetic"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "なみだなんかじゃない",
+    "romaji": "Namida nanka ja nai",
+    "hindi": "आँसू जैसी चीज़ नहीं है",
+    "english": "It's not just tears",
+    "tags": [
+      "lyrics",
+      "emotion"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "きみのなかにあるあかとあおいせん",
+    "romaji": "Kimi no naka ni aru aka to aoki sen",
+    "hindi": "तुम्हारे अंदर मौजूद लाल और नीली रेखा है",
+    "english": "Inside you, there is a red and blue line",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "それらがむすばれるのはしんのゾウ",
+    "romaji": "Sorera ga musubareru no wa shin no zou",
+    "hindi": "वे जुड़ते हैं, वह है दिल का अंग",
+    "english": "They connect, that is the organ of the heart",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "かぜのなかでもまけないようなこえで",
+    "romaji": "Kaze no naka demo makenai you na koe de",
+    "hindi": "हवा के बीच भी न हारने वाली आवाज़ से",
+    "english": "With a voice that won't lose even in the wind",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "とどけることばはいまはそだてている",
+    "romaji": "Todokeru kotoba wa ima wa sodateteiru",
+    "hindi": "पहुँचाने वाले शब्द अभी बड़े हो रहे हैं",
+    "english": "The words to reach you are growing now",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ときはまくらぎ",
+    "romaji": "Toki wa makuragi",
+    "hindi": "समय है तकिए का कोना",
+    "english": "Time is the edge of a pillow",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "かぜはにきはだ",
+    "romaji": "Kaze wa niki hada",
+    "hindi": "हवा है नर्म त्वचा",
+    "english": "Wind is smooth skin",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ほしはうぶすな",
+    "romaji": "Hoshi wa ubusuna",
+    "hindi": "तारा है जन्मभूमि का देवता",
+    "english": "The star is the guardian deity",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ひとはかげろう",
+    "romaji": "Hito wa kagerou",
+    "hindi": "इंसान है माया/परछाईं",
+    "english": "People are mirages",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "なんでないてるのとみつけることばを",
+    "romaji": "Nande naiteru no to kikare kotaereru",
+    "hindi": "क्यों रो रहे हो, पूछे जाने पर जवाब दे पाना",
+    "english": "Being able to answer when asked 'why are you crying'",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "なみだなんかじゃない",
+    "romaji": "Namida nanka ja nai",
+    "hindi": "आँसू जैसी चीज़ नहीं है",
+    "english": "It's not just tears",
+    "tags": [
+      "lyrics"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わたしのなまえは〜です",
+    "romaji": "Watashi no namae wa ... desu",
+    "hindi": "मेरा नाम ... है",
+    "english": "My name is ...",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "インドじんです",
+    "romaji": "Indojin desu",
+    "hindi": "मैं भारतीय हूँ",
+    "english": "I am Indian",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わたしは〜さいです",
+    "romaji": "Watashi wa ... sai desu",
+    "hindi": "मैं ... साल का हूँ",
+    "english": "I am ... years old",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ムンバイにすんでいます",
+    "romaji": "Mombai ni sunde imasu",
+    "hindi": "मैं मुंबई में रहता हूँ",
+    "english": "I live in Mumbai",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "にほんごをべんきょうしています",
+    "romaji": "Nihongo o benkyoushite imasu",
+    "hindi": "मैं जापानी पढ़ रहा हूँ",
+    "english": "I am studying Japanese",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すしがすきです",
+    "romaji": "Sushi ga suki desu",
+    "hindi": "मुझे सुशी पसंद है",
+    "english": "I like sushi",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "にほんにいきたいです",
+    "romaji": "Nihon ni ikitai desu",
+    "hindi": "मैं जापान जाना चाहता हूँ",
+    "english": "I want to go to Japan",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ごぜんはちじにしごとにいきます",
+    "romaji": "Gozen hachi ji ni shigoto ni ikimasu",
+    "hindi": "सुबह आठ बजे काम पर जाता हूँ",
+    "english": "I go to work at 8 AM",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "ひるごはんにすしをたべます",
+    "romaji": "Hirugohan ni sushi o tabemasu",
+    "hindi": "दोपहर में सुशी खाता हूँ",
+    "english": "I eat sushi for lunch",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "やるにほんごをべんきょうします",
+    "romaji": "Yoru nihongo o benkyoushimasu",
+    "hindi": "रात को जापानी पढ़ता हूँ",
+    "english": "I study Japanese at night",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "じゅうじにねます",
+    "romaji": "Juu ji ni nemasu",
+    "hindi": "दस बजे सोता हूँ",
+    "english": "I sleep at 10 o'clock",
+    "tags": [
+      "routine"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "わたしはしんちゃんです",
+    "romaji": "Watashi wa Shin Chan desu",
+    "hindi": "मैं शिन चान हूँ",
+    "english": "I am Shin Chan",
+    "tags": [
+      "intro"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "すしはおいしいです",
+    "romaji": "Sushi wa oishii desu",
+    "hindi": "सुशी स्वादिष्ट है",
+    "english": "Sushi is tasty",
+    "tags": [
+      "example"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "デキスギさんはかしこいです",
+    "romaji": "Dekisugi san wa kashikoi desu",
+    "hindi": "डेकीसुगी बुद्धिमान है",
+    "english": "Dekisugi is intelligent",
+    "tags": [
+      "example"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "このひとはいしゃです",
+    "romaji": "Kono hito wa isha desu",
+    "hindi": "यह व्यक्ति डॉक्टर है",
+    "english": "This person is a doctor",
+    "tags": [
+      "example"
+    ]
+  },
+  {
+    "type": "sentence",
+    "japanese": "インドじんはかっこいい",
+    "romaji": "Indohito wa kakkoi desu",
+    "hindi": "भारतीय लोग कूल हैं",
+    "english": "Indian people are cool",
+    "tags": [
+      "example"
+    ]
+  }
+]

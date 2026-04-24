@@ -1,0 +1,194 @@
+[
+    {
+        "type": "grammar",
+        "japanese": "〜ませんか？",
+        "romaji": "~masen ka",
+        "hindi": "क्या आप करेंगे?",
+        "english": "would you like to?",
+        "tags": [
+            "grammar"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "〜てしまって",
+        "romaji": "~te shimatte",
+        "hindi": "अफसोस के साथ हुआ",
+        "english": "happened unfortunately",
+        "tags": [
+            "grammar"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "は",
+        "romaji": "wa",
+        "hindi": "विषय चिह्न",
+        "english": "Topic / Subject marker",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "を",
+        "romaji": "o / wo",
+        "hindi": "वस्तु चिह्न",
+        "english": "Object marker",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "から",
+        "romaji": "kara",
+        "hindi": "से (शुरू)",
+        "english": "From (origin)",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "〜のなかに",
+        "romaji": "... no naka ni",
+        "hindi": "... के अंदर",
+        "english": "Inside ...",
+        "tags": [
+            "preposition",
+            "location"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "〜ではないありません",
+        "romaji": "... dewa arimasen",
+        "hindi": "... नहीं हूँ / नहीं है",
+        "english": "Am not / Is not",
+        "tags": [
+            "negation",
+            "formal"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "は (wa)",
+        "romaji": "wa",
+        "hindi": "विषय चिह्न",
+        "english": "Topic / Subject marker",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "を (o)",
+        "romaji": "o / wo",
+        "hindi": "वस्तु चिह्न",
+        "english": "Object marker",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "に (ni)",
+        "romaji": "ni",
+        "hindi": "समय/स्थान/दिशा चिह्न",
+        "english": "Time / Destination / Location",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "で (de)",
+        "romaji": "de",
+        "hindi": "स्थान/साधन चिह्न",
+        "english": "Location of activity / Means",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "へ (e)",
+        "romaji": "e",
+        "hindi": "दिशा चिह्न",
+        "english": "Direction marker",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "と (to)",
+        "romaji": "to",
+        "hindi": "साथ / और",
+        "english": "With / And",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "から (kara)",
+        "romaji": "kara",
+        "hindi": "से (शुरू)",
+        "english": "From (origin)",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "の (no)",
+        "romaji": "no",
+        "hindi": "का / की / के",
+        "english": "Possession / Of",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "が (ga)",
+        "romaji": "ga",
+        "hindi": "विषय चिह्न (विशेष)",
+        "english": "Subject marker (special)",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "も (mo)",
+        "romaji": "mo",
+        "hindi": "भी",
+        "english": "Also / Too",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "か (ka)",
+        "romaji": "ka",
+        "hindi": "प्रश्न चिह्न",
+        "english": "Question marker",
+        "tags": [
+            "particle"
+        ]
+    },
+    {
+        "type": "grammar",
+        "japanese": "ね (ne)",
+        "romaji": "ne",
+        "hindi": "है ना? (सहमति)",
+        "english": "Isn't it?",
+        "tags": [
+            "particle"
+        ]
+    }
+]
