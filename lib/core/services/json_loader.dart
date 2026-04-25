@@ -19,7 +19,7 @@ class JsonLoader {
 
       final items = jsonData.map((item) {
         return LearningItem(
-          id: "${DateTime.now().millisecondsSinceEpoch}_${item["japanese"]}",
+          id: item["id"],
           type: item["type"],
           japanese: item["japanese"],
           romaji: item["romaji"],
@@ -27,7 +27,7 @@ class JsonLoader {
           english: item["english"],
           isLearned: false,
           revisionCount: 0,
-          lastReviewed: DateTime.now(),
+          lastReviewed: null,
           createdAt: DateTime.now(),
           difficulty: 0,
           tags: (item["tags"] as List?)?.cast<String>() ?? [],

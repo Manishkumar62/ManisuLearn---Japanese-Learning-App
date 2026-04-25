@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../domain/repositories/learning_item_repository.dart';
 import '../../../../core/services/analytics_service.dart';
-import '../../../../data/models/learning_item.dart'; // ✅ FIX
+import '../../../../core/utils/error_utils.dart';
+import '../../../../data/models/learning_item.dart';
 
 import 'analytics_event.dart';
 import 'analytics_state.dart';
@@ -37,7 +38,7 @@ class AnalyticsBloc extends Bloc<AnalyticsEvent, AnalyticsState> {
         ),
       );
     } catch (e) {
-      emit(AnalyticsError(e.toString()));
+      emit(AnalyticsError(AppError.userMessage(e)));
     }
   }
 

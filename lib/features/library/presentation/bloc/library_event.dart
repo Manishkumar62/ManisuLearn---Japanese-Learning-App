@@ -28,7 +28,6 @@ class FilterLibrary extends LibraryEvent {
   final LibraryTypeFilter typeFilter;
   final LibraryProgressFilter progressFilter;
 
-  /// 🆕 NEW FILTERS
   final int? minDaysAgo;
   final int? maxRevisions;
 
@@ -40,4 +39,8 @@ class FilterLibrary extends LibraryEvent {
     minDaysAgo,
     maxRevisions,
   ];
+}
+
+class LoadMoreLibrary extends LibraryEvent {
+  const LoadMoreLibrary();
 }

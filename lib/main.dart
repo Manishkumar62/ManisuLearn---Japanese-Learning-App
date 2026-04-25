@@ -29,14 +29,46 @@ void main() async {
   await Hive.openBox<LearningItem>('learning_items');
   final learningBox = Hive.box<LearningItem>('learning_items');
   // 🔥 VERSION CONTROL
-  const int currentDataVersion = 2;
+  const int currentDataVersion = 4;
   final storedVersion = await AppMetaService.getDataVersion();
   if (storedVersion == null || storedVersion < currentDataVersion) {
-    await learningBox.clear();
-    final items = await JsonLoader.loadItems();
-    for (var item in items) {
-      await learningBox.put(item.id, item);
+    final newItems = await JsonLoader.loadItems();
+
+    // Preserve progress from existing items
+    final existingById = <String, LearningItem>{};
+    for (var existing in learningBox.values) {
+      existingById[existing.id] = existing;
     }
+
+    await learningBox.clear();
+
+    for (var item in newItems) {
+      final existing = existingById[item.id];
+      if (existing != null) {
+        // Keep content fresh, preserve user progress
+        await learningBox.put(
+          item.id,
+          item.copyWith(
+            isLearned: existing.isLearned,
+            revisionCount: existing.revisionCount,
+            lastReviewed: existing.lastReviewed,
+            createdAt: existing.createdAt,
+            difficulty: existing.difficulty,
+            easeFactor: existing.easeFactor,
+            interval: existing.interval,
+            repetitions: existing.repetitions,
+            nextReview: existing.isLearned
+                ? existing.nextReview
+                : DateTime.now().add(const Duration(days: 365)),
+            firstLearnedAt: existing.firstLearnedAt,
+          ),
+        );
+      } else {
+        // New item — add with defaults
+        await learningBox.put(item.id, item);
+      }
+    }
+
     await AppMetaService.setDataVersion(currentDataVersion);
   }
 

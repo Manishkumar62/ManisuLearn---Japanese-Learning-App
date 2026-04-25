@@ -117,7 +117,18 @@ class _AppShellState extends State<AppShell> {
             _TabNavigator(
               navigatorKey: _navigatorKeys[_libraryIndex],
               routeName: AppRoutes.library,
-              child: const LibraryPage(),
+              child: LibraryPage(
+                onLearnItem: (itemId) {
+                  context.read<LearnBloc>().add(
+                    MarkLearnedFromLibrary(itemId),
+                  );
+                },
+                onReviseItem: (itemId) {
+                  context.read<RevisionBloc>().add(
+                    MarkItemReviewed(itemId),
+                  );
+                },
+              ),
             ),
             _TabNavigator(
               navigatorKey: _navigatorKeys[_learnIndex],
@@ -214,10 +225,17 @@ class _TabNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      initialRoute: routeName, // ✅ IMPORTANT
+      onGenerateInitialRoutes: (NavigatorState navigator, String initialRoute) {
+        return [
+          MaterialPageRoute<void>(
+            settings: RouteSettings(name: routeName),
+            builder: (BuildContext context) => child,
+          ),
+        ];
+      },
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute<void>(
-          settings: RouteSettings(name: routeName),
+          settings: settings,
           builder: (BuildContext context) => child,
         );
       },

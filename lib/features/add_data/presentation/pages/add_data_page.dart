@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/constants/item_type.dart';
+
 import '../bloc/add_data_bloc.dart';
 import '../bloc/add_data_event.dart';
 import '../bloc/add_data_state.dart';
@@ -14,7 +16,7 @@ class AddDataPage extends StatefulWidget {
 
 class _AddDataPageState extends State<AddDataPage> {
   final _formKey = GlobalKey<FormState>();
-  final _typeController = TextEditingController(text: 'word');
+  final _typeController = TextEditingController(text: ItemType.word.value);
   final _japaneseController = TextEditingController();
   final _romajiController = TextEditingController();
   final _hindiController = TextEditingController();
@@ -76,7 +78,7 @@ class _AddDataPageState extends State<AddDataPage> {
               context,
             ).showSnackBar(SnackBar(content: Text(state.message)));
             _formKey.currentState?.reset();
-            _typeController.text = 'word';
+            _typeController.text = ItemType.word.value;
             _japaneseController.clear();
             _romajiController.clear();
             _hindiController.clear();

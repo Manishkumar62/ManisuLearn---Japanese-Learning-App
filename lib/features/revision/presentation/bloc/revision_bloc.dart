@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/spaced_repetition_service.dart';
+import '../../../../core/utils/error_utils.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'revision_event.dart';
 import 'revision_state.dart';
@@ -49,7 +50,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
         ),
       );
     } catch (error) {
-      emit(RevisionError(error.toString()));
+      emit(RevisionError(AppError.userMessage(error)));
     }
   }
 
@@ -113,7 +114,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
       await _repository.updateItem(item);
       _moveToNextItem(state, emit);
     } catch (error) {
-      emit(RevisionError(error.toString()));
+      emit(RevisionError(AppError.userMessage(error)));
     }
   }
 
@@ -158,7 +159,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
         ),
       );
     } catch (error) {
-      emit(RevisionError(error.toString()));
+      emit(RevisionError(AppError.userMessage(error)));
     }
   }
 
@@ -206,7 +207,7 @@ class RevisionBloc extends Bloc<RevisionEvent, RevisionState> {
         RevisionLoaded(items: filtered, currentIndex: 0, isExploreMode: true),
       );
     } catch (error) {
-      emit(RevisionError(error.toString()));
+      emit(RevisionError(AppError.userMessage(error)));
     }
   }
 

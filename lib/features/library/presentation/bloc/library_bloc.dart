@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/constants/item_type.dart';
+import '../../../../core/utils/error_utils.dart';
 import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'library_event.dart';
@@ -11,9 +15,12 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
       super(const LibraryInitial()) {
     on<LoadLibrary>(_onLoadLibrary);
     on<FilterLibrary>(_onFilterLibrary);
+    on<LoadMoreLibrary>(_onLoadMoreLibrary);
   }
 
   final LearningItemRepository _repository;
+  static const int _pageSize = 30;
+  List<LearningItem> _allFilteredItems = const [];
 
   Future<void> _onLoadLibrary(
     LoadLibrary event,
@@ -22,11 +29,11 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     emit(const LibraryLoading());
 
     try {
-      final items = await _repository.getAllItems(); // ✅ no cache
-
-      emit(LibraryLoaded(items: items));
+      _allFilteredItems = await _repository.getAllItems();
+      _allFilteredItems.shuffle(Random());
+      emit(_buildPage(emit));
     } catch (error) {
-      emit(LibraryError(error.toString()));
+      emit(LibraryError(AppError.userMessage(error)));
     }
   }
 
@@ -35,28 +42,49 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     Emitter<LibraryState> emit,
   ) async {
     try {
-      final items = await _repository.getAllItems(); // ✅ always fresh
+      final items = await _repository.getAllItems();
 
-      final filteredItems = _applyFilters(
+      _allFilteredItems = _applyFilters(
         items: items,
         searchQuery: event.searchQuery,
         typeFilter: event.typeFilter,
         progressFilter: event.progressFilter,
         minDaysAgo: event.minDaysAgo,
         maxRevisions: event.maxRevisions,
-      );
+      )..shuffle(Random());
 
-      emit(
-        LibraryLoaded(
-          items: filteredItems,
-          searchQuery: event.searchQuery,
-          typeFilter: event.typeFilter,
-          progressFilter: event.progressFilter,
-        ),
-      );
+      emit(_buildPage(emit));
     } catch (error) {
-      emit(LibraryError(error.toString()));
+      emit(LibraryError(AppError.userMessage(error)));
     }
+  }
+
+  void _onLoadMoreLibrary(
+    LoadMoreLibrary event,
+    Emitter<LibraryState> emit,
+  ) {
+    final state = this.state;
+    if (state is! LibraryLoaded || !state.hasMore) return;
+
+    final currentCount = state.items.length;
+    final nextBatch = _allFilteredItems
+        .skip(currentCount)
+        .take(_pageSize)
+        .toList();
+
+    emit(
+      LibraryLoaded(
+        items: [...state.items, ...nextBatch],
+        hasMore: currentCount + nextBatch.length < _allFilteredItems.length,
+      ),
+    );
+  }
+
+  LibraryLoaded _buildPage(Emitter<LibraryState> emit) {
+    return LibraryLoaded(
+      items: _allFilteredItems.take(_pageSize).toList(),
+      hasMore: _allFilteredItems.length > _pageSize,
+    );
   }
 
   List<LearningItem> _applyFilters({
@@ -79,11 +107,11 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
 
           final matchesType = switch (typeFilter) {
             LibraryTypeFilter.all => true,
-            LibraryTypeFilter.words => item.type == 'word',
-            LibraryTypeFilter.sentences => item.type == 'sentence',
-            LibraryTypeFilter.dialogue => item.type == 'dialogue',
-            LibraryTypeFilter.grammar => item.type == 'grammar',
-            LibraryTypeFilter.stories => item.type == 'story',
+            LibraryTypeFilter.words => item.itemType == ItemType.word,
+            LibraryTypeFilter.sentences => item.itemType == ItemType.sentence,
+            LibraryTypeFilter.dialogue => item.itemType == ItemType.dialogue,
+            LibraryTypeFilter.grammar => item.itemType == ItemType.grammar,
+            LibraryTypeFilter.stories => item.itemType == ItemType.story,
           };
 
           final matchesProgress = switch (progressFilter) {
@@ -116,7 +144,7 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
 
   bool _needsRevision(LearningItem item) {
     if (item.lastReviewed == null) {
-      return item.isLearned; // treat as needs revision
+      return item.isLearned;
     }
 
     final now = DateTime.now();

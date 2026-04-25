@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/error_utils.dart';
 import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'learn_event.dart';
@@ -36,7 +37,7 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
 
       emit(LearnLoaded(items: items, currentIndex: 0));
     } catch (error) {
-      emit(LearnError(error.toString()));
+      emit(LearnError(AppError.userMessage(error)));
     }
   }
 
@@ -85,12 +86,13 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
         isLearned: true,
         lastReviewed: DateTime.now(),
         firstLearnedAt: currentItem.firstLearnedAt ?? DateTime.now(),
+        nextReview: DateTime.now().add(const Duration(days: 1)),
       );
 
       await _repository.updateItem(item);
       _moveToNextItem(state, emit);
     } catch (error) {
-      emit(LearnError(error.toString()));
+      emit(LearnError(AppError.userMessage(error)));
     }
   }
 
@@ -117,6 +119,7 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
         isLearned: true,
         lastReviewed: DateTime.now(),
         firstLearnedAt: item.firstLearnedAt ?? DateTime.now(),
+        nextReview: DateTime.now().add(const Duration(days: 1)),
       );
 
       await _repository.updateItem(updated);

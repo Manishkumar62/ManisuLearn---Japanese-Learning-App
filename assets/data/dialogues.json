@@ -1,13 +1,12 @@
 [
-    {
+  {
     "type": "dialogue",
     "japanese": "おしごとはなんですか？",
     "romaji": "O shigoto wa nan desu ka?",
     "hindi": "आपका काम क्या है?",
     "english": "What is your job?",
-    "tags": [
-      "interaction"
-    ]
+    "tags": ["interaction"],
+    "id": "dialogue_1"
   },
   {
     "type": "dialogue",
@@ -15,9 +14,8 @@
     "romaji": "Doko kara kimashita ka?",
     "hindi": "आप कहाँ से आए हैं?",
     "english": "Where did you come from?",
-    "tags": [
-      "interaction"
-    ]
+    "tags": ["interaction"],
+    "id": "dialogue_2"
   },
   {
     "type": "dialogue",
@@ -25,9 +23,8 @@
     "romaji": "Kokuseki wa nan desu ka?",
     "hindi": "आपकी राष्ट्रीयता क्या है?",
     "english": "What is your nationality?",
-    "tags": [
-      "interaction"
-    ]
+    "tags": ["interaction"],
+    "id": "dialogue_3"
   },
   {
     "type": "dialogue",
@@ -35,9 +32,8 @@
     "romaji": "Nihongo wa jouzu desu ne!",
     "hindi": "आपकी जापानी बहुत अच्छी है!",
     "english": "Your Japanese is great!",
-    "tags": [
-      "interaction"
-    ]
+    "tags": ["interaction"],
+    "id": "dialogue_4"
   },
   {
     "type": "dialogue",
@@ -45,9 +41,8 @@
     "romaji": "Konnichiwa",
     "hindi": "नमस्ते",
     "english": "Hello",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_5"
   },
   {
     "type": "dialogue",
@@ -55,9 +50,8 @@
     "romaji": "Ohayou Gozaimasu",
     "hindi": "सुप्रभात",
     "english": "Good Morning",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_6"
   },
   {
     "type": "dialogue",
@@ -65,9 +59,8 @@
     "romaji": "Konbanwa",
     "hindi": "शुभ संध्या",
     "english": "Good Evening",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_7"
   },
   {
     "type": "dialogue",
@@ -75,9 +68,8 @@
     "romaji": "Oyasuminasai",
     "hindi": "शुभ रात्रि",
     "english": "Good Night",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_8"
   },
   {
     "type": "dialogue",
@@ -85,9 +77,8 @@
     "romaji": "Sayounara",
     "hindi": "अलविदा (औपचारिक)",
     "english": "Goodbye (Formal)",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_9"
   },
   {
     "type": "dialogue",
@@ -95,9 +86,8 @@
     "romaji": "Jaane",
     "hindi": "बाय (अनौपचारिक)",
     "english": "Bye (Informal)",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_10"
   },
   {
     "type": "dialogue",
@@ -105,9 +95,8 @@
     "romaji": "Suminasen",
     "hindi": "माफ़ कीजिए",
     "english": "Excuse Me",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_11"
   },
   {
     "type": "dialogue",
@@ -115,9 +104,8 @@
     "romaji": "Gomen nasai",
     "hindi": "मुझे माफ करो",
     "english": "I am Sorry",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_12"
   },
   {
     "type": "dialogue",
@@ -125,9 +113,8 @@
     "romaji": "Douzo",
     "hindi": "लीजिए / कृपया",
     "english": "Please / Here you are",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_13"
   },
   {
     "type": "dialogue",
@@ -135,9 +122,8 @@
     "romaji": "Douzo Yoroshiku",
     "hindi": "मिलकर खुशी हुई",
     "english": "Nice to Meet You",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_14"
   },
   {
     "type": "dialogue",
@@ -145,9 +131,8 @@
     "romaji": "Hajimemashite",
     "hindi": "पहली बार मिल रहे हैं",
     "english": "Nice to Meet You (First time)",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_15"
   },
   {
     "type": "dialogue",
@@ -155,9 +140,8 @@
     "romaji": "Mata ashita",
     "hindi": "कल मिलते हैं",
     "english": "See You Tomorrow",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_16"
   },
   {
     "type": "dialogue",
@@ -165,9 +149,8 @@
     "romaji": "O genki desu ka?",
     "hindi": "आप कैसे हैं?",
     "english": "How Are You?",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_17"
   },
   {
     "type": "dialogue",
@@ -175,9 +158,8 @@
     "romaji": "Genki desu",
     "hindi": "मैं ठीक हूँ",
     "english": "I Am Good",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_18"
   },
   {
     "type": "dialogue",
@@ -185,9 +167,8 @@
     "romaji": "Genki dewa arimasen",
     "hindi": "मैं ठीक नहीं हूँ",
     "english": "I Am Not Well",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_19"
   },
   {
     "type": "dialogue",
@@ -195,9 +176,8 @@
     "romaji": "Minasan, Konnichiwa",
     "hindi": "सबको नमस्ते",
     "english": "Hello Everyone",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_20"
   },
   {
     "type": "dialogue",
@@ -205,9 +185,8 @@
     "romaji": "Tadaima",
     "hindi": "मैं घर आ गया",
     "english": "I'm Home",
-    "tags": [
-      "greeting"
-    ]
+    "tags": ["greeting"],
+    "id": "dialogue_21"
   },
   {
     "type": "dialogue",
@@ -215,9 +194,8 @@
     "romaji": "Wakarimashita",
     "hindi": "समझ गया",
     "english": "I understood",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_22"
   },
   {
     "type": "dialogue",
@@ -225,9 +203,8 @@
     "romaji": "Wakarimasen",
     "hindi": "समझ नहीं आया",
     "english": "I don't understand",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_23"
   },
   {
     "type": "dialogue",
@@ -235,9 +212,8 @@
     "romaji": "Mou ichido onegaishimasu",
     "hindi": "एक बार फिर कृपया",
     "english": "One more time please",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_24"
   },
   {
     "type": "dialogue",
@@ -245,9 +221,8 @@
     "romaji": "Nihongo wakarimasen ka?",
     "hindi": "क्या जापानी समझते हैं?",
     "english": "Do you understand Japanese?",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_25"
   },
   {
     "type": "dialogue",
@@ -255,9 +230,8 @@
     "romaji": "Sukoshi wakarimasu",
     "hindi": "थोड़ा समझता हूँ",
     "english": "I understand a little",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_26"
   },
   {
     "type": "dialogue",
@@ -265,9 +239,8 @@
     "romaji": "Chotto matte kudasai",
     "hindi": "थोड़ा रुकिए",
     "english": "Wait a moment please",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_27"
   },
   {
     "type": "dialogue",
@@ -275,9 +248,8 @@
     "romaji": "Dou iu imi desu ka?",
     "hindi": "इसका क्या मतलब है?",
     "english": "What does this mean?",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_28"
   },
   {
     "type": "dialogue",
@@ -285,9 +257,8 @@
     "romaji": "Arigatou Gozaimasu",
     "hindi": "बहुत धन्यवाद",
     "english": "Thank you very much",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_29"
   },
   {
     "type": "dialogue",
@@ -295,9 +266,8 @@
     "romaji": "Itadakimasu",
     "hindi": "खाना शुरू करते हैं",
     "english": "Let's eat",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_30"
   },
   {
     "type": "dialogue",
@@ -305,9 +275,8 @@
     "romaji": "Gochisousama deshita",
     "hindi": "बहुत स्वादिष्ट था",
     "english": "Thank you for the meal",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_31"
   },
   {
     "type": "dialogue",
@@ -315,9 +284,8 @@
     "romaji": "Ittekimasu",
     "hindi": "मैं जा रहा/रही हूँ",
     "english": "I'm going",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_32"
   },
   {
     "type": "dialogue",
@@ -325,9 +293,8 @@
     "romaji": "Itterasshai",
     "hindi": "जाइए / जल्दी आइए",
     "english": "Go and come back safely",
-    "tags": [
-      "social"
-    ]
+    "tags": ["social"],
+    "id": "dialogue_33"
   },
   {
     "type": "dialogue",
@@ -335,10 +302,8 @@
     "romaji": "kondo no nichiyobi, aite imasu ka",
     "hindi": "क्या तुम इस रविवार फ्री हो?",
     "english": "are you free this sunday?",
-    "tags": [
-      "conversation",
-      "planning"
-    ]
+    "tags": ["conversation", "planning"],
+    "id": "dialogue_34"
   },
   {
     "type": "dialogue",
@@ -346,10 +311,8 @@
     "romaji": "moshi yokattara issho ni ikimasen ka",
     "hindi": "अगर ठीक लगे तो साथ चलें?",
     "english": "shall we go together if you like?",
-    "tags": [
-      "conversation",
-      "invitation"
-    ]
+    "tags": ["conversation", "invitation"],
+    "id": "dialogue_35"
   },
   {
     "type": "dialogue",
@@ -357,9 +320,8 @@
     "romaji": "nichiyobi no yakusoku, kyanseru sasete moraemasen ka",
     "hindi": "क्या मैं रविवार की योजना रद्द कर सकता हूँ?",
     "english": "could I cancel our sunday plan?",
-    "tags": [
-      "cancellation"
-    ]
+    "tags": ["cancellation"],
+    "id": "dialogue_36"
   },
   {
     "type": "dialogue",
@@ -367,9 +329,8 @@
     "romaji": "raishu no shumatsu wa aite imasu ka",
     "hindi": "क्या आप अगले वीकेंड फ्री हैं?",
     "english": "are you free next weekend?",
-    "tags": [
-      "reschedule"
-    ]
+    "tags": ["reschedule"],
+    "id": "dialogue_37"
   },
   {
     "type": "dialogue",
@@ -377,10 +338,8 @@
     "romaji": "Hajimemashite",
     "hindi": "पहली बार मिल रहे हैं",
     "english": "Nice to Meet You (First time)",
-    "tags": [
-      "greeting",
-      "social"
-    ]
+    "tags": ["greeting", "social"],
+    "id": "dialogue_38"
   },
   {
     "type": "dialogue",
@@ -388,9 +347,7 @@
     "romaji": "Chotto matte kudasai",
     "hindi": "थोड़ा रुकिए",
     "english": "Wait a moment please",
-    "tags": [
-      "request",
-      "interaction"
-    ]
+    "tags": ["request", "interaction"],
+    "id": "dialogue_39"
   }
 ]

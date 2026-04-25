@@ -1,5 +1,7 @@
 import 'package:hive/hive.dart';
 
+import '../../core/constants/item_type.dart';
+
 @HiveType(typeId: LearningItem.typeId)
 class LearningItem extends HiveObject {
   static const int typeId = 0;
@@ -25,7 +27,7 @@ class LearningItem extends HiveObject {
   }) : lastReviewed = lastReviewed,
        createdAt = createdAt ?? DateTime.now(),
        tags = tags ?? <String>[],
-       nextReview = nextReview ?? DateTime.now();
+       nextReview = nextReview ?? DateTime.now().add(const Duration(days: 365));
 
   LearningItem copyWith({
     bool? isLearned,
@@ -111,4 +113,6 @@ class LearningItem extends HiveObject {
 
   @HiveField(16)
   DateTime? firstLearnedAt;
+
+  ItemType get itemType => ItemType.fromString(type);
 }

@@ -1,15 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/error_utils.dart';
 import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'search_event.dart';
 import 'search_state.dart';
 
 class _ScoredItem {
+  _ScoredItem(this.item, this.score);
+
   final LearningItem item;
   final int score;
-
-  _ScoredItem(this.item, this.score);
 }
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
@@ -17,9 +18,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     : _repository = repository,
       super(const SearchInitial()) {
     on<QueryChanged>(_onQueryChanged);
+    on<LoadMoreResults>(_onLoadMoreResults);
   }
 
   final LearningItemRepository _repository;
+  static const int _pageSize = 30;
+  List<LearningItem> _allSearchResults = const [];
 
   Future<void> _onQueryChanged(
     QueryChanged event,
@@ -28,19 +32,50 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final normalizedQuery = _normalize(event.query);
 
     if (normalizedQuery.isEmpty) {
-      emit(SearchResults(query: event.query, items: const <LearningItem>[]));
+      _allSearchResults = const [];
+      emit(
+        SearchResults(query: event.query, items: const <LearningItem>[]),
+      );
       return;
     }
 
     try {
       final allItems = await _repository.getAllItems();
 
-      final items = _rankedSearch(allItems, normalizedQuery);
+      _allSearchResults = _rankedSearch(allItems, normalizedQuery);
 
-      emit(SearchResults(query: event.query, items: items));
+      emit(
+        SearchResults(
+          query: event.query,
+          items: _allSearchResults.take(_pageSize).toList(),
+          hasMore: _allSearchResults.length > _pageSize,
+        ),
+      );
     } catch (error) {
-      emit(SearchError(error.toString()));
+      emit(SearchError(AppError.userMessage(error)));
     }
+  }
+
+  void _onLoadMoreResults(
+    LoadMoreResults event,
+    Emitter<SearchState> emit,
+  ) {
+    final state = this.state;
+    if (state is! SearchResults || !state.hasMore) return;
+
+    final currentCount = state.items.length;
+    final nextBatch = _allSearchResults
+        .skip(currentCount)
+        .take(_pageSize)
+        .toList();
+
+    emit(
+      SearchResults(
+        query: state.query,
+        items: [...state.items, ...nextBatch],
+        hasMore: currentCount + nextBatch.length < _allSearchResults.length,
+      ),
+    );
   }
 
   List<LearningItem> _rankedSearch(List<LearningItem> items, String query) {

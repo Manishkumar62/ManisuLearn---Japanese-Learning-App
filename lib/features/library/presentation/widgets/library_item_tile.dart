@@ -37,7 +37,6 @@ class _LibraryItemTileState extends State<LibraryItemTile> {
       status = "Learned";
     }
 
-    /// 🧠 DAYS AGO
     final daysAgo = item.lastReviewed == null
         ? null
         : DateTime.now().difference(item.lastReviewed!).inDays;
@@ -56,129 +55,129 @@ class _LibraryItemTileState extends State<LibraryItemTile> {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.25),
+                color: theme.colorScheme.shadow.withValues(alpha: 0.25),
                 blurRadius: 12,
                 offset: const Offset(0, 6),
               ),
             ],
           ),
-          child: Row(
-            children: [
-              /// 🔥 LEFT ACCENT
-              Container(
-                width: 5,
-                height: 90,
-                decoration: BoxDecoration(
-                  color: accentColor,
-                  borderRadius: const BorderRadius.horizontal(
-                    left: Radius.circular(20),
+          child: IntrinsicHeight(
+            child: Row(
+              children: [
+                Container(
+                  width: 5,
+                  decoration: BoxDecoration(
+                    color: accentColor,
+                    borderRadius: const BorderRadius.horizontal(
+                      left: Radius.circular(20),
+                    ),
                   ),
                 ),
-              ),
 
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /// 🔝 TOP ROW
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              item.japanese,
-                              style: theme.textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 22,
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                item.japanese,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 22,
+                                ),
                               ),
                             ),
-                          ),
 
-                          /// STATUS
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: accentColor.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                status,
+                                style: TextStyle(
+                                  color: accentColor,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
-                            decoration: BoxDecoration(
-                              color: accentColor.withValues(alpha: 0.2),
-                              borderRadius: BorderRadius.circular(12),
+                          ],
+                        ),
+
+                        const SizedBox(height: 4),
+
+                        Text(
+                          item.romaji,
+                          style: TextStyle(
+                            color: theme.colorScheme.onSurfaceVariant,
+                            fontSize: 18,
+                          ),
+                        ),
+
+                        const SizedBox(height: 6),
+
+                        Text(
+                          item.english,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+
+                        if (item.hindi.isNotEmpty) ...[
+                          const SizedBox(height: 4),
+                          Text(
+                            item.hindi,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: theme.colorScheme.onSurfaceVariant,
                             ),
-                            child: Text(
-                              status,
+                          ),
+                        ],
+                        const SizedBox(height: 8),
+
+                        Row(
+                          children: [
+                            _chip(context, item.type),
+
+                            const SizedBox(width: 6),
+
+                            _chip(context, "Rev ${item.revisionCount}"),
+
+                            const SizedBox(width: 6),
+
+                            _chip(
+                              context,
+                              daysAgo == null ? "New" : "$daysAgo d ago",
+                            ),
+
+                            const Spacer(),
+
+                            Text(
+                              isLearned ? "↻ Revise" : "→ Learn",
                               style: TextStyle(
-                                color: accentColor,
-                                fontSize: 11,
+                                color: theme.colorScheme.primary,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 4),
-
-                      /// 🧾 ROMAJI
-                      Text(
-                        item.romaji,
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 18,
-                        ),
-                      ),
-
-                      const SizedBox(height: 6),
-
-                      /// 🌍 MEANING
-                      Text(item.english, style: const TextStyle(fontSize: 12)),
-
-                      if (item.hindi.isNotEmpty) ...[
-                        const SizedBox(height: 4),
-                        Text(
-                          item.hindi,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.white60,
-                          ),
+                          ],
                         ),
                       ],
-                      const SizedBox(height: 8),
-
-                      /// 🔻 META ROW (compact + powerful)
-                      Row(
-                        children: [
-                          _chip(context, item.type),
-
-                          const SizedBox(width: 6),
-
-                          _chip(context, "Rev ${item.revisionCount}"),
-
-                          const SizedBox(width: 6),
-
-                          _chip(
-                            context,
-                            daysAgo == null ? "New" : "$daysAgo d ago",
-                          ),
-
-                          const Spacer(),
-
-                          /// CTA
-                          Text(
-                            isLearned ? "↻ Revise" : "→ Learn",
-                            style: TextStyle(
-                              color: theme.colorScheme.primary,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -186,15 +185,20 @@ class _LibraryItemTileState extends State<LibraryItemTile> {
   }
 
   Widget _chip(BuildContext context, String label) {
+    final theme = Theme.of(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: Colors.white10,
+        color: theme.colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
         label,
-        style: const TextStyle(fontSize: 10, color: Colors.white70),
+        style: TextStyle(
+          fontSize: 10,
+          color: theme.colorScheme.onSurfaceVariant,
+        ),
       ),
     );
   }

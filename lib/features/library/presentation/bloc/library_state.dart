@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 import '../../../../data/models/learning_item.dart';
-import 'library_event.dart';
 
 abstract class LibraryState extends Equatable {
   const LibraryState();
@@ -19,25 +18,13 @@ class LibraryLoading extends LibraryState {
 }
 
 class LibraryLoaded extends LibraryState {
-  const LibraryLoaded({
-    required this.items,
-    this.searchQuery = '',
-    this.typeFilter = LibraryTypeFilter.all,
-    this.progressFilter = LibraryProgressFilter.all,
-  });
+  const LibraryLoaded({required this.items, this.hasMore = false});
 
   final List<LearningItem> items;
-  final String searchQuery;
-  final LibraryTypeFilter typeFilter;
-  final LibraryProgressFilter progressFilter;
+  final bool hasMore;
 
   @override
-  List<Object?> get props => <Object?>[
-    items,
-    searchQuery,
-    typeFilter,
-    progressFilter,
-  ];
+  List<Object?> get props => <Object?>[items, hasMore];
 }
 
 class LibraryError extends LibraryState {

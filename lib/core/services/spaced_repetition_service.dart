@@ -52,7 +52,10 @@ class SpacedRepetitionService {
   }) {
     final currentDate = now ?? DateTime.now();
     final due = items
-        .where((LearningItem item) => !item.nextReview.isAfter(currentDate))
+        .where(
+          (LearningItem item) =>
+              item.isLearned && !item.nextReview.isAfter(currentDate),
+        )
         .toList(growable: false);
 
     return due..sort(compareReviewPriority);

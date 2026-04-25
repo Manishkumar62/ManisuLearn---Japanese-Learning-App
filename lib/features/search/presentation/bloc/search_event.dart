@@ -15,3 +15,7 @@ class QueryChanged extends SearchEvent {
   @override
   List<Object?> get props => <Object?>[query];
 }
+
+class LoadMoreResults extends SearchEvent {
+  const LoadMoreResults();
+}

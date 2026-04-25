@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/error_utils.dart';
 import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 
@@ -78,7 +79,7 @@ class ReviewQueueBloc extends Bloc<ReviewQueueEvent, ReviewQueueState> {
         ..sort((a, b) => a.nextReview.compareTo(b.nextReview));
       emit(DueItemsLoaded(dueItems: sorted));
     } catch (error) {
-      emit(ReviewQueueError(error.toString()));
+      emit(ReviewQueueError(AppError.userMessage(error)));
     }
   }
 }

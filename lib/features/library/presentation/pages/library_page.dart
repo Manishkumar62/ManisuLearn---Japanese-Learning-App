@@ -1,9 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manisulearn/features/learn/presentation/bloc/learn_bloc.dart';
-import 'package:manisulearn/features/learn/presentation/bloc/learn_event.dart';
-import 'package:manisulearn/features/revision/presentation/bloc/revision_bloc.dart';
-import 'package:manisulearn/features/revision/presentation/bloc/revision_event.dart';
 
 import '../bloc/library_bloc.dart';
 import '../bloc/library_event.dart';
@@ -11,7 +9,10 @@ import '../bloc/library_state.dart';
 import '../widgets/library_item_tile.dart';
 
 class LibraryPage extends StatefulWidget {
-  const LibraryPage({super.key});
+  const LibraryPage({super.key, this.onLearnItem, this.onReviseItem});
+
+  final void Function(String itemId)? onLearnItem;
+  final void Function(String itemId)? onReviseItem;
 
   @override
   State<LibraryPage> createState() => _LibraryPageState();
@@ -19,22 +20,39 @@ class LibraryPage extends StatefulWidget {
 
 class _LibraryPageState extends State<LibraryPage> {
   final TextEditingController _searchController = TextEditingController();
+  final GlobalKey _filterIconKey = GlobalKey();
+  final ScrollController _scrollController = ScrollController();
 
   LibraryTypeFilter _typeFilter = LibraryTypeFilter.all;
   LibraryProgressFilter _progressFilter = LibraryProgressFilter.all;
   int? _minDaysAgo;
   int? _maxRevisions;
 
+  Timer? _searchDebounce;
+
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(_onScroll);
     context.read<LibraryBloc>().add(const LoadLibrary());
   }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _scrollController.dispose();
+    _searchDebounce?.cancel();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      final state = context.read<LibraryBloc>().state;
+      if (state is LibraryLoaded && state.hasMore) {
+        context.read<LibraryBloc>().add(const LoadMoreLibrary());
+      }
+    }
   }
 
   void _applyFilters() {
@@ -49,83 +67,145 @@ class _LibraryPageState extends State<LibraryPage> {
     );
   }
 
+  void _onSearchChanged(String _) {
+    _searchDebounce?.cancel();
+    _searchDebounce = Timer(const Duration(milliseconds: 300), _applyFilters);
+  }
+
   void _openAdvancedFilters(BuildContext context) async {
-    final result = await showMenu(
+    final renderBox =
+        _filterIconKey.currentContext?.findRenderObject() as RenderBox?;
+    final screenSize = MediaQuery.sizeOf(context);
+
+    final position = renderBox != null
+        ? RelativeRect.fromSize(
+            renderBox.localToGlobal(Offset.zero) & renderBox.size,
+            screenSize,
+          )
+        : RelativeRect.fromLTRB(screenSize.width - 200, 80, 16, 0);
+
+    await showMenu(
       context: context,
-      position: const RelativeRect.fromLTRB(1000, 80, 16, 0),
+      position: position,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       items: [
         PopupMenuItem(
           enabled: false,
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
           child: StatefulBuilder(
             builder: (context, setStateSheet) {
+              final theme = Theme.of(context);
               return Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Advanced Filters"),
-
-                  const SizedBox(height: 10),
-
-                  DropdownButton<int?>(
-                    value: _minDaysAgo,
-                    hint: const Text("Days ago"),
-                    isExpanded: true,
-                    items: const [
-                      DropdownMenuItem(value: null, child: Text("Any")),
-                      DropdownMenuItem(value: 1, child: Text("1+ days")),
-                      DropdownMenuItem(value: 3, child: Text("3+ days")),
-                      DropdownMenuItem(value: 7, child: Text("7+ days")),
+                  Row(
+                    children: [
+                      Text(
+                        "Days learned",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        _minDaysAgo == null ? "Any" : "$_minDaysAgo+",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
+                  ),
+                  Slider(
+                    value: (_minDaysAgo ?? 0).toDouble(),
+                    min: 0,
+                    max: 7,
+                    divisions: 3,
+                    label: _minDaysAgo == null || _minDaysAgo == 0
+                        ? "Any"
+                        : "$_minDaysAgo+",
                     onChanged: (val) {
-                      setState(() => _minDaysAgo = val);
+                      setState(() {
+                        _minDaysAgo = val == 0 ? null : val.toInt();
+                      });
                       setStateSheet(() {});
                     },
                   ),
 
-                  const SizedBox(height: 8),
-
-                  DropdownButton<int?>(
-                    value: _maxRevisions,
-                    hint: const Text("Max revisions"),
-                    isExpanded: true,
-                    items: const [
-                      DropdownMenuItem(value: null, child: Text("Any")),
-                      DropdownMenuItem(value: 1, child: Text("≤ 1")),
-                      DropdownMenuItem(value: 3, child: Text("≤ 3")),
-                      DropdownMenuItem(value: 5, child: Text("≤ 5")),
+                  Row(
+                    children: [
+                      Text(
+                        "Max revisions",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        _maxRevisions == null ? "Any" : "≤$_maxRevisions",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
+                  ),
+                  Slider(
+                    value: (_maxRevisions ?? 0).toDouble(),
+                    min: 0,
+                    max: 5,
+                    divisions: 3,
+                    label: _maxRevisions == null || _maxRevisions == 0
+                        ? "Any"
+                        : "≤$_maxRevisions",
                     onChanged: (val) {
-                      setState(() => _maxRevisions = val);
+                      setState(() {
+                        _maxRevisions = val == 0 ? null : val.toInt();
+                      });
                       setStateSheet(() {});
                     },
                   ),
 
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 16),
 
                   Row(
                     children: [
                       Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            setState(() {
-                              _minDaysAgo = null;
-                              _maxRevisions = null;
-                            });
-                            Navigator.pop(context);
-                            _applyFilters();
-                          },
-                          child: const Text("Reset"),
+                        child: SizedBox(
+                          height: 32,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                _minDaysAgo = null;
+                                _maxRevisions = null;
+                              });
+                              Navigator.pop(context);
+                              _applyFilters();
+                            },
+                            style: OutlinedButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              textStyle: const TextStyle(fontSize: 12),
+                            ),
+                            child: const Text("Reset"),
+                          ),
                         ),
                       ),
-
                       const SizedBox(width: 8),
-
                       Expanded(
-                        child: FilledButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            _applyFilters();
-                          },
-                          child: const Text("Apply"),
+                        child: SizedBox(
+                          height: 32,
+                          child: FilledButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _applyFilters();
+                            },
+                            style: FilledButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              textStyle: const TextStyle(fontSize: 12),
+                            ),
+                            child: const Text("Apply"),
+                          ),
                         ),
                       ),
                     ],
@@ -139,13 +219,10 @@ class _LibraryPageState extends State<LibraryPage> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Library'),
-        automaticallyImplyLeading: false,
-      ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -153,6 +230,7 @@ class _LibraryPageState extends State<LibraryPage> {
               controller: _searchController,
               typeFilter: _typeFilter,
               progressFilter: _progressFilter,
+              filterIconKey: _filterIconKey,
               onTypeChanged: (filter) {
                 setState(() => _typeFilter = filter);
                 _applyFilters();
@@ -161,11 +239,10 @@ class _LibraryPageState extends State<LibraryPage> {
                 setState(() => _progressFilter = filter);
                 _applyFilters();
               },
-              onSearchChanged: (_) => _applyFilters(),
+              onSearchChanged: _onSearchChanged,
               onOpenAdvanced: () => _openAdvancedFilters(context),
             ),
 
-            /// ✅ ADD HERE (NOT inside _FilterSection)
             if (_minDaysAgo != null ||
                 _maxRevisions != null ||
                 _typeFilter != LibraryTypeFilter.all ||
@@ -205,7 +282,7 @@ class _LibraryPageState extends State<LibraryPage> {
                     LibraryInitial() || LibraryLoading() => const Center(
                       child: CircularProgressIndicator(),
                     ),
-                    LibraryLoaded(:final items) =>
+                    LibraryLoaded(:final items, :final hasMore) =>
                       items.isEmpty
                           ? const _EmptyLibraryMessage()
                           : RefreshIndicator(
@@ -215,37 +292,40 @@ class _LibraryPageState extends State<LibraryPage> {
                                 );
                               },
                               child: ListView.separated(
+                                controller: _scrollController,
                                 padding: const EdgeInsets.all(16),
-                                itemCount: items.length,
+                                itemCount: items.length + (hasMore ? 1 : 0),
                                 separatorBuilder:
                                     (BuildContext context, int index) =>
                                         const SizedBox(height: 10),
                                 itemBuilder: (BuildContext context, int index) {
+                                  if (index >= items.length) {
+                                    return const Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 16),
+                                      child: Center(
+                                        child: SizedBox(
+                                          width: 24,
+                                          height: 24,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+
                                   return LibraryItemTile(
                                     item: items[index],
-                                    onTap: () async {
+                                    onTap: () {
                                       final item = items[index];
 
                                       if (item.isLearned) {
-                                        context.read<RevisionBloc>().add(
-                                          MarkItemReviewed(item.id),
-                                        );
+                                        widget.onReviseItem?.call(item.id);
                                       } else {
-                                        context.read<LearnBloc>().add(
-                                          MarkLearnedFromLibrary(item.id),
-                                        );
+                                        widget.onLearnItem?.call(item.id);
                                       }
 
-                                      /// 🔥 trigger re-filter (NOT LoadLibrary)
-                                      context.read<LibraryBloc>().add(
-                                        FilterLibrary(
-                                          searchQuery: _searchController.text,
-                                          typeFilter: _typeFilter,
-                                          progressFilter: _progressFilter,
-                                          minDaysAgo: _minDaysAgo,
-                                          maxRevisions: _maxRevisions,
-                                        ),
-                                      );
+                                      _applyFilters();
                                     },
                                   );
                                 },
@@ -275,11 +355,13 @@ class _FilterSection extends StatelessWidget {
     required this.onProgressChanged,
     required this.onSearchChanged,
     required this.onOpenAdvanced,
+    this.filterIconKey,
   });
 
   final TextEditingController controller;
   final LibraryTypeFilter typeFilter;
   final LibraryProgressFilter progressFilter;
+  final GlobalKey? filterIconKey;
 
   final ValueChanged<LibraryTypeFilter> onTypeChanged;
   final ValueChanged<LibraryProgressFilter> onProgressChanged;
@@ -292,7 +374,6 @@ class _FilterSection extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Column(
         children: [
-          /// 🔍 SEARCH
           TextField(
             controller: controller,
             onChanged: onSearchChanged,
@@ -311,6 +392,7 @@ class _FilterSection extends StatelessWidget {
                       },
                     ),
                   IconButton(
+                    key: filterIconKey,
                     icon: const Icon(Icons.tune),
                     onPressed: onOpenAdvanced,
                   ),
@@ -321,77 +403,73 @@ class _FilterSection extends StatelessWidget {
 
           const SizedBox(height: 10),
 
-          /// 🎛 FILTER CHIPS
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                _chip(
-                  context,
-                  "All",
-                  typeFilter == LibraryTypeFilter.all,
-                  () => onTypeChanged(LibraryTypeFilter.all),
-                ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _chip(
+                context,
+                "All",
+                typeFilter == LibraryTypeFilter.all,
+                () => onTypeChanged(LibraryTypeFilter.all),
+              ),
 
-                _chip(
-                  context,
-                  "Words",
-                  typeFilter == LibraryTypeFilter.words,
-                  () => onTypeChanged(LibraryTypeFilter.words),
-                ),
+              _chip(
+                context,
+                "Words",
+                typeFilter == LibraryTypeFilter.words,
+                () => onTypeChanged(LibraryTypeFilter.words),
+              ),
 
-                _chip(
-                  context,
-                  "Sentences",
-                  typeFilter == LibraryTypeFilter.sentences,
-                  () => onTypeChanged(LibraryTypeFilter.sentences),
-                ),
+              _chip(
+                context,
+                "Sentences",
+                typeFilter == LibraryTypeFilter.sentences,
+                () => onTypeChanged(LibraryTypeFilter.sentences),
+              ),
 
-                _chip(
-                  context,
-                  "Dialogues",
-                  typeFilter == LibraryTypeFilter.dialogue,
-                  () => onTypeChanged(LibraryTypeFilter.dialogue),
-                ),
+              _chip(
+                context,
+                "Dialogues",
+                typeFilter == LibraryTypeFilter.dialogue,
+                () => onTypeChanged(LibraryTypeFilter.dialogue),
+              ),
 
-                _chip(
-                  context,
-                  "Grammar",
-                  typeFilter == LibraryTypeFilter.grammar,
-                  () => onTypeChanged(LibraryTypeFilter.grammar),
-                ),
+              _chip(
+                context,
+                "Grammar",
+                typeFilter == LibraryTypeFilter.grammar,
+                () => onTypeChanged(LibraryTypeFilter.grammar),
+              ),
 
-                _chip(
-                  context,
-                  "Stories",
-                  typeFilter == LibraryTypeFilter.stories,
-                  () => onTypeChanged(LibraryTypeFilter.stories),
-                ),
+              _chip(
+                context,
+                "Stories",
+                typeFilter == LibraryTypeFilter.stories,
+                () => onTypeChanged(LibraryTypeFilter.stories),
+              ),
 
-                const SizedBox(width: 16),
+              _chip(
+                context,
+                "Learned",
+                progressFilter == LibraryProgressFilter.learned,
+                () => onProgressChanged(LibraryProgressFilter.learned),
+              ),
 
-                _chip(
-                  context,
-                  "Learned",
-                  progressFilter == LibraryProgressFilter.learned,
-                  () => onProgressChanged(LibraryProgressFilter.learned),
-                ),
+              _chip(
+                context,
+                "New",
+                progressFilter == LibraryProgressFilter.notLearned,
+                () => onProgressChanged(LibraryProgressFilter.notLearned),
+              ),
 
-                _chip(
-                  context,
-                  "New",
-                  progressFilter == LibraryProgressFilter.notLearned,
-                  () => onProgressChanged(LibraryProgressFilter.notLearned),
-                ),
-
-                _chip(
-                  context,
-                  "Revise",
-                  progressFilter == LibraryProgressFilter.needsRevision,
-                  () => onProgressChanged(LibraryProgressFilter.needsRevision),
-                ),
-              ],
-            ),
+              _chip(
+                context,
+                "Revise",
+                progressFilter == LibraryProgressFilter.needsRevision,
+                () => onProgressChanged(LibraryProgressFilter.needsRevision),
+              ),
+            ],
           ),
         ],
       ),
@@ -406,20 +484,23 @@ class _FilterSection extends StatelessWidget {
   ) {
     final theme = Theme.of(context);
 
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: GestureDetector(
-        onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: selected ? theme.colorScheme.primary : Colors.white10,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(color: selected ? Colors.black : Colors.white70),
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        decoration: BoxDecoration(
+          color: selected
+              ? theme.colorScheme.primary
+              : theme.colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: selected
+                ? theme.colorScheme.onPrimary
+                : theme.colorScheme.onSurfaceVariant,
           ),
         ),
       ),

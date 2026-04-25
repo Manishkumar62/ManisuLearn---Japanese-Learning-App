@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/analytics_bloc.dart';
+import '../bloc/analytics_event.dart';
 import '../bloc/analytics_state.dart';
 import '../../../revision/presentation/bloc/review_queue_bloc.dart';
 
@@ -173,10 +174,17 @@ class _HomePageState extends State<HomePage> {
                         }
 
                         if (state is AnalyticsError) {
-                          return const ModernCard(
-                            icon: Icons.error_outline,
-                            title: "Progress",
-                            body: "Failed to load analytics",
+                          return GestureDetector(
+                            onTap: () {
+                              context.read<AnalyticsBloc>().add(
+                                LoadAnalytics(),
+                              );
+                            },
+                            child: const ModernCard(
+                              icon: Icons.error_outline,
+                              title: 'Progress',
+                              body: 'Failed to load analytics. Tap to retry.',
+                            ),
                           );
                         }
 

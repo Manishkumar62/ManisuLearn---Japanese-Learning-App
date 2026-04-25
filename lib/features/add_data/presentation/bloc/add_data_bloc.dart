@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/error_utils.dart';
 import '../../../../data/models/learning_item.dart';
 import '../../../../domain/repositories/learning_item_repository.dart';
 import 'add_data_event.dart';
@@ -37,7 +38,7 @@ class AddDataBloc extends Bloc<AddDataEvent, AddDataState> {
       await _repository.addItem(item);
       emit(const AddDataSuccess(message: 'Learning item added.'));
     } catch (error) {
-      emit(AddDataError(error.toString()));
+      emit(AddDataError(AppError.userMessage(error)));
     }
   }
 
@@ -61,7 +62,7 @@ class AddDataBloc extends Bloc<AddDataEvent, AddDataState> {
 
       emit(AddDataSuccess(message: '${items.length} items imported.'));
     } catch (error) {
-      emit(AddDataError(error.toString()));
+      emit(AddDataError(AppError.userMessage(error)));
     }
   }
 
