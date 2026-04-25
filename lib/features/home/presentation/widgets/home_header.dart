@@ -70,7 +70,7 @@ class _HomeHeaderState extends State<HomeHeader>
             Text(
               greeting,
               style: theme.textTheme.titleMedium?.copyWith(
-                color: Colors.white70,
+                color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(height: 4),

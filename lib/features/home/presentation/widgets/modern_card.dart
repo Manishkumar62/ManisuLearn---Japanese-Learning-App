@@ -45,7 +45,7 @@ class ModernCard extends StatelessWidget {
             Text(
               body,
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.white70,
+                color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
           ],

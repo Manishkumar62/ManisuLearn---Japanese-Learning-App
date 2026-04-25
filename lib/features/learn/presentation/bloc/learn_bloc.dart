@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/error_utils.dart';
@@ -35,6 +37,7 @@ class LearnBloc extends Bloc<LearnEvent, LearnState> {
         return;
       }
 
+      items.shuffle(Random());
       emit(LearnLoaded(items: items, currentIndex: 0));
     } catch (error) {
       emit(LearnError(AppError.userMessage(error)));

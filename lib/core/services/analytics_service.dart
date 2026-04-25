@@ -1,5 +1,6 @@
 import '../../data/models/learning_item.dart';
 import '../../domain/models/analytics_data.dart';
+import '../../features/home/presentation/bloc/analytics_insight.dart';
 
 class AnalyticsService {
   int _calculateStreak(List<LearningItem> items) {
@@ -40,53 +41,99 @@ class AnalyticsService {
 
     final learnedItems = items.where((e) => e.isLearned).length;
 
-    final dueToday = items.where((e) => e.nextReview.isBefore(now)).length;
+    final dueToday = items
+        .where((e) => e.isLearned && e.nextReview.isBefore(now))
+        .length;
 
-    final totalReviews = items.fold<int>(0, (sum, e) => sum + e.repetitions);
+    final learned = items.where((e) => e.isLearned).toList();
+    final totalReviews = learned.fold<int>(0, (sum, e) => sum + e.repetitions);
+    final strongReviews = learned
+        .where((e) => e.repetitions >= 3)
+        .length;
 
-    final correctReviews = items.where((e) => e.repetitions > 0).length;
-
-    final double retentionRate = totalReviews == 0
+    final double retentionRate = learned.isEmpty
         ? 0
-        : (correctReviews / totalReviews) * 100;
+        : (strongReviews / learned.length) * 100;
 
-    final List<String> insights = [];
+    final List<AnalyticsInsight> insights = [];
 
-    // 🔹 Weak items (low repetitions)
     final weakItems = items
         .where((e) => e.isLearned && e.repetitions <= 2)
         .length;
 
     if (weakItems >= 5) {
-      insights.add('You have many weak items. Revise them.');
+      insights.add(AnalyticsInsight(
+        message: 'You have $weakItems weak items. Revise them.',
+        type: InsightType.warning,
+      ));
     }
 
-    // 🔹 Overdue items
     if (dueToday >= 10) {
-      insights.add('You have many pending reviews. Stay consistent.');
+      insights.add(AnalyticsInsight(
+        message: 'You have $dueToday pending reviews. Stay consistent.',
+        type: InsightType.warning,
+      ));
     }
 
-    // 🔹 Good retention
     if (learnedItems > 0 && retentionRate >= 80) {
-      insights.add('Great job! Your retention is strong.');
+      insights.add(AnalyticsInsight(
+        message: 'Great job! Your retention is strong at ${retentionRate.toStringAsFixed(0)}%.',
+        type: InsightType.success,
+      ));
     }
 
-    // 🔹 Low retention
     if (learnedItems > 0 && retentionRate < 50) {
-      insights.add('Your retention is low. Try revising more frequently.');
+      insights.add(AnalyticsInsight(
+        message: 'Your retention is low (${retentionRate.toStringAsFixed(0)}%). Try revising more frequently.',
+        type: InsightType.danger,
+      ));
     }
 
     final streakDays = _calculateStreak(items);
+
+    final today = DateTime(now.year, now.month, now.day);
+
+    final learnedToday = items.where((e) {
+      if (!e.isLearned || e.firstLearnedAt == null) return false;
+      final d = DateTime(
+        e.firstLearnedAt!.year,
+        e.firstLearnedAt!.month,
+        e.firstLearnedAt!.day,
+      );
+      return d == today;
+    }).length;
+
+    final reviewedToday = items.where((e) {
+      if (!e.isLearned || e.lastReviewed == null) return false;
+      final d = DateTime(
+        e.lastReviewed!.year,
+        e.lastReviewed!.month,
+        e.lastReviewed!.day,
+      );
+      if (d != today) return false;
+      // Don't count first-time learning as a "review"
+      if (e.firstLearnedAt != null) {
+        final learnedDate = DateTime(
+          e.firstLearnedAt!.year,
+          e.firstLearnedAt!.month,
+          e.firstLearnedAt!.day,
+        );
+        if (learnedDate == today) return false;
+      }
+      return true;
+    }).length;
 
     return AnalyticsData(
       totalItems: totalItems,
       learnedItems: learnedItems,
       dueToday: dueToday,
       totalReviews: totalReviews,
-      correctReviews: correctReviews,
+      correctReviews: strongReviews,
       retentionRate: retentionRate,
       insights: insights,
       streakDays: streakDays,
+      reviewedToday: reviewedToday,
+      learnedToday: learnedToday,
     );
   }
 }

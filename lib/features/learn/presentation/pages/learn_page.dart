@@ -112,14 +112,14 @@ class _FlashcardView extends StatelessWidget {
                           const Divider(height: 40),
                           Text(
                             item.english,
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context).textTheme.titleMedium,
                             textAlign: TextAlign.center,
                           ),
                           if (item.hindi.isNotEmpty) ...<Widget>[
                             const SizedBox(height: 12),
                             Text(
                               item.hindi,
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: Theme.of(context).textTheme.headlineLarge,
                               textAlign: TextAlign.center,
                             ),
                           ],

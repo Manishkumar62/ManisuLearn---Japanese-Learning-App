@@ -45,7 +45,7 @@ class PrimaryCard extends StatelessWidget {
               color: Colors.white.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, color: Colors.white),
+            child: Icon(icon, color: theme.colorScheme.onPrimary),
           ),
 
           const SizedBox(width: 14),
@@ -65,14 +65,14 @@ class PrimaryCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: const TextStyle(color: Colors.white70),
+                  style: TextStyle(color: theme.colorScheme.onPrimary.withValues(alpha: 0.7)),
                 ),
               ],
             ),
           ),
 
           /// ARROW (important affordance)
-          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white70),
+          Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onPrimary.withValues(alpha: 0.7)),
         ],
       ),
     );
