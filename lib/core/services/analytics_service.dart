@@ -4,43 +4,41 @@ import '../../features/home/presentation/bloc/analytics_insight.dart';
 
 class AnalyticsService {
   int _calculateStreak(List<LearningItem> items) {
-  final reviewDates = items
-      .where((e) => e.isLearned && e.lastReviewed != null)
-      .map((e) {
-        final d = e.lastReviewed!;
-        return DateTime(d.year, d.month, d.day); // normalize
-      })
-      .toSet() // ✅ remove duplicates (same day)
-      .toList();
+    final reviewDates = items
+        .where((e) => e.isLearned && e.lastReviewed != null)
+        .map((e) {
+          final d = e.lastReviewed!;
+          return DateTime(d.year, d.month, d.day);
+        })
+        .toSet()
+        .toList();
 
-  if (reviewDates.isEmpty) return 0;
+    if (reviewDates.isEmpty) return 0;
 
-  reviewDates.sort((a, b) => b.compareTo(a));
+    reviewDates.sort((a, b) => b.compareTo(a));
 
-  int streak = 0;
-  final today = DateTime.now();
-  final todayDate = DateTime(today.year, today.month, today.day);
+    int streak = 0;
+    final today = DateTime.now();
+    final todayDate = DateTime(today.year, today.month, today.day);
 
-  for (int i = 0; i < reviewDates.length; i++) {
-    final diff = todayDate.difference(reviewDates[i]).inDays;
-
-    if (diff == i) {
-      streak++;
-    } else {
-      break;
+    for (int i = 0; i < reviewDates.length; i++) {
+      final diff = todayDate.difference(reviewDates[i]).inDays;
+      if (diff == i) {
+        streak++;
+      } else {
+        break;
+      }
     }
-  }
 
-  return streak;
-}
+    return streak;
+  }
 
   AnalyticsData compute(List<LearningItem> items) {
     final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
 
     final totalItems = items.length;
-
     final learnedItems = items.where((e) => e.isLearned).length;
-
     final dueToday = items
         .where((e) => e.isLearned && e.nextReview.isBefore(now))
         .length;
@@ -91,14 +89,11 @@ class AnalyticsService {
 
     final streakDays = _calculateStreak(items);
 
-    final today = DateTime(now.year, now.month, now.day);
-
+    // Today's activity
     final learnedToday = items.where((e) {
       if (!e.isLearned || e.firstLearnedAt == null) return false;
       final d = DateTime(
-        e.firstLearnedAt!.year,
-        e.firstLearnedAt!.month,
-        e.firstLearnedAt!.day,
+        e.firstLearnedAt!.year, e.firstLearnedAt!.month, e.firstLearnedAt!.day,
       );
       return d == today;
     }).length;
@@ -106,22 +101,40 @@ class AnalyticsService {
     final reviewedToday = items.where((e) {
       if (!e.isLearned || e.lastReviewed == null) return false;
       final d = DateTime(
-        e.lastReviewed!.year,
-        e.lastReviewed!.month,
-        e.lastReviewed!.day,
+        e.lastReviewed!.year, e.lastReviewed!.month, e.lastReviewed!.day,
       );
       if (d != today) return false;
-      // Don't count first-time learning as a "review"
       if (e.firstLearnedAt != null) {
         final learnedDate = DateTime(
-          e.firstLearnedAt!.year,
-          e.firstLearnedAt!.month,
-          e.firstLearnedAt!.day,
+          e.firstLearnedAt!.year, e.firstLearnedAt!.month, e.firstLearnedAt!.day,
         );
         if (learnedDate == today) return false;
       }
       return true;
     }).length;
+
+    final hasActivityToday = items.any((e) {
+      if (e.lastReviewed == null) return false;
+      final d = DateTime(
+        e.lastReviewed!.year, e.lastReviewed!.month, e.lastReviewed!.day,
+      );
+      return d == today;
+    });
+
+    // Category breakdown
+    final typeGroups = <String, List<LearningItem>>{};
+    for (final item in items) {
+      typeGroups.putIfAbsent(item.type, () => []).add(item);
+    }
+
+    final categories = typeGroups.entries.map((entry) {
+      return CategoryProgress(
+        type: entry.key,
+        learned: entry.value.where((e) => e.isLearned).length,
+        total: entry.value.length,
+      );
+    }).toList()
+      ..sort((a, b) => b.total.compareTo(a.total));
 
     return AnalyticsData(
       totalItems: totalItems,
@@ -134,6 +147,8 @@ class AnalyticsService {
       streakDays: streakDays,
       reviewedToday: reviewedToday,
       learnedToday: learnedToday,
+      categories: categories,
+      hasActivityToday: hasActivityToday,
     );
   }
 }

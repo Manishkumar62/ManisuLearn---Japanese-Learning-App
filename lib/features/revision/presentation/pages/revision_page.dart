@@ -193,27 +193,6 @@ class _RevisionFlashcardState extends State<_RevisionFlashcard> {
                       ),
                     ),
 
-                    /// skip icon
-                    Positioned(
-                      top: 10,
-                      right: 10,
-                      child: GestureDetector(
-                        onTap: () {
-                          context.read<RevisionBloc>().add(
-                            const SkipRevisionItem(),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Colors.white10,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(Icons.close, size: 18),
-                        ),
-                      ),
-                    ),
-
                     /// drag hint
                     if (drag > 40)
                       const Positioned(

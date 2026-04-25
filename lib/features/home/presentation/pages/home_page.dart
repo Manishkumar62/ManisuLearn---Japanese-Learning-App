@@ -13,6 +13,9 @@ import '../widgets/modern_card.dart';
 import '../widgets/today_progress_card.dart';
 import '../widgets/journey_card.dart';
 import '../widgets/progress_chart_card.dart';
+import '../widgets/category_breakdown_card.dart';
+import '../widgets/daily_goal_card.dart';
+import '../widgets/streak_timer_card.dart';
 import '../widgets/animated_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -125,6 +128,24 @@ class _HomePageState extends State<HomePage> {
 
                         return Column(
                           children: [
+                            /// STREAK TIMER
+                            StreakTimerCard(
+                              streakDays: data.streakDays,
+                              hasActivityToday: data.hasActivityToday,
+                            ),
+
+                            const SizedBox(height: 16),
+
+                            /// DAILY GOAL
+                            AnimatedCardWrapper(
+                              child: DailyGoalCard(
+                                done: data.reviewedToday + data.learnedToday,
+                                goal: 20,
+                              ),
+                            ),
+
+                            const SizedBox(height: 16),
+
                             /// TODAY'S ACTIVITY
                             AnimatedCardWrapper(
                               child: TodayProgressCard(
@@ -150,6 +171,15 @@ class _HomePageState extends State<HomePage> {
                             ),
 
                             const SizedBox(height: 16),
+
+                            /// CATEGORY BREAKDOWN
+                            if (data.categories.length > 1)
+                              AnimatedCardWrapper(
+                                child: CategoryBreakdownCard(categories: data.categories),
+                              ),
+
+                            if (data.categories.length > 1)
+                              const SizedBox(height: 16),
 
                             /// PROGRESS CHART
                             _PeriodToggle(

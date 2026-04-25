@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProgressChartCard extends StatefulWidget {
-  final List<double> reviewedData;
-  final List<double> learnedData;
+  final List<int> reviewedData;
+  final List<int> learnedData;
   final ChartPeriod period;
 
   const ProgressChartCard({
@@ -77,7 +77,6 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header + legend
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -99,7 +98,6 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
           ),
           const SizedBox(height: 12),
 
-          // Line chart
           GestureDetector(
             onHorizontalDragUpdate: (details) {
               final box = context.findRenderObject() as RenderBox;
@@ -138,13 +136,13 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
             ),
           ),
 
-          // Selected detail
+          // Selected detail — shows actual counts
           if (_selectedIndex != null && _selectedIndex! < reviewed.length) ...[
             const SizedBox(height: 8),
             Text(
               '${labels[_selectedIndex!]}: '
-              '${(reviewed[_selectedIndex!] * 100).toStringAsFixed(0)}% reviewed, '
-              '${(learned[_selectedIndex!] * 100).toStringAsFixed(0)}% learned (of peak)',
+              '${reviewed[_selectedIndex!]} reviewed, '
+              '${learned[_selectedIndex!]} learned',
               style: TextStyle(
                 fontSize: 12,
                 color: theme.colorScheme.onSurfaceVariant,
@@ -166,8 +164,8 @@ class _ProgressChartCardState extends State<ProgressChartCard> {
 }
 
 class _LineChartPainter extends CustomPainter {
-  final List<double> reviewedData;
-  final List<double> learnedData;
+  final List<int> reviewedData;
+  final List<int> learnedData;
   final List<String> labels;
   final Color reviewedColor;
   final Color learnedColor;
@@ -196,81 +194,87 @@ class _LineChartPainter extends CustomPainter {
     final count = reviewedData.length;
     if (count == 0) return;
 
+    // Find max across both datasets for normalization
+    int maxVal = 0;
+    for (final v in reviewedData) {
+      if (v > maxVal) maxVal = v;
+    }
+    for (final v in learnedData) {
+      if (v > maxVal) maxVal = v;
+    }
+
     final stepX = count > 1 ? chartW / (count - 1) : 0.0;
 
-    // Grid lines (3 horizontal)
+    // Grid lines
     final gridPaint = Paint()..color = gridColor;
     for (int i = 0; i <= 3; i++) {
       final y = _padV + (chartH / 3) * i;
-      canvas.drawLine(
-        Offset(_padH, y),
-        Offset(size.width - _padH, y),
-        gridPaint,
-      );
+      canvas.drawLine(Offset(_padH, y), Offset(size.width - _padH, y), gridPaint);
     }
 
-    // Build points
+    // Grid labels (actual counts)
+    final textPainter = TextPainter(textDirection: TextDirection.ltr);
+    if (maxVal > 0) {
+      for (int i = 0; i <= 3; i++) {
+        final val = (maxVal * (3 - i) / 3).round();
+        final y = _padV + (chartH / 3) * i;
+        textPainter.text = TextSpan(
+          text: '$val',
+          style: TextStyle(fontSize: 8, color: textColor.withValues(alpha: 0.5)),
+        );
+        textPainter.layout();
+        textPainter.paint(canvas, Offset(0, y - textPainter.height / 2));
+      }
+    }
+
+    // Build normalized points
     List<Offset> reviewedPoints = [];
     List<Offset> learnedPoints = [];
     for (int i = 0; i < count; i++) {
       final x = _padH + stepX * i;
-      reviewedPoints.add(Offset(x, _padV + chartH * (1 - reviewedData[i])));
-      learnedPoints.add(Offset(x, _padV + chartH * (1 - learnedData[i])));
+      final rNorm = maxVal == 0 ? 0.0 : reviewedData[i] / maxVal;
+      final lNorm = maxVal == 0 ? 0.0 : learnedData[i] / maxVal;
+      reviewedPoints.add(Offset(x, _padV + chartH * (1 - rNorm)));
+      learnedPoints.add(Offset(x, _padV + chartH * (1 - lNorm)));
     }
 
-    // Draw filled area under learned line
-    if (learnedPoints.isNotEmpty && learnedData.any((v) => v > 0)) {
-      final areaPath = Path();
-      areaPath.moveTo(learnedPoints.first.dx, _padV + chartH);
+    // Filled area under learned
+    if (learnedData.any((v) => v > 0)) {
+      final path = Path();
+      path.moveTo(learnedPoints.first.dx, _padV + chartH);
       for (final p in learnedPoints) {
-        areaPath.lineTo(p.dx, p.dy);
+        path.lineTo(p.dx, p.dy);
       }
-      areaPath.lineTo(learnedPoints.last.dx, _padV + chartH);
-      areaPath.close();
-      canvas.drawPath(
-        areaPath,
-        Paint()..color = learnedColor.withValues(alpha: 0.1),
-      );
+      path.lineTo(learnedPoints.last.dx, _padV + chartH);
+      path.close();
+      canvas.drawPath(path, Paint()..color = learnedColor.withValues(alpha: 0.1));
     }
 
-    // Draw filled area under reviewed line
-    if (reviewedPoints.isNotEmpty && reviewedData.any((v) => v > 0)) {
-      final areaPath = Path();
-      areaPath.moveTo(reviewedPoints.first.dx, _padV + chartH);
+    // Filled area under reviewed
+    if (reviewedData.any((v) => v > 0)) {
+      final path = Path();
+      path.moveTo(reviewedPoints.first.dx, _padV + chartH);
       for (final p in reviewedPoints) {
-        areaPath.lineTo(p.dx, p.dy);
+        path.lineTo(p.dx, p.dy);
       }
-      areaPath.lineTo(reviewedPoints.last.dx, _padV + chartH);
-      areaPath.close();
-      canvas.drawPath(
-        areaPath,
-        Paint()..color = reviewedColor.withValues(alpha: 0.1),
-      );
+      path.lineTo(reviewedPoints.last.dx, _padV + chartH);
+      path.close();
+      canvas.drawPath(path, Paint()..color = reviewedColor.withValues(alpha: 0.1));
     }
 
-    // Draw learned line
+    // Lines
     _drawLine(canvas, learnedPoints, learnedColor.withValues(alpha: 0.7), 2);
-
-    // Draw reviewed line
     _drawLine(canvas, reviewedPoints, reviewedColor, 2.5);
 
-    // Draw dots
+    // Dots
     for (int i = 0; i < count; i++) {
       final isSelected = selectedIndex == i;
-      final dotRadius = isSelected ? 5.0 : 3.0;
+      final r = isSelected ? 5.0 : 3.0;
 
-      canvas.drawCircle(
-        reviewedPoints[i],
-        dotRadius,
-        Paint()..color = reviewedColor,
-      );
+      canvas.drawCircle(reviewedPoints[i], r, Paint()..color = reviewedColor);
 
       if (learnedData[i] > 0) {
-        canvas.drawCircle(
-          learnedPoints[i],
-          dotRadius,
-          Paint()..color = learnedColor,
-        );
+        canvas.drawCircle(learnedPoints[i], r, Paint()..color = learnedColor);
       }
     }
 
@@ -278,24 +282,17 @@ class _LineChartPainter extends CustomPainter {
     if (selectedIndex != null && selectedIndex! < count) {
       final x = reviewedPoints[selectedIndex!].dx;
       canvas.drawLine(
-        Offset(x, _padV),
-        Offset(x, _padV + chartH),
-        Paint()
-          ..color = reviewedColor.withValues(alpha: 0.3)
-          ..strokeWidth = 1,
+        Offset(x, _padV), Offset(x, _padV + chartH),
+        Paint()..color = reviewedColor.withValues(alpha: 0.3)..strokeWidth = 1,
       );
     }
 
     // X-axis labels
-    final textPainter = TextPainter(textDirection: TextDirection.ltr);
     for (int i = 0; i < count; i++) {
       final isSelected = selectedIndex == i;
       textPainter.text = TextSpan(
         text: labels[i],
-        style: TextStyle(
-          fontSize: 9,
-          color: isSelected ? reviewedColor : textColor,
-        ),
+        style: TextStyle(fontSize: 9, color: isSelected ? reviewedColor : textColor),
       );
       textPainter.layout();
       textPainter.paint(
@@ -330,10 +327,10 @@ class _LineChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _LineChartPainter oldDelegate) =>
-      oldDelegate.reviewedData != reviewedData ||
-      oldDelegate.learnedData != learnedData ||
-      oldDelegate.selectedIndex != selectedIndex;
+  bool shouldRepaint(covariant _LineChartPainter old) =>
+      old.reviewedData != reviewedData ||
+      old.learnedData != learnedData ||
+      old.selectedIndex != selectedIndex;
 }
 
 enum ChartPeriod { weekly, monthly, yearly }
@@ -349,16 +346,9 @@ class _LegendDot extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 8,
-          height: 8,
-          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        ),
+        Container(width: 8, height: 8, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
         const SizedBox(width: 4),
-        Text(
-          label,
-          style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurfaceVariant),
-        ),
+        Text(label, style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurfaceVariant)),
       ],
     );
   }

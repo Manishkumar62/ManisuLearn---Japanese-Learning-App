@@ -2,12 +2,12 @@ import '../../../../domain/models/analytics_data.dart';
 import 'analytics_insight.dart';
 
 class ProgressData {
-  final List<double> weeklyReviewed;
-  final List<double> weeklyLearned;
-  final List<double> monthlyReviewed;
-  final List<double> monthlyLearned;
-  final List<double> yearlyReviewed;
-  final List<double> yearlyLearned;
+  final List<int> weeklyReviewed;
+  final List<int> weeklyLearned;
+  final List<int> monthlyReviewed;
+  final List<int> monthlyLearned;
+  final List<int> yearlyReviewed;
+  final List<int> yearlyLearned;
 
   const ProgressData({
     this.weeklyReviewed = const [],

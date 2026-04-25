@@ -1,5 +1,19 @@
 import '../../features/home/presentation/bloc/analytics_insight.dart';
 
+class CategoryProgress {
+  final String type;
+  final int learned;
+  final int total;
+
+  const CategoryProgress({
+    required this.type,
+    required this.learned,
+    required this.total,
+  });
+
+  double get progress => total == 0 ? 0.0 : learned / total;
+}
+
 class AnalyticsData {
   final int totalItems;
   final int learnedItems;
@@ -15,6 +29,12 @@ class AnalyticsData {
   final int reviewedToday;
   final int learnedToday;
 
+  // Category breakdown
+  final List<CategoryProgress> categories;
+
+  // Streak protection
+  final bool hasActivityToday;
+
   AnalyticsData({
     required this.totalItems,
     required this.learnedItems,
@@ -26,5 +46,7 @@ class AnalyticsData {
     required this.streakDays,
     this.reviewedToday = 0,
     this.learnedToday = 0,
+    this.categories = const [],
+    this.hasActivityToday = false,
   });
 }

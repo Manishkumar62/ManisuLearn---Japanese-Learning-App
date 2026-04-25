@@ -43,168 +43,101 @@ class AnalyticsBloc extends Bloc<AnalyticsEvent, AnalyticsState> {
     return ProgressData(
       weeklyReviewed: _dailyReviewedCounts(items, 7),
       weeklyLearned: _dailyLearnedCounts(items, 7),
-      monthlyReviewed: _weeklyAggregatedReviewed(items, 4),
-      monthlyLearned: _weeklyAggregatedLearned(items, 4),
+      monthlyReviewed: _weeklyAggregatedCounts(items, 4, _buildDailyReviewedMap),
+      monthlyLearned: _weeklyAggregatedCounts(items, 4, _buildDailyLearnedMap),
       yearlyReviewed: _monthlyReviewedCounts(items),
       yearlyLearned: _monthlyLearnedCounts(items),
     );
   }
 
-  /// Daily reviewed counts for the last [days] days, normalized 0-1.
-  List<double> _dailyReviewedCounts(List<LearningItem> items, int days) {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-
-    final List<DateTime> dateRange = List.generate(
-      days,
-      (i) => today.subtract(Duration(days: days - 1 - i)),
-    );
-
-    final Map<DateTime, int> counts = {for (final d in dateRange) d: 0};
-
-    for (final item in items) {
-      if (item.lastReviewed == null) continue;
-      final d = DateTime(
-        item.lastReviewed!.year,
-        item.lastReviewed!.month,
-        item.lastReviewed!.day,
-      );
-      if (counts.containsKey(d)) {
-        counts[d] = counts[d]! + 1;
-      }
-    }
-
-    return _normalize(dateRange.map((d) => counts[d]!.toDouble()).toList());
+  List<int> _dailyReviewedCounts(List<LearningItem> items, int days) {
+    final today = _today();
+    final dateRange = List.generate(days, (i) => today.subtract(Duration(days: days - 1 - i)));
+    final counts = _countByDate(dateRange, items, (e) => e.lastReviewed);
+    return dateRange.map((d) => counts[d]!).toList();
   }
 
-  /// Daily learned counts for the last [days] days, normalized 0-1.
-  List<double> _dailyLearnedCounts(List<LearningItem> items, int days) {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-
-    final List<DateTime> dateRange = List.generate(
-      days,
-      (i) => today.subtract(Duration(days: days - 1 - i)),
-    );
-
-    final Map<DateTime, int> counts = {for (final d in dateRange) d: 0};
-
-    for (final item in items) {
-      if (!item.isLearned || item.firstLearnedAt == null) continue;
-      final d = DateTime(
-        item.firstLearnedAt!.year,
-        item.firstLearnedAt!.month,
-        item.firstLearnedAt!.day,
-      );
-      if (counts.containsKey(d)) {
-        counts[d] = counts[d]! + 1;
-      }
-    }
-
-    return _normalize(dateRange.map((d) => counts[d]!.toDouble()).toList());
+  List<int> _dailyLearnedCounts(List<LearningItem> items, int days) {
+    final today = _today();
+    final dateRange = List.generate(days, (i) => today.subtract(Duration(days: days - 1 - i)));
+    final counts = _countByDate(dateRange, items, (e) => e.isLearned ? e.firstLearnedAt : null);
+    return dateRange.map((d) => counts[d]!).toList();
   }
 
-  /// Weekly aggregated reviewed counts for the last [weeks] weeks, normalized 0-1.
-  List<double> _weeklyAggregatedReviewed(List<LearningItem> items, int weeks) {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+  List<int> _weeklyAggregatedCounts(
+    List<LearningItem> items,
+    int weeks,
+    Map<DateTime, int> Function(List<LearningItem>, DateTime, int) builder,
+  ) {
+    final today = _today();
+    final daily = builder(items, today, weeks * 7);
 
-    final daily = _buildDailyReviewedMap(items, today, weeks * 7);
-
-    final values = List.generate(weeks, (w) {
+    return List.generate(weeks, (w) {
       int sum = 0;
       for (int d = 0; d < 7; d++) {
         final day = today.subtract(Duration(days: (weeks - 1 - w) * 7 + (6 - d)));
         sum += daily[day] ?? 0;
       }
-      return sum.toDouble();
+      return sum;
     });
-
-    return _normalize(values);
   }
 
-  /// Weekly aggregated learned counts for the last [weeks] weeks, normalized 0-1.
-  List<double> _weeklyAggregatedLearned(List<LearningItem> items, int weeks) {
+  List<int> _monthlyReviewedCounts(List<LearningItem> items) {
     final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
+    final months = List.generate(12, (i) => DateTime(now.year, now.month - 11 + i, 1));
+    final counts = _countByMonth(months, items, (e) => e.lastReviewed);
+    return months.map((m) => counts[m]!).toList();
+  }
 
-    final daily = _buildDailyLearnedMap(items, today, weeks * 7);
-
-    final values = List.generate(weeks, (w) {
-      int sum = 0;
-      for (int d = 0; d < 7; d++) {
-        final day = today.subtract(Duration(days: (weeks - 1 - w) * 7 + (6 - d)));
-        sum += daily[day] ?? 0;
-      }
-      return sum.toDouble();
-    });
-
-    return _normalize(values);
+  List<int> _monthlyLearnedCounts(List<LearningItem> items) {
+    final now = DateTime.now();
+    final months = List.generate(12, (i) => DateTime(now.year, now.month - 11 + i, 1));
+    final counts = _countByMonth(months, items, (e) => e.isLearned ? e.firstLearnedAt : null);
+    return months.map((m) => counts[m]!).toList();
   }
 
   Map<DateTime, int> _buildDailyReviewedMap(List<LearningItem> items, DateTime today, int days) {
     final dateRange = List.generate(days, (i) => today.subtract(Duration(days: days - 1 - i)));
-    final counts = {for (final d in dateRange) d: 0};
-
-    for (final item in items) {
-      if (item.lastReviewed == null) continue;
-      final d = DateTime(item.lastReviewed!.year, item.lastReviewed!.month, item.lastReviewed!.day);
-      if (counts.containsKey(d)) counts[d] = counts[d]! + 1;
-    }
-    return counts;
+    return _countByDate(dateRange, items, (e) => e.lastReviewed);
   }
 
   Map<DateTime, int> _buildDailyLearnedMap(List<LearningItem> items, DateTime today, int days) {
     final dateRange = List.generate(days, (i) => today.subtract(Duration(days: days - 1 - i)));
-    final counts = {for (final d in dateRange) d: 0};
+    return _countByDate(dateRange, items, (e) => e.isLearned ? e.firstLearnedAt : null);
+  }
 
+  Map<DateTime, int> _countByDate(
+    List<DateTime> dateRange,
+    List<LearningItem> items,
+    DateTime? Function(LearningItem) dateExtractor,
+  ) {
+    final counts = {for (final d in dateRange) d: 0};
     for (final item in items) {
-      if (!item.isLearned || item.firstLearnedAt == null) continue;
-      final d = DateTime(item.firstLearnedAt!.year, item.firstLearnedAt!.month, item.firstLearnedAt!.day);
+      final raw = dateExtractor(item);
+      if (raw == null) continue;
+      final d = DateTime(raw.year, raw.month, raw.day);
       if (counts.containsKey(d)) counts[d] = counts[d]! + 1;
     }
     return counts;
   }
 
-  /// Generates monthly review counts for the last 12 months, normalized to 0-1.
-  List<double> _monthlyReviewedCounts(List<LearningItem> items) {
-    final now = DateTime.now();
-    final months = List.generate(12, (i) => DateTime(now.year, now.month - 11 + i, 1));
-    final Map<DateTime, int> counts = {for (final m in months) m: 0};
-
+  Map<DateTime, int> _countByMonth(
+    List<DateTime> months,
+    List<LearningItem> items,
+    DateTime? Function(LearningItem) dateExtractor,
+  ) {
+    final counts = {for (final m in months) m: 0};
     for (final item in items) {
-      if (item.lastReviewed == null) continue;
-      final m = DateTime(item.lastReviewed!.year, item.lastReviewed!.month, 1);
-      if (counts.containsKey(m)) {
-        counts[m] = counts[m]! + 1;
-      }
+      final raw = dateExtractor(item);
+      if (raw == null) continue;
+      final m = DateTime(raw.year, raw.month, 1);
+      if (counts.containsKey(m)) counts[m] = counts[m]! + 1;
     }
-
-    final values = months.map((m) => counts[m]!.toDouble()).toList();
-    final max = values.fold<double>(0, (a, b) => a > b ? a : b);
-    return values.map((v) => max == 0 ? 0.0 : v / max).toList();
+    return counts;
   }
 
-  /// Generates monthly learned counts for the last 12 months, normalized to 0-1.
-  List<double> _monthlyLearnedCounts(List<LearningItem> items) {
+  DateTime _today() {
     final now = DateTime.now();
-    final months = List.generate(12, (i) => DateTime(now.year, now.month - 11 + i, 1));
-    final Map<DateTime, int> counts = {for (final m in months) m: 0};
-
-    for (final item in items) {
-      if (!item.isLearned || item.firstLearnedAt == null) continue;
-      final m = DateTime(item.firstLearnedAt!.year, item.firstLearnedAt!.month, 1);
-      if (counts.containsKey(m)) {
-        counts[m] = counts[m]! + 1;
-      }
-    }
-
-    final values = months.map((m) => counts[m]!.toDouble()).toList();
-    return _normalize(values);
-  }
-
-  List<double> _normalize(List<double> values) {
-    final max = values.fold<double>(0, (a, b) => a > b ? a : b);
-    return values.map((v) => max == 0 ? 0.0 : v / max).toList();
+    return DateTime(now.year, now.month, now.day);
   }
 }
