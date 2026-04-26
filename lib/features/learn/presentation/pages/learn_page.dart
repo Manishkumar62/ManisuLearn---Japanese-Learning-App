@@ -314,7 +314,23 @@ class _LearnFlashcardState extends State<_LearnFlashcard> {
             ),
           ),
 
-          const SizedBox(height: 16),
+          if (!isRevealed)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: IconButton.filledTonal(
+                onPressed: () {
+                  context.read<LearnBloc>().add(const SkipLearningItem());
+                },
+                icon: const Icon(Icons.close_rounded),
+                style: IconButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                  ),
+                ),
+              ),
+            )
+          else
+            const SizedBox(height: 16),
         ],
       ),
     );
