@@ -5,7 +5,10 @@
     "romaji": "minasan",
     "hindi": "सब लोग",
     "english": "everyone",
-    "tags": ["greeting", "basic"],
+    "tags": [
+      "greeting",
+      "basic"
+    ],
     "id": "word_1"
   },
   {
@@ -14,7 +17,9 @@
     "romaji": "konnichiwa",
     "hindi": "नमस्ते",
     "english": "hello",
-    "tags": ["greeting"],
+    "tags": [
+      "greeting"
+    ],
     "id": "word_2"
   },
   {
@@ -23,16 +28,20 @@
     "romaji": "yokoso",
     "hindi": "स्वागत है",
     "english": "welcome",
-    "tags": ["greeting"],
+    "tags": [
+      "greeting"
+    ],
     "id": "word_3"
   },
   {
     "type": "word",
-    "japanese": "友達",
+    "japanese": "ともだち / 友達",
     "romaji": "tomodachi",
     "hindi": "दोस्त",
     "english": "friend",
-    "tags": ["people"],
+    "tags": [
+      "people"
+    ],
     "id": "word_4"
   },
   {
@@ -41,7 +50,9 @@
     "romaji": "yakusoku",
     "hindi": "मुलाकात / वादा",
     "english": "appointment",
-    "tags": ["planning"],
+    "tags": [
+      "planning"
+    ],
     "id": "word_5"
   },
   {
@@ -50,7 +61,9 @@
     "romaji": "yotei",
     "hindi": "योजना",
     "english": "plan",
-    "tags": ["planning"],
+    "tags": [
+      "planning"
+    ],
     "id": "word_6"
   },
   {
@@ -59,7 +72,9 @@
     "romaji": "jikan",
     "hindi": "समय",
     "english": "time",
-    "tags": ["time"],
+    "tags": [
+      "time"
+    ],
     "id": "word_7"
   },
   {
@@ -68,7 +83,9 @@
     "romaji": "kafe",
     "hindi": "कैफे",
     "english": "cafe",
-    "tags": ["place"],
+    "tags": [
+      "place"
+    ],
     "id": "word_8"
   },
   {
@@ -77,7 +94,9 @@
     "romaji": "shigoto",
     "hindi": "काम",
     "english": "work",
-    "tags": ["life"],
+    "tags": [
+      "life"
+    ],
     "id": "word_9"
   },
   {
@@ -86,7 +105,9 @@
     "romaji": "byoki",
     "hindi": "बीमारी",
     "english": "illness",
-    "tags": ["health"],
+    "tags": [
+      "health"
+    ],
     "id": "word_10"
   },
   {
@@ -95,7 +116,10 @@
     "romaji": "Okimasu",
     "hindi": "उठता/उठती हूँ",
     "english": "I wake up / Wake Up",
-    "tags": ["routine", "verb"],
+    "tags": [
+      "routine",
+      "verb"
+    ],
     "id": "word_11"
   },
   {
@@ -104,7 +128,9 @@
     "romaji": "Tabemasu",
     "hindi": "खाता/खाती हूँ",
     "english": "Eat",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_12"
   },
   {
@@ -113,7 +139,9 @@
     "romaji": "Nomimasu",
     "hindi": "पीता/पीती हूँ",
     "english": "Drink",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_13"
   },
   {
@@ -122,7 +150,9 @@
     "romaji": "Kikimasu",
     "hindi": "सुनता/सुनती हूँ",
     "english": "Listen",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_14"
   },
   {
@@ -131,7 +161,9 @@
     "romaji": "Mimasu",
     "hindi": "देखता/देखती हूँ",
     "english": "Watch / See",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_15"
   },
   {
@@ -140,7 +172,9 @@
     "romaji": "Yomimasu",
     "hindi": "पढ़ता/पढ़ती हूँ",
     "english": "Read",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_16"
   },
   {
@@ -149,7 +183,9 @@
     "romaji": "Ikimasu",
     "hindi": "जाता/जाती हूँ",
     "english": "Go",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_17"
   },
   {
@@ -158,7 +194,9 @@
     "romaji": "Kimasu",
     "hindi": "आता/आती हूँ",
     "english": "Come",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_18"
   },
   {
@@ -167,7 +205,9 @@
     "romaji": "Nemasu",
     "hindi": "सोता/सोती हूँ",
     "english": "Sleep",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_19"
   },
   {
@@ -176,7 +216,9 @@
     "romaji": "Shimasu",
     "hindi": "करता/करती हूँ",
     "english": "Do",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_20"
   },
   {
@@ -185,7 +227,9 @@
     "romaji": "Benkyoushimasu",
     "hindi": "पढ़ाई करता हूँ",
     "english": "Study",
-    "tags": ["verb"],
+    "tags": [
+      "verb"
+    ],
     "id": "word_21"
   },
   {
@@ -194,7 +238,10 @@
     "romaji": "Mimasen",
     "hindi": "नहीं देखता",
     "english": "Do not watch",
-    "tags": ["verb", "negative"],
+    "tags": [
+      "verb",
+      "negative"
+    ],
     "id": "word_22"
   },
   {
@@ -203,7 +250,10 @@
     "romaji": "Tabemasen",
     "hindi": "नहीं खाता",
     "english": "Do not eat",
-    "tags": ["verb", "negative"],
+    "tags": [
+      "verb",
+      "negative"
+    ],
     "id": "word_23"
   },
   {
@@ -212,7 +262,10 @@
     "romaji": "Ikimasen",
     "hindi": "नहीं जाता",
     "english": "Do not go",
-    "tags": ["verb", "negative"],
+    "tags": [
+      "verb",
+      "negative"
+    ],
     "id": "word_24"
   },
   {
@@ -221,7 +274,10 @@
     "romaji": "Tanoshii",
     "hindi": "मज़ेदार",
     "english": "Fun / Enjoyable",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_25"
   },
   {
@@ -230,7 +286,10 @@
     "romaji": "Muzukashii",
     "hindi": "मुश्किल",
     "english": "Difficult",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_26"
   },
   {
@@ -239,7 +298,10 @@
     "romaji": "Yasashii",
     "hindi": "दयालु / अच्छा",
     "english": "Nice / Kind",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_27"
   },
   {
@@ -248,7 +310,10 @@
     "romaji": "Atatakai",
     "hindi": "गर्म (मौसम)",
     "english": "Warm",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_28"
   },
   {
@@ -257,7 +322,10 @@
     "romaji": "Atsui",
     "hindi": "गर्म (छूने पर/मौसम)",
     "english": "Hot",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_29"
   },
   {
@@ -266,7 +334,10 @@
     "romaji": "Samui",
     "hindi": "ठंडा",
     "english": "Cold",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_30"
   },
   {
@@ -275,7 +346,10 @@
     "romaji": "Takai",
     "hindi": "ऊँचा / महंगा",
     "english": "Tall / Expensive",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_31"
   },
   {
@@ -284,7 +358,10 @@
     "romaji": "Hikui",
     "hindi": "छोटा / नीचा",
     "english": "Short / Low",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_32"
   },
   {
@@ -293,7 +370,10 @@
     "romaji": "Shizuka",
     "hindi": "शांत",
     "english": "Quiet",
-    "tags": ["adjective", "na-adj"],
+    "tags": [
+      "adjective",
+      "na-adj"
+    ],
     "id": "word_33"
   },
   {
@@ -302,7 +382,10 @@
     "romaji": "Nigiyaka",
     "hindi": "जीवंत",
     "english": "Lively",
-    "tags": ["adjective", "na-adj"],
+    "tags": [
+      "adjective",
+      "na-adj"
+    ],
     "id": "word_34"
   },
   {
@@ -311,7 +394,10 @@
     "romaji": "Fushigi",
     "hindi": "रहस्यमय",
     "english": "Mysterious",
-    "tags": ["adjective", "na-adj"],
+    "tags": [
+      "adjective",
+      "na-adj"
+    ],
     "id": "word_35"
   },
   {
@@ -320,7 +406,10 @@
     "romaji": "Suteki",
     "hindi": "शानदार / सुन्दर",
     "english": "Lovely",
-    "tags": ["adjective", "na-adj"],
+    "tags": [
+      "adjective",
+      "na-adj"
+    ],
     "id": "word_36"
   },
   {
@@ -329,7 +418,10 @@
     "romaji": "Sugoi",
     "hindi": "अद्भुत!",
     "english": "Amazing! / Wow!",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_37"
   },
   {
@@ -338,7 +430,9 @@
     "romaji": "Totemo",
     "hindi": "बहुत",
     "english": "Very",
-    "tags": ["adverb"],
+    "tags": [
+      "adverb"
+    ],
     "id": "word_38"
   },
   {
@@ -347,7 +441,9 @@
     "romaji": "Sukoshi",
     "hindi": "थोड़ा",
     "english": "A little",
-    "tags": ["adverb"],
+    "tags": [
+      "adverb"
+    ],
     "id": "word_39"
   },
   {
@@ -356,7 +452,9 @@
     "romaji": "Chotto",
     "hindi": "थोड़ा / ज़रा",
     "english": "A little / Just a moment",
-    "tags": ["adverb"],
+    "tags": [
+      "adverb"
+    ],
     "id": "word_40"
   },
   {
@@ -365,7 +463,9 @@
     "romaji": "Hito",
     "hindi": "व्यक्ति",
     "english": "Person",
-    "tags": ["people"],
+    "tags": [
+      "people"
+    ],
     "id": "word_41"
   },
   {
@@ -374,7 +474,9 @@
     "romaji": "Watashi",
     "hindi": "मैं",
     "english": "I / Me",
-    "tags": ["people"],
+    "tags": [
+      "people"
+    ],
     "id": "word_42"
   },
   {
@@ -383,7 +485,9 @@
     "romaji": "Isha",
     "hindi": "डॉक्टर",
     "english": "Doctor",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_43"
   },
   {
@@ -392,7 +496,9 @@
     "romaji": "Bengoshi",
     "hindi": "वकील",
     "english": "Lawyer",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_44"
   },
   {
@@ -401,7 +507,9 @@
     "romaji": "Sensei",
     "hindi": "शिक्षक",
     "english": "Teacher",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_45"
   },
   {
@@ -410,7 +518,9 @@
     "romaji": "Gakusei",
     "hindi": "छात्र",
     "english": "Student",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_46"
   },
   {
@@ -419,7 +529,9 @@
     "romaji": "Enjinia",
     "hindi": "इंजीनियर",
     "english": "Engineer",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_47"
   },
   {
@@ -428,7 +540,9 @@
     "romaji": "Bijinesuman",
     "hindi": "व्यापारी",
     "english": "Businessman",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_48"
   },
   {
@@ -437,7 +551,9 @@
     "romaji": "Komuin",
     "hindi": "सरकारी कर्मचारी",
     "english": "Government Employee",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_49"
   },
   {
@@ -446,7 +562,9 @@
     "romaji": "Shufu",
     "hindi": "गृहिणी",
     "english": "Homemaker",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_50"
   },
   {
@@ -455,7 +573,9 @@
     "romaji": "Keisatsukan",
     "hindi": "पुलिस अधिकारी",
     "english": "Police Officer",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_51"
   },
   {
@@ -464,7 +584,9 @@
     "romaji": "Kaishain",
     "hindi": "ऑफिस कर्मचारी",
     "english": "Office Worker",
-    "tags": ["profession"],
+    "tags": [
+      "profession"
+    ],
     "id": "word_52"
   },
   {
@@ -473,7 +595,9 @@
     "romaji": "Nihon",
     "hindi": "जापान",
     "english": "Japan",
-    "tags": ["country"],
+    "tags": [
+      "country"
+    ],
     "id": "word_53"
   },
   {
@@ -482,7 +606,9 @@
     "romaji": "Indo",
     "hindi": "भारत",
     "english": "India",
-    "tags": ["country"],
+    "tags": [
+      "country"
+    ],
     "id": "word_54"
   },
   {
@@ -491,7 +617,9 @@
     "romaji": "Igiisu",
     "hindi": "ब्रिटेन",
     "english": "Britain",
-    "tags": ["country"],
+    "tags": [
+      "country"
+    ],
     "id": "word_55"
   },
   {
@@ -500,7 +628,9 @@
     "romaji": "Burajiru",
     "hindi": "ब्राज़ील",
     "english": "Brazil",
-    "tags": ["country"],
+    "tags": [
+      "country"
+    ],
     "id": "word_56"
   },
   {
@@ -509,7 +639,9 @@
     "romaji": "Doitsu",
     "hindi": "जर्मनी",
     "english": "Germany",
-    "tags": ["country"],
+    "tags": [
+      "country"
+    ],
     "id": "word_57"
   },
   {
@@ -518,7 +650,9 @@
     "romaji": "Chuugoku",
     "hindi": "चीन",
     "english": "China",
-    "tags": ["country"],
+    "tags": [
+      "country"
+    ],
     "id": "word_58"
   },
   {
@@ -527,7 +661,9 @@
     "romaji": "Kokuseki",
     "hindi": "राष्ट्रीयता",
     "english": "Nationality",
-    "tags": ["basic"],
+    "tags": [
+      "basic"
+    ],
     "id": "word_59"
   },
   {
@@ -536,7 +672,9 @@
     "romaji": "Nihonjin",
     "hindi": "जापानी व्यक्ति",
     "english": "Japanese Person",
-    "tags": ["nationality"],
+    "tags": [
+      "nationality"
+    ],
     "id": "word_60"
   },
   {
@@ -545,7 +683,9 @@
     "romaji": "Indojin",
     "hindi": "भारतीय व्यक्ति",
     "english": "Indian Person",
-    "tags": ["nationality"],
+    "tags": [
+      "nationality"
+    ],
     "id": "word_61"
   },
   {
@@ -554,7 +694,10 @@
     "romaji": "Hai",
     "hindi": "हाँ",
     "english": "Yes",
-    "tags": ["basic", "anime"],
+    "tags": [
+      "basic",
+      "anime"
+    ],
     "id": "word_62"
   },
   {
@@ -563,7 +706,10 @@
     "romaji": "Iie",
     "hindi": "नहीं",
     "english": "No",
-    "tags": ["basic", "anime"],
+    "tags": [
+      "basic",
+      "anime"
+    ],
     "id": "word_63"
   },
   {
@@ -572,7 +718,9 @@
     "romaji": "Wakatta",
     "hindi": "समझ गया",
     "english": "I got it / Understood",
-    "tags": ["anime"],
+    "tags": [
+      "anime"
+    ],
     "id": "word_64"
   },
   {
@@ -581,7 +729,9 @@
     "romaji": "Daijoubu",
     "hindi": "ठीक है",
     "english": "It's okay / I'm fine",
-    "tags": ["anime"],
+    "tags": [
+      "anime"
+    ],
     "id": "word_65"
   },
   {
@@ -590,7 +740,9 @@
     "romaji": "Uso!",
     "hindi": "झूठ! / सच में?!",
     "english": "Lie! / No way!",
-    "tags": ["anime"],
+    "tags": [
+      "anime"
+    ],
     "id": "word_66"
   },
   {
@@ -599,7 +751,10 @@
     "romaji": "Kawaii",
     "hindi": "प्यारा",
     "english": "Cute",
-    "tags": ["anime", "adjective"],
+    "tags": [
+      "anime",
+      "adjective"
+    ],
     "id": "word_67"
   },
   {
@@ -608,7 +763,10 @@
     "romaji": "Kanashii",
     "hindi": "दुखद है",
     "english": "Sad",
-    "tags": ["emotion", "adjective"],
+    "tags": [
+      "emotion",
+      "adjective"
+    ],
     "id": "word_68"
   },
   {
@@ -617,7 +775,10 @@
     "romaji": "Ureshii",
     "hindi": "खुश हूँ",
     "english": "Happy",
-    "tags": ["emotion", "adjective"],
+    "tags": [
+      "emotion",
+      "adjective"
+    ],
     "id": "word_69"
   },
   {
@@ -626,7 +787,10 @@
     "romaji": "Kowai",
     "hindi": "डरावना",
     "english": "Scary",
-    "tags": ["emotion", "adjective"],
+    "tags": [
+      "emotion",
+      "adjective"
+    ],
     "id": "word_70"
   },
   {
@@ -635,7 +799,9 @@
     "romaji": "Itai",
     "hindi": "दर्द है!",
     "english": "It hurts!",
-    "tags": ["emotion"],
+    "tags": [
+      "emotion"
+    ],
     "id": "word_71"
   },
   {
@@ -644,7 +810,9 @@
     "romaji": "Suki",
     "hindi": "पसंद है",
     "english": "Like",
-    "tags": ["emotion"],
+    "tags": [
+      "emotion"
+    ],
     "id": "word_72"
   },
   {
@@ -653,7 +821,9 @@
     "romaji": "Kirai",
     "hindi": "नापसंद है",
     "english": "Dislike",
-    "tags": ["emotion"],
+    "tags": [
+      "emotion"
+    ],
     "id": "word_73"
   },
   {
@@ -662,7 +832,10 @@
     "romaji": "Omoshiroi",
     "hindi": "दिलचस्प / मज़ेदार",
     "english": "Interesting / Funny",
-    "tags": ["emotion", "adjective"],
+    "tags": [
+      "emotion",
+      "adjective"
+    ],
     "id": "word_74"
   },
   {
@@ -671,7 +844,9 @@
     "romaji": "Gohan",
     "hindi": "चावल",
     "english": "Rice",
-    "tags": ["food"],
+    "tags": [
+      "food"
+    ],
     "id": "word_75"
   },
   {
@@ -680,7 +855,9 @@
     "romaji": "Ocha",
     "hindi": "चाय / हरी चाय",
     "english": "Tea / Green Tea",
-    "tags": ["drink"],
+    "tags": [
+      "drink"
+    ],
     "id": "word_76"
   },
   {
@@ -689,7 +866,9 @@
     "romaji": "Mizu",
     "hindi": "पानी",
     "english": "Water",
-    "tags": ["drink"],
+    "tags": [
+      "drink"
+    ],
     "id": "word_77"
   },
   {
@@ -698,7 +877,9 @@
     "romaji": "Gyunyu",
     "hindi": "दूध",
     "english": "Milk",
-    "tags": ["drink"],
+    "tags": [
+      "drink"
+    ],
     "id": "word_78"
   },
   {
@@ -707,7 +888,10 @@
     "romaji": "Ookii",
     "hindi": "बड़ा",
     "english": "Big",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_79"
   },
   {
@@ -716,7 +900,10 @@
     "romaji": "Chiisai",
     "hindi": "छोटा",
     "english": "Small",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_80"
   },
   {
@@ -725,7 +912,9 @@
     "romaji": "Shokumotsu",
     "hindi": "खाना",
     "english": "Food",
-    "tags": ["basic"],
+    "tags": [
+      "basic"
+    ],
     "id": "word_81"
   },
   {
@@ -734,7 +923,9 @@
     "romaji": "Shusshin",
     "hindi": "जन्म स्थान",
     "english": "Place of Birth",
-    "tags": ["basic"],
+    "tags": [
+      "basic"
+    ],
     "id": "word_82"
   },
   {
@@ -743,7 +934,10 @@
     "romaji": "Oishii",
     "hindi": "स्वादिष्ट",
     "english": "Tasty",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_83"
   },
   {
@@ -752,16 +946,22 @@
     "romaji": "Kashikoi",
     "hindi": "बुद्धिमान",
     "english": "Intelligent",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_84"
   },
   {
     "type": "word",
-    "japanese": "かっこい",
-    "romaji": "Kakkoi",
+    "japanese": "かっこいい",
+    "romaji": "Kakkoii",
     "hindi": "स्टाइलिश",
     "english": "Cool",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_85"
   },
   {
@@ -770,7 +970,9 @@
     "romaji": "Nan",
     "hindi": "क्या",
     "english": "What",
-    "tags": ["question"],
+    "tags": [
+      "question"
+    ],
     "id": "word_86"
   },
   {
@@ -779,7 +981,10 @@
     "romaji": "Nani?",
     "hindi": "क्या?",
     "english": "What?",
-    "tags": ["question", "anime"],
+    "tags": [
+      "question",
+      "anime"
+    ],
     "id": "word_87"
   },
   {
@@ -788,7 +993,9 @@
     "romaji": "Koko",
     "hindi": "यहाँ",
     "english": "Here",
-    "tags": ["place"],
+    "tags": [
+      "place"
+    ],
     "id": "word_88"
   },
   {
@@ -797,7 +1004,9 @@
     "romaji": "Soko",
     "hindi": "वहाँ",
     "english": "There",
-    "tags": ["place"],
+    "tags": [
+      "place"
+    ],
     "id": "word_89"
   },
   {
@@ -806,7 +1015,9 @@
     "romaji": "Doko",
     "hindi": "कहाँ?",
     "english": "Where?",
-    "tags": ["question"],
+    "tags": [
+      "question"
+    ],
     "id": "word_90"
   },
   {
@@ -815,7 +1026,9 @@
     "romaji": "Kutsu",
     "hindi": "जूते",
     "english": "Shoes",
-    "tags": ["clothing"],
+    "tags": [
+      "clothing"
+    ],
     "id": "word_91"
   },
   {
@@ -824,7 +1037,9 @@
     "romaji": "Boushi",
     "hindi": "टोपी",
     "english": "Hat / Cap",
-    "tags": ["clothing"],
+    "tags": [
+      "clothing"
+    ],
     "id": "word_92"
   },
   {
@@ -833,7 +1048,9 @@
     "romaji": "Kasa",
     "hindi": "छाता",
     "english": "Umbrella",
-    "tags": ["travel"],
+    "tags": [
+      "travel"
+    ],
     "id": "word_93"
   },
   {
@@ -842,7 +1059,9 @@
     "romaji": "Kooto",
     "hindi": "कोट",
     "english": "Coat",
-    "tags": ["clothing"],
+    "tags": [
+      "clothing"
+    ],
     "id": "word_94"
   },
   {
@@ -851,7 +1070,10 @@
     "romaji": "Kuukou",
     "hindi": "हवाई अड्डा",
     "english": "Airport",
-    "tags": ["place", "travel"],
+    "tags": [
+      "place",
+      "travel"
+    ],
     "id": "word_95"
   },
   {
@@ -860,7 +1082,10 @@
     "romaji": "Chikatetsu",
     "hindi": "मेट्रो / सबवे",
     "english": "Subway",
-    "tags": ["transport", "travel"],
+    "tags": [
+      "transport",
+      "travel"
+    ],
     "id": "word_96"
   },
   {
@@ -869,7 +1094,10 @@
     "romaji": "Eki",
     "hindi": "रेलवे स्टेशन",
     "english": "Train Station",
-    "tags": ["place", "travel"],
+    "tags": [
+      "place",
+      "travel"
+    ],
     "id": "word_97"
   },
   {
@@ -878,7 +1106,10 @@
     "romaji": "Shinkansen",
     "hindi": "बुलेट ट्रेन",
     "english": "Bullet Train",
-    "tags": ["transport", "travel"],
+    "tags": [
+      "transport",
+      "travel"
+    ],
     "id": "word_98"
   },
   {
@@ -887,7 +1118,10 @@
     "romaji": "Takushii",
     "hindi": "टैक्सी",
     "english": "Taxi",
-    "tags": ["transport", "travel"],
+    "tags": [
+      "transport",
+      "travel"
+    ],
     "id": "word_99"
   },
   {
@@ -896,7 +1130,10 @@
     "romaji": "Basutei",
     "hindi": "बस स्टॉप",
     "english": "Bus Stop",
-    "tags": ["place", "travel"],
+    "tags": [
+      "place",
+      "travel"
+    ],
     "id": "word_100"
   },
   {
@@ -905,7 +1142,9 @@
     "romaji": "Kippu",
     "hindi": "टिकट",
     "english": "Ticket",
-    "tags": ["travel"],
+    "tags": [
+      "travel"
+    ],
     "id": "word_101"
   },
   {
@@ -914,7 +1153,9 @@
     "romaji": "Chizu",
     "hindi": "नक्शा",
     "english": "Map",
-    "tags": ["travel"],
+    "tags": [
+      "travel"
+    ],
     "id": "word_102"
   },
   {
@@ -923,7 +1164,9 @@
     "romaji": "Sumaho",
     "hindi": "स्मार्टफोन",
     "english": "Smartphone",
-    "tags": ["travel"],
+    "tags": [
+      "travel"
+    ],
     "id": "word_103"
   },
   {
@@ -932,7 +1175,9 @@
     "romaji": "Pasupooto",
     "hindi": "पासपोर्ट",
     "english": "Passport",
-    "tags": ["travel"],
+    "tags": [
+      "travel"
+    ],
     "id": "word_104"
   },
   {
@@ -941,7 +1186,10 @@
     "romaji": "Hoteru",
     "hindi": "होटल",
     "english": "Hotel",
-    "tags": ["place", "travel"],
+    "tags": [
+      "place",
+      "travel"
+    ],
     "id": "word_105"
   },
   {
@@ -950,7 +1198,9 @@
     "romaji": "Hoshii",
     "hindi": "चाहिए",
     "english": "Want",
-    "tags": ["basic"],
+    "tags": [
+      "basic"
+    ],
     "id": "word_106"
   },
   {
@@ -959,17 +1209,11 @@
     "romaji": "Yasui",
     "hindi": "सस्ता",
     "english": "Cheap",
-    "tags": ["adjective", "i-adj"],
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
     "id": "word_107"
-  },
-  {
-    "type": "word",
-    "japanese": "だっさい",
-    "romaji": "Dasai",
-    "hindi": "बेकार दिखने वाला",
-    "english": "Hideous / Uncool",
-    "tags": ["adjective"],
-    "id": "word_108"
   },
   {
     "type": "word",
@@ -977,8 +1221,11 @@
     "romaji": "Atarashii",
     "hindi": "नया",
     "english": "New",
-    "tags": ["adjective", "i-adj"],
-    "id": "word_109"
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
+    "id": "word_108"
   },
   {
     "type": "word",
@@ -986,8 +1233,11 @@
     "romaji": "Furui",
     "hindi": "पुराना",
     "english": "Old",
-    "tags": ["adjective", "i-adj"],
-    "id": "word_110"
+    "tags": [
+      "adjective",
+      "i-adj"
+    ],
+    "id": "word_109"
   },
   {
     "type": "word",
@@ -995,8 +1245,11 @@
     "romaji": "Kirei",
     "hindi": "सुंदर / साफ",
     "english": "Beautiful / Clean",
-    "tags": ["adjective", "na-adj"],
-    "id": "word_111"
+    "tags": [
+      "adjective",
+      "na-adj"
+    ],
+    "id": "word_110"
   },
   {
     "type": "word",
@@ -1004,8 +1257,10 @@
     "romaji": "Mise",
     "hindi": "दुकान",
     "english": "Shop / Store",
-    "tags": ["place"],
-    "id": "word_112"
+    "tags": [
+      "place"
+    ],
+    "id": "word_111"
   },
   {
     "type": "word",
@@ -1013,8 +1268,10 @@
     "romaji": "Nekutai",
     "hindi": "टाई",
     "english": "Necktie",
-    "tags": ["clothing"],
-    "id": "word_113"
+    "tags": [
+      "clothing"
+    ],
+    "id": "word_112"
   },
   {
     "type": "word",
@@ -1022,8 +1279,10 @@
     "romaji": "Jaketto",
     "hindi": "जैकेट",
     "english": "Jacket",
-    "tags": ["clothing"],
-    "id": "word_114"
+    "tags": [
+      "clothing"
+    ],
+    "id": "word_113"
   },
   {
     "type": "word",
@@ -1031,8 +1290,10 @@
     "romaji": "Doresu",
     "hindi": "ड्रेस",
     "english": "Dress",
-    "tags": ["clothing"],
-    "id": "word_115"
+    "tags": [
+      "clothing"
+    ],
+    "id": "word_114"
   },
   {
     "type": "word",
@@ -1040,8 +1301,10 @@
     "romaji": "Sukaato",
     "hindi": "स्कर्ट",
     "english": "Skirt",
-    "tags": ["clothing"],
-    "id": "word_116"
+    "tags": [
+      "clothing"
+    ],
+    "id": "word_115"
   },
   {
     "type": "word",
@@ -1049,8 +1312,10 @@
     "romaji": "Tishatsu",
     "hindi": "टी-शर्ट",
     "english": "T-Shirt",
-    "tags": ["clothing"],
-    "id": "word_117"
+    "tags": [
+      "clothing"
+    ],
+    "id": "word_116"
   },
   {
     "type": "word",
@@ -1058,8 +1323,10 @@
     "romaji": "Kuroi",
     "hindi": "काला",
     "english": "Black",
-    "tags": ["color"],
-    "id": "word_118"
+    "tags": [
+      "color"
+    ],
+    "id": "word_117"
   },
   {
     "type": "word",
@@ -1067,8 +1334,10 @@
     "romaji": "Aoi",
     "hindi": "नीला / हरा",
     "english": "Blue / Green",
-    "tags": ["color"],
-    "id": "word_119"
+    "tags": [
+      "color"
+    ],
+    "id": "word_118"
   },
   {
     "type": "word",
@@ -1076,8 +1345,10 @@
     "romaji": "Akai",
     "hindi": "लाल",
     "english": "Red",
-    "tags": ["color"],
-    "id": "word_120"
+    "tags": [
+      "color"
+    ],
+    "id": "word_119"
   },
   {
     "type": "word",
@@ -1085,8 +1356,10 @@
     "romaji": "Shiroi",
     "hindi": "सफेद",
     "english": "White",
-    "tags": ["color"],
-    "id": "word_121"
+    "tags": [
+      "color"
+    ],
+    "id": "word_120"
   },
   {
     "type": "word",
@@ -1094,8 +1367,10 @@
     "romaji": "Futatsu",
     "hindi": "दो",
     "english": "Two (items)",
-    "tags": ["counter"],
-    "id": "word_122"
+    "tags": [
+      "counter"
+    ],
+    "id": "word_121"
   },
   {
     "type": "word",
@@ -1103,8 +1378,10 @@
     "romaji": "Mittsu",
     "hindi": "तीन",
     "english": "Three (items)",
-    "tags": ["counter"],
-    "id": "word_123"
+    "tags": [
+      "counter"
+    ],
+    "id": "word_122"
   },
   {
     "type": "word",
@@ -1112,8 +1389,10 @@
     "romaji": "Yottsu",
     "hindi": "चार",
     "english": "Four (items)",
-    "tags": ["counter"],
-    "id": "word_124"
+    "tags": [
+      "counter"
+    ],
+    "id": "word_123"
   },
   {
     "type": "word",
@@ -1121,8 +1400,10 @@
     "romaji": "Itsutsu",
     "hindi": "पाँच",
     "english": "Five (items)",
-    "tags": ["counter"],
-    "id": "word_125"
+    "tags": [
+      "counter"
+    ],
+    "id": "word_124"
   },
   {
     "type": "word",
@@ -1130,8 +1411,10 @@
     "romaji": "Onigiri",
     "hindi": "राइस बॉल",
     "english": "Rice Ball",
-    "tags": ["food"],
-    "id": "word_126"
+    "tags": [
+      "food"
+    ],
+    "id": "word_125"
   },
   {
     "type": "word",
@@ -1139,8 +1422,10 @@
     "romaji": "Soba",
     "hindi": "सोबा नूडल्स",
     "english": "Soba Noodles",
-    "tags": ["food"],
-    "id": "word_127"
+    "tags": [
+      "food"
+    ],
+    "id": "word_126"
   },
   {
     "type": "word",
@@ -1148,8 +1433,10 @@
     "romaji": "Teishoku",
     "hindi": "भोजन सेट",
     "english": "Meal Set",
-    "tags": ["food"],
-    "id": "word_128"
+    "tags": [
+      "food"
+    ],
+    "id": "word_127"
   },
   {
     "type": "word",
@@ -1157,8 +1444,11 @@
     "romaji": "Bejitarian",
     "hindi": "शाकाहारी",
     "english": "Vegetarian",
-    "tags": ["food", "lifestyle"],
-    "id": "word_129"
+    "tags": [
+      "food",
+      "lifestyle"
+    ],
+    "id": "word_128"
   },
   {
     "type": "word",
@@ -1166,8 +1456,10 @@
     "romaji": "Ichi ji",
     "hindi": "एक बजे",
     "english": "1 o'clock",
-    "tags": ["time"],
-    "id": "word_130"
+    "tags": [
+      "time"
+    ],
+    "id": "word_129"
   },
   {
     "type": "word",
@@ -1175,8 +1467,10 @@
     "romaji": "Ni ji",
     "hindi": "दो बजे",
     "english": "2 o'clock",
-    "tags": ["time"],
-    "id": "word_131"
+    "tags": [
+      "time"
+    ],
+    "id": "word_130"
   },
   {
     "type": "word",
@@ -1184,8 +1478,10 @@
     "romaji": "San ji",
     "hindi": "तीन बजे",
     "english": "3 o'clock",
-    "tags": ["time"],
-    "id": "word_132"
+    "tags": [
+      "time"
+    ],
+    "id": "word_131"
   },
   {
     "type": "word",
@@ -1193,8 +1489,10 @@
     "romaji": "Go ji",
     "hindi": "पाँच बजे",
     "english": "5 o'clock",
-    "tags": ["time"],
-    "id": "word_133"
+    "tags": [
+      "time"
+    ],
+    "id": "word_132"
   },
   {
     "type": "word",
@@ -1202,8 +1500,10 @@
     "romaji": "ji han",
     "hindi": "बजकर 30 मिनट",
     "english": ":30 (half past)",
-    "tags": ["time"],
-    "id": "word_134"
+    "tags": [
+      "time"
+    ],
+    "id": "word_133"
   },
   {
     "type": "word",
@@ -1211,8 +1511,10 @@
     "romaji": "Gozen",
     "hindi": "सुबह",
     "english": "AM",
-    "tags": ["time"],
-    "id": "word_135"
+    "tags": [
+      "time"
+    ],
+    "id": "word_134"
   },
   {
     "type": "word",
@@ -1220,8 +1522,10 @@
     "romaji": "Gogo",
     "hindi": "दोपहर बाद",
     "english": "PM",
-    "tags": ["time"],
-    "id": "word_136"
+    "tags": [
+      "time"
+    ],
+    "id": "word_135"
   },
   {
     "type": "word",
@@ -1229,8 +1533,10 @@
     "romaji": "Kinoo / Kinou",
     "hindi": "कल (बीता)",
     "english": "Yesterday",
-    "tags": ["time"],
-    "id": "word_137"
+    "tags": [
+      "time"
+    ],
+    "id": "word_136"
   },
   {
     "type": "word",
@@ -1238,8 +1544,10 @@
     "romaji": "Kyoo / Kyou",
     "hindi": "आज",
     "english": "Today",
-    "tags": ["time"],
-    "id": "word_138"
+    "tags": [
+      "time"
+    ],
+    "id": "word_137"
   },
   {
     "type": "word",
@@ -1247,8 +1555,10 @@
     "romaji": "Ashita",
     "hindi": "कल (आने वाला)",
     "english": "Tomorrow",
-    "tags": ["time"],
-    "id": "word_139"
+    "tags": [
+      "time"
+    ],
+    "id": "word_138"
   },
   {
     "type": "word",
@@ -1256,8 +1566,10 @@
     "romaji": "Ima",
     "hindi": "अभी",
     "english": "Now",
-    "tags": ["time"],
-    "id": "word_140"
+    "tags": [
+      "time"
+    ],
+    "id": "word_139"
   },
   {
     "type": "word",
@@ -1265,8 +1577,10 @@
     "romaji": "Choudo",
     "hindi": "ठीक (बजे)",
     "english": "Exactly",
-    "tags": ["time"],
-    "id": "word_141"
+    "tags": [
+      "time"
+    ],
+    "id": "word_140"
   },
   {
     "type": "word",
@@ -1274,8 +1588,10 @@
     "romaji": "Goro",
     "hindi": "लगभग",
     "english": "About / Around",
-    "tags": ["time"],
-    "id": "word_142"
+    "tags": [
+      "time"
+    ],
+    "id": "word_141"
   },
   {
     "type": "word",
@@ -1283,8 +1599,10 @@
     "romaji": "Nichiyoubi",
     "hindi": "रविवार",
     "english": "Sunday",
-    "tags": ["day"],
-    "id": "word_143"
+    "tags": [
+      "day"
+    ],
+    "id": "word_142"
   },
   {
     "type": "word",
@@ -1292,8 +1610,10 @@
     "romaji": "Getsuyoubi",
     "hindi": "सोमवार",
     "english": "Monday",
-    "tags": ["day"],
-    "id": "word_144"
+    "tags": [
+      "day"
+    ],
+    "id": "word_143"
   },
   {
     "type": "word",
@@ -1301,8 +1621,10 @@
     "romaji": "Kayoubi",
     "hindi": "मंगलवार",
     "english": "Tuesday",
-    "tags": ["day"],
-    "id": "word_145"
+    "tags": [
+      "day"
+    ],
+    "id": "word_144"
   },
   {
     "type": "word",
@@ -1310,8 +1632,10 @@
     "romaji": "Suiyoubi",
     "hindi": "बुधवार",
     "english": "Wednesday",
-    "tags": ["day"],
-    "id": "word_146"
+    "tags": [
+      "day"
+    ],
+    "id": "word_145"
   },
   {
     "type": "word",
@@ -1319,8 +1643,10 @@
     "romaji": "Mokuyoubi",
     "hindi": "गुरुवार",
     "english": "Thursday",
-    "tags": ["day"],
-    "id": "word_147"
+    "tags": [
+      "day"
+    ],
+    "id": "word_146"
   },
   {
     "type": "word",
@@ -1328,8 +1654,10 @@
     "romaji": "Kinyoubi",
     "hindi": "शुक्रवार",
     "english": "Friday",
-    "tags": ["day"],
-    "id": "word_148"
+    "tags": [
+      "day"
+    ],
+    "id": "word_147"
   },
   {
     "type": "word",
@@ -1337,17 +1665,10 @@
     "romaji": "Doyoubi",
     "hindi": "शनिवार",
     "english": "Saturday",
-    "tags": ["day"],
-    "id": "word_149"
-  },
-  {
-    "type": "word",
-    "japanese": "ともだち",
-    "romaji": "Tomodachi",
-    "hindi": "दोस्त",
-    "english": "Friend",
-    "tags": ["subject", "people"],
-    "id": "word_150"
+    "tags": [
+      "day"
+    ],
+    "id": "word_148"
   },
   {
     "type": "word",
@@ -1355,17 +1676,11 @@
     "romaji": "Eiga",
     "hindi": "फिल्म",
     "english": "Movie",
-    "tags": ["object", "entertainment"],
-    "id": "word_151"
-  },
-  {
-    "type": "word",
-    "japanese": "しずか",
-    "romaji": "Shizuka",
-    "hindi": "शांत",
-    "english": "Quiet",
-    "tags": ["adjective", "na-adj"],
-    "id": "word_152"
+    "tags": [
+      "object",
+      "entertainment"
+    ],
+    "id": "word_149"
   },
   {
     "type": "word",
@@ -1373,8 +1688,11 @@
     "romaji": "Kokoro",
     "hindi": "दिल / मन",
     "english": "Heart / Mind",
-    "tags": ["song-vocab", "emotion"],
-    "id": "word_153"
+    "tags": [
+      "song-vocab",
+      "emotion"
+    ],
+    "id": "word_150"
   },
   {
     "type": "word",
@@ -1382,17 +1700,11 @@
     "romaji": "Hoshi",
     "hindi": "तारा",
     "english": "Star",
-    "tags": ["song-vocab", "nature"],
-    "id": "word_154"
-  },
-  {
-    "type": "word",
-    "japanese": "エンジニア",
-    "romaji": "Enjinia",
-    "hindi": "इंजीनियर",
-    "english": "Engineer",
-    "tags": ["profession"],
-    "id": "word_155"
+    "tags": [
+      "song-vocab",
+      "nature"
+    ],
+    "id": "word_151"
   },
   {
     "type": "word",
@@ -1400,8 +1712,10 @@
     "romaji": "Kazoku",
     "hindi": "परिवार",
     "english": "Family",
-    "tags": ["family"],
-    "id": "word_156"
+    "tags": [
+      "family"
+    ],
+    "id": "word_152"
   },
   {
     "type": "word",
@@ -1409,8 +1723,10 @@
     "romaji": "Chichi",
     "hindi": "पिताजी (अपने)",
     "english": "Father (own)",
-    "tags": ["family"],
-    "id": "word_157"
+    "tags": [
+      "family"
+    ],
+    "id": "word_153"
   },
   {
     "type": "word",
@@ -1418,8 +1734,10 @@
     "romaji": "Haha",
     "hindi": "माँ (अपनी)",
     "english": "Mother (own)",
-    "tags": ["family"],
-    "id": "word_158"
+    "tags": [
+      "family"
+    ],
+    "id": "word_154"
   },
   {
     "type": "word",
@@ -1427,8 +1745,10 @@
     "romaji": "Otousan",
     "hindi": "पिताजी (दूसरे के)",
     "english": "Father (others')",
-    "tags": ["family"],
-    "id": "word_159"
+    "tags": [
+      "family"
+    ],
+    "id": "word_155"
   },
   {
     "type": "word",
@@ -1436,8 +1756,10 @@
     "romaji": "Okaasan",
     "hindi": "माँ (दूसरे की)",
     "english": "Mother (others')",
-    "tags": ["family"],
-    "id": "word_160"
+    "tags": [
+      "family"
+    ],
+    "id": "word_156"
   },
   {
     "type": "word",
@@ -1445,8 +1767,10 @@
     "romaji": "Ani",
     "hindi": "बड़ा भाई (अपना)",
     "english": "Elder Brother (own)",
-    "tags": ["family"],
-    "id": "word_161"
+    "tags": [
+      "family"
+    ],
+    "id": "word_157"
   },
   {
     "type": "word",
@@ -1454,8 +1778,10 @@
     "romaji": "Oniisan",
     "hindi": "बड़ा भाई (दूसरे का)",
     "english": "Elder Brother (others')",
-    "tags": ["family"],
-    "id": "word_162"
+    "tags": [
+      "family"
+    ],
+    "id": "word_158"
   },
   {
     "type": "word",
@@ -1463,8 +1789,10 @@
     "romaji": "Imouto",
     "hindi": "छोटी बहन (अपनी)",
     "english": "Younger Sister (own)",
-    "tags": ["family"],
-    "id": "word_163"
+    "tags": [
+      "family"
+    ],
+    "id": "word_159"
   },
   {
     "type": "word",
@@ -1472,8 +1800,10 @@
     "romaji": "Imoutosan",
     "hindi": "छोटी बहन (दूसरे की)",
     "english": "Younger Sister (others')",
-    "tags": ["family"],
-    "id": "word_164"
+    "tags": [
+      "family"
+    ],
+    "id": "word_160"
   },
   {
     "type": "word",
@@ -1481,8 +1811,10 @@
     "romaji": "Oji",
     "hindi": "चाचा/मामा (अपने)",
     "english": "Uncle (own)",
-    "tags": ["family"],
-    "id": "word_165"
+    "tags": [
+      "family"
+    ],
+    "id": "word_161"
   },
   {
     "type": "word",
@@ -1490,8 +1822,10 @@
     "romaji": "Oba",
     "hindi": "चाची/मामी (अपनी)",
     "english": "Aunt (own)",
-    "tags": ["family"],
-    "id": "word_166"
+    "tags": [
+      "family"
+    ],
+    "id": "word_162"
   },
   {
     "type": "word",
@@ -1499,8 +1833,10 @@
     "romaji": "Kodomo",
     "hindi": "बच्चे",
     "english": "Children",
-    "tags": ["family"],
-    "id": "word_167"
+    "tags": [
+      "family"
+    ],
+    "id": "word_163"
   },
   {
     "type": "word",
@@ -1508,8 +1844,10 @@
     "romaji": "Musuko",
     "hindi": "बेटा",
     "english": "Son",
-    "tags": ["family"],
-    "id": "word_168"
+    "tags": [
+      "family"
+    ],
+    "id": "word_164"
   },
   {
     "type": "word",
@@ -1517,8 +1855,10 @@
     "romaji": "Musume",
     "hindi": "बेटी",
     "english": "Daughter",
-    "tags": ["family"],
-    "id": "word_169"
+    "tags": [
+      "family"
+    ],
+    "id": "word_165"
   },
   {
     "type": "word",
@@ -1526,8 +1866,10 @@
     "romaji": "Sofu",
     "hindi": "दादाजी (अपने)",
     "english": "Grandfather (own)",
-    "tags": ["family"],
-    "id": "word_170"
+    "tags": [
+      "family"
+    ],
+    "id": "word_166"
   },
   {
     "type": "word",
@@ -1535,80 +1877,10 @@
     "romaji": "Sobo",
     "hindi": "दादीजी (अपनी)",
     "english": "Grandmother (own)",
-    "tags": ["family"],
-    "id": "word_171"
-  },
-  {
-    "type": "word",
-    "japanese": "いしゃ",
-    "romaji": "Isha",
-    "hindi": "डॉक्टर",
-    "english": "Doctor",
-    "tags": ["profession"],
-    "id": "word_172"
-  },
-  {
-    "type": "word",
-    "japanese": "べんごし",
-    "romaji": "Bengoshi",
-    "hindi": "वकील",
-    "english": "Lawyer",
-    "tags": ["profession"],
-    "id": "word_173"
-  },
-  {
-    "type": "word",
-    "japanese": "がくせい",
-    "romaji": "Gakusei",
-    "hindi": "छात्र",
-    "english": "Student",
-    "tags": ["profession"],
-    "id": "word_174"
-  },
-  {
-    "type": "word",
-    "japanese": "ビジネスマン",
-    "romaji": "Bijinesuman",
-    "hindi": "व्यापारी",
-    "english": "Businessman",
-    "tags": ["profession"],
-    "id": "word_175"
-  },
-  {
-    "type": "word",
-    "japanese": "こうむいん",
-    "romaji": "Komuin",
-    "hindi": "सरकारी कर्मचारी",
-    "english": "Government Employee",
-    "tags": ["profession"],
-    "id": "word_176"
-  },
-  {
-    "type": "word",
-    "japanese": "しゅふ",
-    "romaji": "Shufu",
-    "hindi": "गृहिणी",
-    "english": "Homemaker",
-    "tags": ["profession"],
-    "id": "word_177"
-  },
-  {
-    "type": "word",
-    "japanese": "けいさつかん",
-    "romaji": "Keisatsukan",
-    "hindi": "पुलिस अधिकारी",
-    "english": "Police Officer",
-    "tags": ["profession"],
-    "id": "word_178"
-  },
-  {
-    "type": "word",
-    "japanese": "かいしゃいん",
-    "romaji": "Kaishain",
-    "hindi": "ऑफिस कर्मचारी",
-    "english": "Office Worker",
-    "tags": ["profession"],
-    "id": "word_179"
+    "tags": [
+      "family"
+    ],
+    "id": "word_167"
   },
   {
     "type": "word",
@@ -1616,8 +1888,10 @@
     "romaji": "Kore",
     "hindi": "यह (वस्तु)",
     "english": "This (noun)",
-    "tags": ["demonstrative"],
-    "id": "word_180"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_168"
   },
   {
     "type": "word",
@@ -1625,8 +1899,10 @@
     "romaji": "Kono",
     "hindi": "यह (विशेषण)",
     "english": "This (adjective)",
-    "tags": ["demonstrative"],
-    "id": "word_181"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_169"
   },
   {
     "type": "word",
@@ -1634,8 +1910,10 @@
     "romaji": "Sore",
     "hindi": "वह (पास)",
     "english": "That (noun, near listener)",
-    "tags": ["demonstrative"],
-    "id": "word_182"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_170"
   },
   {
     "type": "word",
@@ -1643,8 +1921,10 @@
     "romaji": "Sono",
     "hindi": "वह (विशेषण)",
     "english": "That (adjective)",
-    "tags": ["demonstrative"],
-    "id": "word_183"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_171"
   },
   {
     "type": "word",
@@ -1652,8 +1932,10 @@
     "romaji": "Are",
     "hindi": "वह (दूर)",
     "english": "That over there (noun)",
-    "tags": ["demonstrative"],
-    "id": "word_184"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_172"
   },
   {
     "type": "word",
@@ -1661,8 +1943,10 @@
     "romaji": "Ano",
     "hindi": "वह दूर (विशेषण)",
     "english": "That over there (adj)",
-    "tags": ["demonstrative"],
-    "id": "word_185"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_173"
   },
   {
     "type": "word",
@@ -1670,8 +1954,10 @@
     "romaji": "Korera",
     "hindi": "ये सब",
     "english": "These (noun)",
-    "tags": ["demonstrative"],
-    "id": "word_186"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_174"
   },
   {
     "type": "word",
@@ -1679,8 +1965,10 @@
     "romaji": "Sorera",
     "hindi": "वे सब",
     "english": "Those (noun)",
-    "tags": ["demonstrative"],
-    "id": "word_187"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_175"
   },
   {
     "type": "word",
@@ -1688,8 +1976,10 @@
     "romaji": "Dore",
     "hindi": "कौन सा?",
     "english": "Which one?",
-    "tags": ["demonstrative"],
-    "id": "word_188"
+    "tags": [
+      "demonstrative"
+    ],
+    "id": "word_176"
   },
   {
     "type": "word",
@@ -1697,8 +1987,10 @@
     "romaji": "Zero",
     "hindi": "शून्य",
     "english": "Zero",
-    "tags": ["number"],
-    "id": "word_189"
+    "tags": [
+      "number"
+    ],
+    "id": "word_177"
   },
   {
     "type": "word",
@@ -1706,8 +1998,10 @@
     "romaji": "Ichi",
     "hindi": "एक",
     "english": "One",
-    "tags": ["number"],
-    "id": "word_190"
+    "tags": [
+      "number"
+    ],
+    "id": "word_178"
   },
   {
     "type": "word",
@@ -1715,8 +2009,10 @@
     "romaji": "Ni",
     "hindi": "दो",
     "english": "Two",
-    "tags": ["number"],
-    "id": "word_191"
+    "tags": [
+      "number"
+    ],
+    "id": "word_179"
   },
   {
     "type": "word",
@@ -1724,8 +2020,10 @@
     "romaji": "San",
     "hindi": "तीन",
     "english": "Three",
-    "tags": ["number"],
-    "id": "word_192"
+    "tags": [
+      "number"
+    ],
+    "id": "word_180"
   },
   {
     "type": "word",
@@ -1733,8 +2031,10 @@
     "romaji": "Yon",
     "hindi": "चार",
     "english": "Four",
-    "tags": ["number"],
-    "id": "word_193"
+    "tags": [
+      "number"
+    ],
+    "id": "word_181"
   },
   {
     "type": "word",
@@ -1742,8 +2042,10 @@
     "romaji": "Go",
     "hindi": "पाँच",
     "english": "Five",
-    "tags": ["number"],
-    "id": "word_194"
+    "tags": [
+      "number"
+    ],
+    "id": "word_182"
   },
   {
     "type": "word",
@@ -1751,8 +2053,10 @@
     "romaji": "Roku",
     "hindi": "छह",
     "english": "Six",
-    "tags": ["number"],
-    "id": "word_195"
+    "tags": [
+      "number"
+    ],
+    "id": "word_183"
   },
   {
     "type": "word",
@@ -1760,8 +2064,10 @@
     "romaji": "Nana",
     "hindi": "सात",
     "english": "Seven",
-    "tags": ["number"],
-    "id": "word_196"
+    "tags": [
+      "number"
+    ],
+    "id": "word_184"
   },
   {
     "type": "word",
@@ -1769,8 +2075,10 @@
     "romaji": "Hachi",
     "hindi": "आठ",
     "english": "Eight",
-    "tags": ["number"],
-    "id": "word_197"
+    "tags": [
+      "number"
+    ],
+    "id": "word_185"
   },
   {
     "type": "word",
@@ -1778,8 +2086,10 @@
     "romaji": "Kyuu",
     "hindi": "नौ",
     "english": "Nine",
-    "tags": ["number"],
-    "id": "word_198"
+    "tags": [
+      "number"
+    ],
+    "id": "word_186"
   },
   {
     "type": "word",
@@ -1787,8 +2097,10 @@
     "romaji": "Juu",
     "hindi": "दस",
     "english": "Ten",
-    "tags": ["number"],
-    "id": "word_199"
+    "tags": [
+      "number"
+    ],
+    "id": "word_187"
   },
   {
     "type": "word",
@@ -1796,8 +2108,10 @@
     "romaji": "Juu ichi",
     "hindi": "ग्यारह",
     "english": "Eleven",
-    "tags": ["number"],
-    "id": "word_200"
+    "tags": [
+      "number"
+    ],
+    "id": "word_188"
   },
   {
     "type": "word",
@@ -1805,8 +2119,10 @@
     "romaji": "Ni juu",
     "hindi": "बीस",
     "english": "Twenty",
-    "tags": ["number"],
-    "id": "word_201"
+    "tags": [
+      "number"
+    ],
+    "id": "word_189"
   },
   {
     "type": "word",
@@ -1814,8 +2130,10 @@
     "romaji": "San juu",
     "hindi": "तीस",
     "english": "Thirty",
-    "tags": ["number"],
-    "id": "word_202"
+    "tags": [
+      "number"
+    ],
+    "id": "word_190"
   },
   {
     "type": "word",
@@ -1823,8 +2141,10 @@
     "romaji": "Hyaku",
     "hindi": "सौ",
     "english": "Hundred",
-    "tags": ["number"],
-    "id": "word_203"
+    "tags": [
+      "number"
+    ],
+    "id": "word_191"
   },
   {
     "type": "word",
@@ -1832,8 +2152,10 @@
     "romaji": "Sen",
     "hindi": "हज़ार",
     "english": "Thousand",
-    "tags": ["number"],
-    "id": "word_204"
+    "tags": [
+      "number"
+    ],
+    "id": "word_192"
   },
   {
     "type": "word",
@@ -1841,8 +2163,10 @@
     "romaji": "Ichi man",
     "hindi": "दस हज़ार",
     "english": "Ten Thousand",
-    "tags": ["number"],
-    "id": "word_205"
+    "tags": [
+      "number"
+    ],
+    "id": "word_193"
   },
   {
     "type": "word",
@@ -1850,8 +2174,10 @@
     "romaji": "Ue",
     "hindi": "ऊपर",
     "english": "On / Above / Over",
-    "tags": ["position"],
-    "id": "word_206"
+    "tags": [
+      "position"
+    ],
+    "id": "word_194"
   },
   {
     "type": "word",
@@ -1859,8 +2185,10 @@
     "romaji": "Shita",
     "hindi": "नीचे",
     "english": "Below / Under",
-    "tags": ["position"],
-    "id": "word_207"
+    "tags": [
+      "position"
+    ],
+    "id": "word_195"
   },
   {
     "type": "word",
@@ -1868,8 +2196,10 @@
     "romaji": "Mae",
     "hindi": "सामने",
     "english": "In Front Of",
-    "tags": ["position"],
-    "id": "word_208"
+    "tags": [
+      "position"
+    ],
+    "id": "word_196"
   },
   {
     "type": "word",
@@ -1877,8 +2207,10 @@
     "romaji": "Ushiro",
     "hindi": "पीछे",
     "english": "Behind",
-    "tags": ["position"],
-    "id": "word_209"
+    "tags": [
+      "position"
+    ],
+    "id": "word_197"
   },
   {
     "type": "word",
@@ -1886,8 +2218,10 @@
     "romaji": "Migi",
     "hindi": "दाईं तरफ",
     "english": "Right",
-    "tags": ["position"],
-    "id": "word_210"
+    "tags": [
+      "position"
+    ],
+    "id": "word_198"
   },
   {
     "type": "word",
@@ -1895,8 +2229,10 @@
     "romaji": "Hidari",
     "hindi": "बाईं तरफ",
     "english": "Left",
-    "tags": ["position"],
-    "id": "word_211"
+    "tags": [
+      "position"
+    ],
+    "id": "word_199"
   },
   {
     "type": "word",
@@ -1904,88 +2240,623 @@
     "romaji": "Soto",
     "hindi": "बाहर",
     "english": "Outside",
-    "tags": ["position"],
+    "tags": [
+      "position"
+    ],
+    "id": "word_200"
+  },
+  {
+    "type": "word",
+    "japanese": "お元気",
+    "romaji": "ogenki",
+    "hindi": "स्वस्थ / होशियार",
+    "english": "healthy / well",
+    "tags": [
+      "basic",
+      "greeting"
+    ],
+    "id": "word_201"
+  },
+  {
+    "type": "word",
+    "japanese": "おはようございます",
+    "romaji": "ohayou gozaimasu",
+    "hindi": "सुप्रभात",
+    "english": "good morning (polite)",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_202"
+  },
+  {
+    "type": "word",
+    "japanese": "おはよう",
+    "romaji": "ohayou",
+    "hindi": "सुप्रभात (अनौपचारिक)",
+    "english": "good morning (casual)",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_203"
+  },
+  {
+    "type": "word",
+    "japanese": "こんばんは",
+    "romaji": "konbanwa",
+    "hindi": "शुभ संध्या",
+    "english": "good evening",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_204"
+  },
+  {
+    "type": "word",
+    "japanese": "さようなら",
+    "romaji": "sayounara",
+    "hindi": "अलविदा",
+    "english": "goodbye (formal)",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_205"
+  },
+  {
+    "type": "word",
+    "japanese": "じゃあね",
+    "romaji": "jaa ne",
+    "hindi": "बाय (अनौपचारिक)",
+    "english": "bye (casual)",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_206"
+  },
+  {
+    "type": "word",
+    "japanese": "おやすみなさい",
+    "romaji": "oyasuminasai",
+    "hindi": "शुभ रात्रि",
+    "english": "good night",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_207"
+  },
+  {
+    "type": "word",
+    "japanese": "すみません",
+    "romaji": "sumimasen",
+    "hindi": "माफ़ कीजिए",
+    "english": "excuse me / sorry",
+    "tags": [
+      "polite"
+    ],
+    "id": "word_208"
+  },
+  {
+    "type": "word",
+    "japanese": "ごめんなさい",
+    "romaji": "gomen nasai",
+    "hindi": "मुझे माफ करो",
+    "english": "sorry (polite)",
+    "tags": [
+      "polite"
+    ],
+    "id": "word_209"
+  },
+  {
+    "type": "word",
+    "japanese": "ありがとう",
+    "romaji": "arigatou",
+    "hindi": "धन्यवाद",
+    "english": "thank you (casual)",
+    "tags": [
+      "polite"
+    ],
+    "id": "word_210"
+  },
+  {
+    "type": "word",
+    "japanese": "ありがとうございます",
+    "romaji": "arigatou gozaimasu",
+    "hindi": "बहुत धन्यवाद",
+    "english": "thank you very much",
+    "tags": [
+      "polite"
+    ],
+    "id": "word_211"
+  },
+  {
+    "type": "word",
+    "japanese": "どうぞ",
+    "romaji": "douzo",
+    "hindi": "कृपया / लीजिए",
+    "english": "please / here you are",
+    "tags": [
+      "polite"
+    ],
     "id": "word_212"
   },
   {
     "type": "word",
-    "japanese": "にほん",
-    "romaji": "Nihon",
-    "hindi": "जापान",
-    "english": "Japan",
-    "tags": ["country"],
+    "japanese": "どうぞよろしく",
+    "romaji": "douzo yoroshiku",
+    "hindi": "मिलकर खुशी हुई",
+    "english": "nice to meet you",
+    "tags": [
+      "greeting",
+      "polite"
+    ],
     "id": "word_213"
   },
   {
     "type": "word",
-    "japanese": "インド",
-    "romaji": "Indo",
-    "hindi": "भारत",
-    "english": "India",
-    "tags": ["country"],
+    "japanese": "はじめまして",
+    "romaji": "hajimemashite",
+    "hindi": "पहली बार मिल रहे हैं",
+    "english": "nice to meet you (first time)",
+    "tags": [
+      "greeting"
+    ],
     "id": "word_214"
   },
   {
     "type": "word",
-    "japanese": "イギリス",
-    "romaji": "Igiisu",
-    "hindi": "ब्रिटेन",
-    "english": "Britain",
-    "tags": ["country"],
+    "japanese": "ただいま",
+    "romaji": "tadaima",
+    "hindi": "मैं घर आ गया",
+    "english": "I'm home",
+    "tags": [
+      "greeting"
+    ],
     "id": "word_215"
   },
   {
     "type": "word",
-    "japanese": "ブラジル",
-    "romaji": "Burajiru",
-    "hindi": "ब्राज़ील",
-    "english": "Brazil",
-    "tags": ["country"],
+    "japanese": "いってきます",
+    "romaji": "ittekimasu",
+    "hindi": "मैं जा रहा हूँ",
+    "english": "I'm going (and coming back)",
+    "tags": [
+      "greeting"
+    ],
     "id": "word_216"
   },
   {
     "type": "word",
-    "japanese": "ドイツ",
-    "romaji": "Doitsu",
-    "hindi": "जर्मनी",
-    "english": "Germany",
-    "tags": ["country"],
+    "japanese": "いってらっしゃい",
+    "romaji": "itterasshai",
+    "hindi": "जाइए / जल्दी आइए",
+    "english": "go and come back safely",
+    "tags": [
+      "greeting"
+    ],
     "id": "word_217"
   },
   {
     "type": "word",
-    "japanese": "ちゅうごく",
-    "romaji": "Chuugoku",
-    "hindi": "चीन",
-    "english": "China",
-    "tags": ["country"],
+    "japanese": "いただきます",
+    "romaji": "itadakimasu",
+    "hindi": "खाना शुरू करते हैं",
+    "english": "let's eat (before meal)",
+    "tags": [
+      "polite",
+      "food"
+    ],
     "id": "word_218"
   },
   {
     "type": "word",
-    "japanese": "こくせき",
-    "romaji": "Kokuseki",
-    "hindi": "राष्ट्रीयता",
-    "english": "Nationality",
-    "tags": ["country"],
+    "japanese": "ごちそうさまでした",
+    "romaji": "gochisousama deshita",
+    "hindi": "बहुत स्वादिष्ट था",
+    "english": "thank you for the meal",
+    "tags": [
+      "polite",
+      "food"
+    ],
     "id": "word_219"
   },
   {
     "type": "word",
-    "japanese": "にほんじん",
-    "romaji": "Nihonjin",
-    "hindi": "जापानी व्यक्ति",
-    "english": "Japanese Person",
-    "tags": ["country"],
+    "japanese": "がんばって",
+    "romaji": "ganbatte",
+    "hindi": "कोशिश करो!",
+    "english": "do your best!",
+    "tags": [
+      "encouragement"
+    ],
     "id": "word_220"
   },
   {
     "type": "word",
-    "japanese": "インドじん",
-    "romaji": "Indojin",
-    "hindi": "भारतीय व्यक्ति",
-    "english": "Indian Person",
-    "tags": ["country"],
+    "japanese": "けっこうです",
+    "romaji": "kekkou desu",
+    "hindi": "नहीं चाहिए, धन्यवाद",
+    "english": "no thank you / I'm fine",
+    "tags": [
+      "polite"
+    ],
     "id": "word_221"
+  },
+  {
+    "type": "word",
+    "japanese": "そうですか",
+    "romaji": "sou desu ka",
+    "hindi": "ओह, ऐसा है!",
+    "english": "is that so!",
+    "tags": [
+      "reaction"
+    ],
+    "id": "word_222"
+  },
+  {
+    "type": "word",
+    "japanese": "ほんとう",
+    "romaji": "hontou",
+    "hindi": "सच",
+    "english": "true / really",
+    "tags": [
+      "basic"
+    ],
+    "id": "word_223"
+  },
+  {
+    "type": "word",
+    "japanese": "一緒に",
+    "romaji": "issho ni",
+    "hindi": "साथ में",
+    "english": "together",
+    "tags": [
+      "basic"
+    ],
+    "id": "word_224"
+  },
+  {
+    "type": "word",
+    "japanese": "楽しみ",
+    "romaji": "tanoshimi",
+    "hindi": "इंतजार / मज़ा",
+    "english": "looking forward / fun",
+    "tags": [
+      "emotion"
+    ],
+    "id": "word_225"
+  },
+  {
+    "type": "word",
+    "japanese": "本当に",
+    "romaji": "hontouni",
+    "hindi": "सच में",
+    "english": "really / truly",
+    "tags": [
+      "adverb"
+    ],
+    "id": "word_226"
+  },
+  {
+    "type": "word",
+    "japanese": "申し訳ない",
+    "romaji": "moshiwake nai",
+    "hindi": "खेद है",
+    "english": "sorry / apologetic",
+    "tags": [
+      "polite"
+    ],
+    "id": "word_227"
+  },
+  {
+    "type": "word",
+    "japanese": "残念",
+    "romaji": "zannen",
+    "hindi": "अफसोस",
+    "english": "unfortunate / regret",
+    "tags": [
+      "emotion",
+      "na-adj"
+    ],
+    "id": "word_228"
+  },
+  {
+    "type": "word",
+    "japanese": "がっこう",
+    "romaji": "gakkou",
+    "hindi": "स्कूल",
+    "english": "school",
+    "tags": [
+      "place"
+    ],
+    "id": "word_229"
+  },
+  {
+    "type": "word",
+    "japanese": "ほん",
+    "romaji": "hon",
+    "hindi": "किताब",
+    "english": "book",
+    "tags": [
+      "object"
+    ],
+    "id": "word_230"
+  },
+  {
+    "type": "word",
+    "japanese": "おんがく",
+    "romaji": "ongaku",
+    "hindi": "संगीत",
+    "english": "music",
+    "tags": [
+      "entertainment"
+    ],
+    "id": "word_231"
+  },
+  {
+    "type": "word",
+    "japanese": "テニス",
+    "romaji": "tenisu",
+    "hindi": "टेनिस",
+    "english": "tennis",
+    "tags": [
+      "sport"
+    ],
+    "id": "word_232"
+  },
+  {
+    "type": "word",
+    "japanese": "ねこ",
+    "romaji": "neko",
+    "hindi": "बिल्ली",
+    "english": "cat",
+    "tags": [
+      "animal"
+    ],
+    "id": "word_233"
+  },
+  {
+    "type": "word",
+    "japanese": "へや",
+    "romaji": "heya",
+    "hindi": "कमरा",
+    "english": "room",
+    "tags": [
+      "place"
+    ],
+    "id": "word_234"
+  },
+  {
+    "type": "word",
+    "japanese": "つくえ",
+    "romaji": "tsukue",
+    "hindi": "मेज़",
+    "english": "desk",
+    "tags": [
+      "object"
+    ],
+    "id": "word_235"
+  },
+  {
+    "type": "word",
+    "japanese": "かばん",
+    "romaji": "kaban",
+    "hindi": "बैग",
+    "english": "bag",
+    "tags": [
+      "object"
+    ],
+    "id": "word_236"
+  },
+  {
+    "type": "word",
+    "japanese": "おしゃれ",
+    "romaji": "oshare",
+    "hindi": "फैशनेबल",
+    "english": "fashionable",
+    "tags": [
+      "adjective",
+      "na-adj"
+    ],
+    "id": "word_237"
+  },
+  {
+    "type": "word",
+    "japanese": "すし",
+    "romaji": "sushi",
+    "hindi": "सुशी",
+    "english": "sushi",
+    "tags": [
+      "food"
+    ],
+    "id": "word_238"
+  },
+  {
+    "type": "word",
+    "japanese": "ラーメン",
+    "romaji": "raamen",
+    "hindi": "रामेन",
+    "english": "ramen",
+    "tags": [
+      "food"
+    ],
+    "id": "word_239"
+  },
+  {
+    "type": "word",
+    "japanese": "いくら",
+    "romaji": "ikura",
+    "hindi": "कितना (कीमत)",
+    "english": "how much",
+    "tags": [
+      "question"
+    ],
+    "id": "word_240"
+  },
+  {
+    "type": "word",
+    "japanese": "もっと",
+    "romaji": "motto",
+    "hindi": "और ज़्यादा",
+    "english": "more",
+    "tags": [
+      "adverb"
+    ],
+    "id": "word_241"
+  },
+  {
+    "type": "word",
+    "japanese": "なんじ",
+    "romaji": "nanji",
+    "hindi": "कितने बजे?",
+    "english": "what time",
+    "tags": [
+      "question",
+      "time"
+    ],
+    "id": "word_242"
+  },
+  {
+    "type": "word",
+    "japanese": "なまえ",
+    "romaji": "namae",
+    "hindi": "नाम",
+    "english": "name",
+    "tags": [
+      "basic"
+    ],
+    "id": "word_243"
+  },
+  {
+    "type": "word",
+    "japanese": "さい",
+    "romaji": "sai",
+    "hindi": "साल (उम्र)",
+    "english": "years old (age counter)",
+    "tags": [
+      "counter"
+    ],
+    "id": "word_244"
+  },
+  {
+    "type": "word",
+    "japanese": "にほんご",
+    "romaji": "nihongo",
+    "hindi": "जापानी भाषा",
+    "english": "Japanese language",
+    "tags": [
+      "language"
+    ],
+    "id": "word_245"
+  },
+  {
+    "type": "word",
+    "japanese": "よる",
+    "romaji": "yoru",
+    "hindi": "रात",
+    "english": "night",
+    "tags": [
+      "time"
+    ],
+    "id": "word_246"
+  },
+  {
+    "type": "word",
+    "japanese": "もういちど",
+    "romaji": "mou ichido",
+    "hindi": "एक बार फिर",
+    "english": "one more time",
+    "tags": [
+      "adverb"
+    ],
+    "id": "word_247"
+  },
+  {
+    "type": "word",
+    "japanese": "ちょっとまってください",
+    "romaji": "chotto matte kudasai",
+    "hindi": "थोड़ा रुकिए",
+    "english": "wait a moment please",
+    "tags": [
+      "polite"
+    ],
+    "id": "word_248"
+  },
+  {
+    "type": "word",
+    "japanese": "どういういみ",
+    "romaji": "dou iu imi",
+    "hindi": "क्या मतलब?",
+    "english": "what does it mean",
+    "tags": [
+      "question"
+    ],
+    "id": "word_249"
+  },
+  {
+    "type": "word",
+    "japanese": "じゃない",
+    "romaji": "janai",
+    "hindi": "नहीं है",
+    "english": "is not",
+    "tags": [
+      "grammar",
+      "negative"
+    ],
+    "id": "word_250"
+  },
+  {
+    "type": "word",
+    "japanese": "たのしそう",
+    "romaji": "tanoshisou",
+    "hindi": "मज़ेदार लगता है",
+    "english": "sounds fun",
+    "tags": [
+      "reaction"
+    ],
+    "id": "word_251"
+  },
+  {
+    "type": "word",
+    "japanese": "ひるごはん",
+    "romaji": "hirugohan",
+    "hindi": "दोपहर का खाना",
+    "english": "lunch",
+    "tags": [
+      "food",
+      "time"
+    ],
+    "id": "word_252"
+  },
+  {
+    "type": "word",
+    "japanese": "しごと",
+    "romaji": "shigoto",
+    "hindi": "काम",
+    "english": "work / job",
+    "tags": [
+      "life"
+    ],
+    "id": "word_253"
+  },
+  {
+    "type": "word",
+    "japanese": "またあした",
+    "romaji": "mata ashita",
+    "hindi": "कल मिलते हैं",
+    "english": "see you tomorrow",
+    "tags": [
+      "greeting"
+    ],
+    "id": "word_254"
+  },
+  {
+    "type": "word",
+    "japanese": "げんき",
+    "romaji": "genki",
+    "hindi": "स्वस्थ / ठीक",
+    "english": "healthy / fine",
+    "tags": [
+      "basic"
+    ],
+    "id": "word_255"
   }
 ]

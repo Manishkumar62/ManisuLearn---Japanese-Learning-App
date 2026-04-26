@@ -29,7 +29,7 @@
   {
     "type": "grammar",
     "japanese": "を",
-    "romaji": "o / wo",
+    "romaji": "o",
     "hindi": "वस्तु चिह्न",
     "english": "Object marker",
     "tags": ["particle"],
@@ -47,8 +47,8 @@
   {
     "type": "grammar",
     "japanese": "〜のなかに",
-    "romaji": "... no naka ni",
-    "hindi": "... के अंदर",
+    "romaji": "~no naka ni",
+    "hindi": "~के अंदर",
     "english": "Inside ...",
     "tags": ["preposition", "location"],
     "id": "grammar_6"
@@ -56,118 +56,91 @@
   {
     "type": "grammar",
     "japanese": "〜ではないありません",
-    "romaji": "... dewa arimasen",
-    "hindi": "... नहीं हूँ / नहीं है",
+    "romaji": "~dewa arimasen",
+    "hindi": "~नहीं हूँ / नहीं है",
     "english": "Am not / Is not",
     "tags": ["negation", "formal"],
     "id": "grammar_7"
   },
   {
     "type": "grammar",
-    "japanese": "は (wa)",
-    "romaji": "wa",
-    "hindi": "विषय चिह्न",
-    "english": "Topic / Subject marker",
+    "japanese": "に",
+    "romaji": "ni",
+    "hindi": "समय/स्थान/दिशा चिह्न",
+    "english": "Time / Destination / Location",
     "tags": ["particle"],
     "id": "grammar_8"
   },
   {
     "type": "grammar",
-    "japanese": "を (o)",
-    "romaji": "o / wo",
-    "hindi": "वस्तु चिह्न",
-    "english": "Object marker",
+    "japanese": "で",
+    "romaji": "de",
+    "hindi": "स्थान/साधन चिह्न",
+    "english": "Location of activity / Means",
     "tags": ["particle"],
     "id": "grammar_9"
   },
   {
     "type": "grammar",
-    "japanese": "に (ni)",
-    "romaji": "ni",
-    "hindi": "समय/स्थान/दिशा चिह्न",
-    "english": "Time / Destination / Location",
+    "japanese": "へ",
+    "romaji": "e",
+    "hindi": "दिशा चिह्न",
+    "english": "Direction marker",
     "tags": ["particle"],
     "id": "grammar_10"
   },
   {
     "type": "grammar",
-    "japanese": "で (de)",
-    "romaji": "de",
-    "hindi": "स्थान/साधन चिह्न",
-    "english": "Location of activity / Means",
+    "japanese": "と",
+    "romaji": "to",
+    "hindi": "साथ / और",
+    "english": "With / And",
     "tags": ["particle"],
     "id": "grammar_11"
   },
   {
     "type": "grammar",
-    "japanese": "へ (e)",
-    "romaji": "e",
-    "hindi": "दिशा चिह्न",
-    "english": "Direction marker",
+    "japanese": "の",
+    "romaji": "no",
+    "hindi": "का / की / के",
+    "english": "Possession / Of",
     "tags": ["particle"],
     "id": "grammar_12"
   },
   {
     "type": "grammar",
-    "japanese": "と (to)",
-    "romaji": "to",
-    "hindi": "साथ / और",
-    "english": "With / And",
+    "japanese": "が",
+    "romaji": "ga",
+    "hindi": "विषय चिह्न (विशेष)",
+    "english": "Subject marker (special)",
     "tags": ["particle"],
     "id": "grammar_13"
   },
   {
     "type": "grammar",
-    "japanese": "から (kara)",
-    "romaji": "kara",
-    "hindi": "से (शुरू)",
-    "english": "From (origin)",
+    "japanese": "も",
+    "romaji": "mo",
+    "hindi": "भी",
+    "english": "Also / Too",
     "tags": ["particle"],
     "id": "grammar_14"
   },
   {
     "type": "grammar",
-    "japanese": "の (no)",
-    "romaji": "no",
-    "hindi": "का / की / के",
-    "english": "Possession / Of",
+    "japanese": "か",
+    "romaji": "ka",
+    "hindi": "प्रश्न चिह्न",
+    "english": "Question marker",
     "tags": ["particle"],
     "id": "grammar_15"
   },
   {
     "type": "grammar",
-    "japanese": "が (ga)",
-    "romaji": "ga",
-    "hindi": "विषय चिह्न (विशेष)",
-    "english": "Subject marker (special)",
-    "tags": ["particle"],
-    "id": "grammar_16"
-  },
-  {
-    "type": "grammar",
-    "japanese": "も (mo)",
-    "romaji": "mo",
-    "hindi": "भी",
-    "english": "Also / Too",
-    "tags": ["particle"],
-    "id": "grammar_17"
-  },
-  {
-    "type": "grammar",
-    "japanese": "か (ka)",
-    "romaji": "ka",
-    "hindi": "प्रश्न चिह्न",
-    "english": "Question marker",
-    "tags": ["particle"],
-    "id": "grammar_18"
-  },
-  {
-    "type": "grammar",
-    "japanese": "ね (ne)",
+    "japanese": "ね",
     "romaji": "ne",
     "hindi": "है ना? (सहमति)",
     "english": "Isn't it?",
     "tags": ["particle"],
-    "id": "grammar_19"
+    "id": "grammar_16"
   }
 ]

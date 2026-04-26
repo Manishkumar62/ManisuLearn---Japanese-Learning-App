@@ -1,4 +1,7 @@
 enum ItemType {
+  hiragana('hiragana'),
+  katakana('katakana'),
+  kanji('kanji'),
   word('word'),
   sentence('sentence'),
   dialogue('dialogue'),

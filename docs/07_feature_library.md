@@ -1,33 +1,40 @@
 # Library Feature
 
 ## Purpose
-Display all learning content
+Browse and filter all learning content by type and tags.
+
+## Content Types
+- Hiragana
+- Katakana
+- Kanji
+- Words
+- Sentences
+- Dialogues
+- Grammar
 
 ## UI
 
-- List view
-- Filter chips:
-  - Words
-  - Sentences
-  - Stories
+- List/grid view of items
+- Filter chips by type
+- Tag-based filtering
+- Learned / not learned toggle
 
 ## Features
 
+- Filter by type (word, sentence, etc.)
+- Filter by tags (greeting, anime, routine, etc.)
+- Filter by learning status
 - Search within library
-- Filter by:
-  - Learned
-  - Not learned
-  - Needs revision
 
 ## BLoC
 
 Events:
 - LoadLibrary
-- FilterLibrary
+- FilterLibrary(type, tags, learnedStatus)
 
 State:
-- List<LearningItem>
+- List<LearningItem> with active filters
 
 ## Interaction
 
-- Tap item → open detail / learn
+- Tap item → open detail / learn view

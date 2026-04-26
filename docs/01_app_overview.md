@@ -1,14 +1,16 @@
 # App Overview
 
 ## Concept
-A multilingual learning app that supports:
+A multilingual Japanese learning app (Manisu Learn) that supports:
+- Hiragana
+- Katakana
+- Kanji
 - Words
 - Sentences
-- Paragraphs
-- Stories
-- Songs
+- Dialogues
+- Grammar
 
-Languages:
+Languages per item:
 - Japanese
 - Romaji
 - Hindi
@@ -17,19 +19,30 @@ Languages:
 ## Key Features
 - Learn content using flashcards / reading
 - Track learning progress
-- Revision system with repetition tracking
-- Smart search (AI-like, local)
-- Add/import content manually or via JSON
+- Spaced repetition revision system (SM-2)
+- Daily review queue
+- Smart search (local, fuzzy)
+- Library with tag-based filtering
+- Category breakdown analytics on home page
 
 ## Data Source
 - Fully local (Hive database)
 - No backend
-- Data grows via:
-  - JSON import
-  - Manual entry
+- JSON data files bundled in assets
+- Data versioning with automatic migration on updates
+
+## Data Files
+All located in `assets/data/`:
+- `hiragana.json`
+- `katakana.json`
+- `kanji.json`
+- `words.json` (~255 entries)
+- `sentences.json` (~122 entries)
+- `grammars.json`
+- `dialogues.json`
 
 ## Core Flow
-Add Data → Learn → Mark Learned → Revise → Track → Search
+Add Data → Learn → Mark Learned → Revise (SM-2) → Track → Search
 
 ## Goal
-Build a personal knowledge system for language learning.
+Build a personal knowledge system for Japanese language learning, targeting Hindi speakers.

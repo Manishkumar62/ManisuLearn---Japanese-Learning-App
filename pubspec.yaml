@@ -68,9 +68,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/data/hiragana.json
+    - assets/data/katakana.json
+    - assets/data/kanji.json
     - assets/data/words.json
     - assets/data/sentences.json
-    - assets/data/grammers.json
+    - assets/data/grammars.json
     - assets/data/dialogues.json
   #   - images/a_dot_ham.jpeg
 

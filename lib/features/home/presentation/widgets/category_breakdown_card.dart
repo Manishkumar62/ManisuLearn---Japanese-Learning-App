@@ -7,6 +7,9 @@ class CategoryBreakdownCard extends StatelessWidget {
   const CategoryBreakdownCard({super.key, required this.categories});
 
   static const _typeConfig = {
+    'hiragana': (Icons.text_fields, 'Hiragana'),
+    'katakana': (Icons.text_fields, 'Katakana'),
+    'kanji': (Icons.language, 'Kanji'),
     'word': (Icons.translate, 'Words'),
     'sentence': (Icons.short_text, 'Sentences'),
     'grammar': (Icons.auto_stories, 'Grammar'),

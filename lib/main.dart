@@ -42,32 +42,29 @@ void main() async {
 
     await learningBox.clear();
 
+    final batch = <String, LearningItem>{};
     for (var item in newItems) {
       final existing = existingById[item.id];
       if (existing != null) {
-        // Keep content fresh, preserve user progress
-        await learningBox.put(
-          item.id,
-          item.copyWith(
-            isLearned: existing.isLearned,
-            revisionCount: existing.revisionCount,
-            lastReviewed: existing.lastReviewed,
-            createdAt: existing.createdAt,
-            difficulty: existing.difficulty,
-            easeFactor: existing.easeFactor,
-            interval: existing.interval,
-            repetitions: existing.repetitions,
-            nextReview: existing.isLearned
-                ? existing.nextReview
-                : DateTime.now().add(const Duration(days: 365)),
-            firstLearnedAt: existing.firstLearnedAt,
-          ),
+        batch[item.id] = item.copyWith(
+          isLearned: existing.isLearned,
+          revisionCount: existing.revisionCount,
+          lastReviewed: existing.lastReviewed,
+          createdAt: existing.createdAt,
+          difficulty: existing.difficulty,
+          easeFactor: existing.easeFactor,
+          interval: existing.interval,
+          repetitions: existing.repetitions,
+          nextReview: existing.isLearned
+              ? existing.nextReview
+              : DateTime.now().add(const Duration(days: 365)),
+          firstLearnedAt: existing.firstLearnedAt,
         );
       } else {
-        // New item — add with defaults
-        await learningBox.put(item.id, item);
+        batch[item.id] = item;
       }
     }
+    await learningBox.putAll(batch);
 
     await AppMetaService.setDataVersion(currentDataVersion);
   }
