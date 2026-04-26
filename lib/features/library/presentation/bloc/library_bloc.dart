@@ -107,6 +107,9 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
 
           final matchesType = switch (typeFilter) {
             LibraryTypeFilter.all => true,
+            LibraryTypeFilter.hiragana => item.itemType == ItemType.hiragana,
+            LibraryTypeFilter.katakana => item.itemType == ItemType.katakana,
+            LibraryTypeFilter.kanji => item.itemType == ItemType.kanji,
             LibraryTypeFilter.words => item.itemType == ItemType.word,
             LibraryTypeFilter.sentences => item.itemType == ItemType.sentence,
             LibraryTypeFilter.dialogue => item.itemType == ItemType.dialogue,

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-enum LibraryTypeFilter { all, words, sentences, dialogue, grammar, stories }
+enum LibraryTypeFilter { all, hiragana, katakana, kanji, words, sentences, dialogue, grammar, stories }
 
 enum LibraryProgressFilter { all, learned, notLearned, needsRevision }
 

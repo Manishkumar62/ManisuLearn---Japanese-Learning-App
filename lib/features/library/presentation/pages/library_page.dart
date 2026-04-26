@@ -416,6 +416,27 @@ class _FilterSection extends StatelessWidget {
 
               _chip(
                 context,
+                "Hiragana",
+                typeFilter == LibraryTypeFilter.hiragana,
+                () => onTypeChanged(LibraryTypeFilter.hiragana),
+              ),
+
+              _chip(
+                context,
+                "Katakana",
+                typeFilter == LibraryTypeFilter.katakana,
+                () => onTypeChanged(LibraryTypeFilter.katakana),
+              ),
+
+              _chip(
+                context,
+                "Kanji",
+                typeFilter == LibraryTypeFilter.kanji,
+                () => onTypeChanged(LibraryTypeFilter.kanji),
+              ),
+
+              _chip(
+                context,
                 "Words",
                 typeFilter == LibraryTypeFilter.words,
                 () => onTypeChanged(LibraryTypeFilter.words),
