@@ -463,33 +463,33 @@ class _FilterSection extends StatelessWidget {
                 () => onTypeChanged(LibraryTypeFilter.grammar),
               ),
 
-              _chip(
-                context,
-                "Stories",
-                typeFilter == LibraryTypeFilter.stories,
-                () => onTypeChanged(LibraryTypeFilter.stories),
-              ),
+              // _chip(
+              //   context,
+              //   "Stories",
+              //   typeFilter == LibraryTypeFilter.stories,
+              //   () => onTypeChanged(LibraryTypeFilter.stories),
+              // ),
 
-              _chip(
-                context,
-                "Learned",
-                progressFilter == LibraryProgressFilter.learned,
-                () => onProgressChanged(LibraryProgressFilter.learned),
-              ),
+              // _chip(
+              //   context,
+              //   "Learned",
+              //   progressFilter == LibraryProgressFilter.learned,
+              //   () => onProgressChanged(LibraryProgressFilter.learned),
+              // ),
 
-              _chip(
-                context,
-                "New",
-                progressFilter == LibraryProgressFilter.notLearned,
-                () => onProgressChanged(LibraryProgressFilter.notLearned),
-              ),
+              // _chip(
+              //   context,
+              //   "New",
+              //   progressFilter == LibraryProgressFilter.notLearned,
+              //   () => onProgressChanged(LibraryProgressFilter.notLearned),
+              // ),
 
-              _chip(
-                context,
-                "Revise",
-                progressFilter == LibraryProgressFilter.needsRevision,
-                () => onProgressChanged(LibraryProgressFilter.needsRevision),
-              ),
+              // _chip(
+              //   context,
+              //   "Revise",
+              //   progressFilter == LibraryProgressFilter.needsRevision,
+              //   () => onProgressChanged(LibraryProgressFilter.needsRevision),
+              // ),
             ],
           ),
         ],
